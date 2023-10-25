@@ -2,11 +2,49 @@
 layout: page
 permalink: /teaching/
 title: Courses
-description: Courses that I have done and their relevant materials.
+description: An overview of courses I've pursued in the different institutions I have been to.
 nav: true
 nav_order: 5
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+## IISER Kolkata (2018 - 2023)
 
-Organize your courses by years, topics, or universities, however you like!
+### Mathematics
+- Real Analysis
+- Linear Algebra
+- Abstract Algebra
+- Graph Theory and Combinatorics
+- Topology
+- Complex Analysis
+- Functional Analysis
+- Measure Theory
+- Measure Theoretic Probability
+- Differential Geometry
+- Ordinary Differential Equations
+- Partial Differential Equations
+
+### Statistics
+- Probability Theory
+- Statistical Inference
+- Linear Models
+- Time Series
+
+### Economics
+- Economics
+- Applied Mirco-econometrics
+
+### Computer Science
+- Data Structures and Algorithms
+- Machine Learning and Network Analysis
+- Natural Language Processing
+- Search Methods in Artificial Intelligence
+- Information Retrieval
+
+## University of Goettingen (2023)
+- Probabilistic Machine Learning
+
+## IIT Bombay (2023 - 2024)
+- Computer Graphics
+- Asymptotic Statistics
+- Categorical Data Analysis
+- Convex Optimization
