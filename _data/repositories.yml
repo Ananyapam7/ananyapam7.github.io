@@ -1,12 +1,10 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - Ananyapam7
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - soedinglab/MMseqs2
+  - skit-ai/woc-tts-enhancement
+  - Ananyapam7/YouTubeVolumeTransition
+  - Ananyapam7/Exploring-Blockchain-and-Cryptocurrency
+  - Ananyapam7/AILA-Artificial-Intelligence-for-Legal-Assistance
+  - Ananyapam7/QuantitativeResearchRepository

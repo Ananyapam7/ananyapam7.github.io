@@ -1,24 +1,24 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "Ananyapam De",
+    "label": "Researcher",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
-    "url": "https://alshedivat.github.io/al-folio/",
+    "email": "ananyapam7@gmail.com",
+    "phone": "(971) 800-8064",
+    "url": "https://ananyapam7.github.io/",
     "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "Kalka CGHS",
+      "postalCode": "110075",
+      "city": "New Delhi",
+      "countryCode": "IN",
+      "region": "Dwarka"
     },
     "profiles": [
       {
         "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
+        "username": "AnanyapamD",
+        "url": "https://twitter.com/AnanyapamD"
       }
     ]
   },
@@ -63,8 +63,16 @@
   "skills": [],
   "languages": [
     {
-      "language": "German",
+      "language": "Bengali",
       "fluency": "Native speaker"
+    },
+    {
+      "language": "Hindi",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Sanskrit",
+      "fluency": "Fluent"
     },
     {
       "language": "English",
