@@ -1,7 +1,7 @@
 {
   "basics": {
     "name": "Ananyapam De",
-    "label": "Researcher",
+    "Research Interests": "Probabilistic ML, Approximate Inference, Optimization, Network Analysis, Computer Vision, Deep Learning",
     "image": "",
     "email": "ananyapam7@gmail.com",
     "phone": "(971) 800-8064",
@@ -22,45 +22,59 @@
       }
     ]
   },
-  "work": [
-    {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
-      "highlights": [
-        "Relativity"
-      ]
-    }
-  ],
-  "volunteer": [],
   "education": [
     {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
-      "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
-      "score": "",
-      "courses": [
-        "Theory of Relativity"
-      ]
-    }
-  ],
-  "awards": [
+      "institution": "Centre for Machine Intelligence and Data Science, Indian Institute of Technology Bombay (IIT-B)",
+      "url": "https://www.iitb.ac.in/",
+      "area": "Topic: Statistics and Machine Learning",
+      "studyType": "Pre Doctoral Student",
+      "startDate": "2023-08",
+      "endDate": "2024-08"
+    },
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "institution": "Max Planck Institute for Multidisciplinary Sciences, Göttingen",
+      "url": "https://www.mpinat.mpg.de/",
+      "area": "Thesis Title: Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference",
+      "studyType": "Master's Thesis Student",
+      "startDate": "2022-01",
+      "endDate": "2022-12"
+      },
+    {
+      "institution": "Indian Institute of Science Education and Research, Kolkata",
+      "url": "https://www.iiserkol.ac.in/",
+      "area": "Major: Mathematics and Statistics",
+      "studyType": "Bachelors and Masters (BS-MS)",
+      "startDate": "2018-08",
+      "endDate": "2023-08",
+      "score": ""
     }
   ],
-  "certificates": [],
-  "publications": [],
-  "skills": [],
+  "work": [
+    {
+      "position": "Research Assistant",
+      "name": "Decision Sciences Department, Indian Institute of Management, Bangalore (IIM-B)",
+      "startDate": "2022-12",
+      "endDate": "2023-12",
+      "summary": "Optimal Staring Lineup and Substitution Strategy for NBA using GRASP and Reinforcement Learning",
+      "highlights": ["Supervisor: Prof. Soudeep Deb, Prof. Rishideep Roy and Prof. Subhabrata Das"]
+    },
+    {
+      "position": "Research Software Developer",
+      "name": "Max Planck Institute of Multidisciplinary Sciences, Göttingen",
+      "startDate": "2021-05",
+      "endDate": "2021-08",
+      "summary": "Gappiness Match Score Correction in MMSeqs2",
+      "highlights": ["Supervisor: Prof. Johannes Söding"]
+    },
+    {
+      "position": "Machine Learning Research Assistant",
+      "name": "Skit AI",
+      "startDate": "2021-12",
+      "endDate": "2022-03",
+      "summary": "Speech Enhancement in Text-to-Speech(TTS) systems",
+      "highlights": ["Supervisor: Mr. Swaraj Dalmia"]
+    }
+  ],
   "languages": [
     {
       "language": "Bengali",

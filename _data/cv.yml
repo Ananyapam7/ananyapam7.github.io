@@ -8,90 +8,85 @@
     - name: Languages
       value: English, Bengali, Hindi, Sanskrit
 
+- title: Research Interests
+  type: list
+  contents:
+    - Probabilistic ML, Approximate Inference, Optimization, Network Analysis, Computer Vision, Deep Learning
+
+- title: Programming Skills
+  type: list
+  contents:
+    - C/C++, Python (Pytorch, Tensorflow), R, SQL
+
 - title: Education
   type: time_table
   contents:
     - title: Pre-Doctoral Student
-      institution: Indian Institute of Technology, Bombay
-      year: 2024
+      institution: Centre for Machine Intelligence and Data Science, IIT Bombay
+      year: 2023 - Current
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Bachelor's and Master's
-      institution: Indian Institute of Science Education and Research, Kolkata 
+        - Utilising statistics and ML to interpret behavioural risk markers
+        - Supervisor: Prof. Sharat Chandran
+        - Developed an innovative approach for autism risk prediction, integrating distance measures with questionnaire data.
+        - Effectively applied Bayesian Item Response Theory.
+        - Incorporated state-of-the-art technologies for robust facemesh detection and achieved a predictive accuracy of 88%.
+
+    - title: Master's Thesis Student
+      institution: Max Planck Institute for Multidisciplinary Sciences, Göttingen
+      year: 2022
+      description:
+        - Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference
+        - Supervisor: Prof. Johannes Söding
+        - Derived a general algorithm for learning Generalized Linear Mixed Models (GLMM's).
+        - Optimized matrix computations using Woodbury's and the Weinstein–Aronszajn identities.
+        - Developed software in Pytorch, performed detailed analysis of time complexity.
+
+    - title: Bachelors and Masters (BS-MS)
+      institution: Indian Institute of Science Education and Research, Kolkata
       year: 2023
       description:
-        - Description 1.
-        - Description 2.
+        - (Add descriptions if you have any details about your BS-MS, else you can remove this section)
 
-- title: Internships
+- title: Work
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Research Assistant
+      institution: Decision Sciences Department, Indian Institute of Management, Bangalore (IIM-B)
+      year: Dec 2022
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Optimal Staring Lineup and Substitution Strategy for NBA using GRASP
+        - Supervisor: Prof. Soudeep Deb, Prof. Rishideep Roy and Prof. Subhabrata Das
+        - Curated detailed play-by-play dataset of NBA games.
+        - Utilized regression techniques for predictive analysis.
+        - Integrated Deep Q-learning for optimal in-game player substitution.
+
+    - title: Research Software Developer
+      institution: Max Planck Institute of Multidisciplinary Sciences, Göttingen
+      year: May-August, 2021
       description:
-        - Description 1.
-        - Description 2.
-
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+        - Gappiness Match Score Correction
+        - Supervisor: Prof. Johannes Söding
+        - Enhanced MMSeqs2, an ultra-fast sequence search/clustering suite.
+        
+    - title: Machine Learning Research Assistant
+      institution: Google Winter of Code, Skit AI
+      year: Dec - Feb '22
       description:
+        - Qualified for Google Winter of Code, focused on improving Text-to-Speech(TTS) systems.
+        - Implemented noise metrics.
+        - Designed and tested traditional speech filters.
+        - Conducted research on deep learning TTS architectures.
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
+- title: Scholastic Achievements
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
-
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
-      items: 
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+    - year: 2016
       items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+        - Received the National Talent Search Examination (NTSE) scholarship.
+    - year: 2018
+      items:
+        - Secured All India Rank 24 in Nationwide Entrance and Scholarship Test (NEST).
+    - year: 2016
+      items:
+        - Received Vedant Mehra Memorial Award for scoring highest in Mathematics.
+    - year: 2014
