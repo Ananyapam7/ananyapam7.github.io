@@ -21,7 +21,7 @@ Did you know the entire mathematics would topple without using σ-algebras to de
 
 A statistician by major, programmer by passion, and a researcher at heart. As someone who's been fascinated by mathematics since childhood, I'm thrilled to have pursued it as my major. The subject's perfect blend of rigour and versatility makes it fulfilling to study and enjoyable to work with. Though I have a keen interest in computational biology, particularly genetics and network-neuroscience, where I find amazing similarities with computer science (my minor). I've also had the privilege of studying physics in my institute, and I continue to be enthralled by ideas from quantum physics and their applications in quantum computation as well as finance.
 
-I've explored several diverse fields, but I've now decided to focus on and strengthen my skills in a few select subjects. These include Statistics and Machine Intelligence, Quantitative Analysis, System Design and improving my competitive programming skills in C++ and Python.
+I've explored several diverse fields, but I've now decided to focus on and strengthen my skills in a few select subjects which include Statistics and Machine Intelligence and improving my knowledge in C++ and Python.
 
 Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
 
