@@ -82,10 +82,18 @@
     {
       "position": "Quantitative Research Analyst",
       "name": "JP Morgan Chase and Co",
-      "startDate": "2020-05",
-      "endDate": "2020-08",
+      "startDate": "2021-05",
+      "endDate": "2021-08",
       "correspondence":"ananyapam.de@jpmorganchase.com",
       "summary": "Worked on Oil Pricing models"
+    },
+    {
+      "position": "Quantitative Trading Analyst",
+      "name": "Stellar Alpha",
+      "startDate": "2020-04",
+      "endDate": "2020-05",
+      "correspondence":"ananyapam.de@stellaralpha.com",
+      "summary": "Researched on alpha generation strategies"
     }
   ],
   "languages": [
