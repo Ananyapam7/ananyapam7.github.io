@@ -35,9 +35,23 @@ nav_order: 3
 
 ## GitHub Repositories
 
+These are some projects that I worked on. Feel free to explore them further.
+
 {% if site.data.repositories.github_repos %}
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
   {% for repo in site.data.repositories.github_repos %}
+    {% include repository/repo.html repository=repo %}
+  {% endfor %}
+</div>
+{% endif %}
+
+## Websites designed
+
+These are some websites I designed and developed during my undergrad days at IISER-K. [Satvik](https://sahasatvik.github.io/) was the one to help me out with them, without him none of these projects would have been possible.
+
+{% if site.data.repositories.websites_designed %}
+<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
+  {% for repo in site.data.repositories.websites_designed %}
     {% include repository/repo.html repository=repo %}
   {% endfor %}
 </div>

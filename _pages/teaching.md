@@ -7,6 +7,16 @@ nav: true
 nav_order: 5
 ---
 
+## IIT Bombay (2023 - 2024)
+- Computer Graphics
+- Asymptotic Statistics
+- Categorical Data Analysis
+- Convex Optimization
+- Software Systems Lab
+
+## University of Goettingen (2023)
+- Probabilistic Machine Learning
+
 ## IISER Kolkata (2018 - 2023)
 
 ### Mathematics
@@ -39,12 +49,3 @@ nav_order: 5
 - Natural Language Processing
 - Search Methods in Artificial Intelligence
 - Information Retrieval
-
-## University of Goettingen (2023)
-- Probabilistic Machine Learning
-
-## IIT Bombay (2023 - 2024)
-- Computer Graphics
-- Asymptotic Statistics
-- Categorical Data Analysis
-- Convex Optimization
