@@ -13,7 +13,7 @@
   contents:
     - Probabilistic ML, Approximate Inference, Optimization, Network Analysis, Computer Vision, Deep Learning
 
-- title: Programming Skills
+- title: Skills
   type: list
   contents:
     - C/C++, Python (Pytorch, Tensorflow), R, SQL
@@ -27,9 +27,6 @@
       description:
         - Utilising statistics and ML to interpret behavioural risk markers
         - Supervisor: Prof. Sharat Chandran
-        - Developed an innovative approach for autism risk prediction, integrating distance measures with questionnaire data.
-        - Effectively applied Bayesian Item Response Theory.
-        - Incorporated state-of-the-art technologies for robust facemesh detection and achieved a predictive accuracy of 88%.
 
     - title: Master's Thesis Student
       institution: Max Planck Institute for Multidisciplinary Sciences, Göttingen
@@ -37,15 +34,12 @@
       description:
         - Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference
         - Supervisor: Prof. Johannes Söding
-        - Derived a general algorithm for learning Generalized Linear Mixed Models (GLMM's).
-        - Optimized matrix computations using Woodbury's and the Weinstein–Aronszajn identities.
-        - Developed software in Pytorch, performed detailed analysis of time complexity.
 
     - title: Bachelors and Masters (BS-MS)
       institution: Indian Institute of Science Education and Research, Kolkata
       year: 2023
       description:
-        - (Add descriptions if you have any details about your BS-MS, else you can remove this section)
+        - Mathematics and Statistics
 
 - title: Work
   type: time_table
@@ -54,11 +48,8 @@
       institution: Decision Sciences Department, Indian Institute of Management, Bangalore (IIM-B)
       year: Dec 2022
       description:
-        - Optimal Staring Lineup and Substitution Strategy for NBA using GRASP
+        - Optimal Staring Lineup and Substitution Strategy for NBA using GRASP and Deep Q Learning.
         - Supervisor: Prof. Soudeep Deb, Prof. Rishideep Roy and Prof. Subhabrata Das
-        - Curated detailed play-by-play dataset of NBA games.
-        - Utilized regression techniques for predictive analysis.
-        - Integrated Deep Q-learning for optimal in-game player substitution.
 
     - title: Research Software Developer
       institution: Max Planck Institute of Multidisciplinary Sciences, Göttingen
@@ -66,16 +57,12 @@
       description:
         - Gappiness Match Score Correction
         - Supervisor: Prof. Johannes Söding
-        - Enhanced MMSeqs2, an ultra-fast sequence search/clustering suite.
         
     - title: Machine Learning Research Assistant
       institution: Google Winter of Code, Skit AI
       year: Dec - Feb '22
       description:
-        - Qualified for Google Winter of Code, focused on improving Text-to-Speech(TTS) systems.
-        - Implemented noise metrics.
-        - Designed and tested traditional speech filters.
-        - Conducted research on deep learning TTS architectures.
+        - Improving Text-to-Speech(TTS) systems.
 
 - title: Scholastic Achievements
   type: time_table

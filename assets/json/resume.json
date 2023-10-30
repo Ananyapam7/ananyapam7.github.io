@@ -2,6 +2,7 @@
   "basics": {
     "name": "Ananyapam De",
     "Research Interests": "Probabilistic ML, Approximate Inference, Optimization, Network Analysis, Computer Vision, Deep Learning",
+    "Programming": "C++, Python, R, SQL",
     "image": "",
     "email": "ananyapam7@gmail.com",
     "phone": "(971) 800-8064",
@@ -23,7 +24,7 @@
   },
   "education": [
     {
-      "institution": "Centre for Machine Intelligence and Data Science, Indian Institute of Technology, Bombay (IIT-B)",
+      "institution": "Indian Institute of Technology, Bombay (IIT-B), Centre for Machine Intelligence and Data Science",
       "location": "Bombay",
       "url": "https://www.iitb.ac.in/",
       "area": "Topic: Statistics and Machine Learning",
