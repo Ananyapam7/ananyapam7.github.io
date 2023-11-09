@@ -47,7 +47,7 @@ These are some projects that I worked on. Feel free to explore them further.
 
 ## Websites designed
 
-These are some websites I designed and developed during my undergrad days at IISER-K. [Satvik](https://sahasatvik.github.io/) was the one to help me out with them, without him none of these projects would have been possible.
+These are some websites I developed during my undergrad days at IISER-K with the help of [Satvik](https://sahasatvik.github.io/).
 
 {% if site.data.repositories.websites_designed %}
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
