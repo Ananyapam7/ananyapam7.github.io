@@ -11,7 +11,6 @@ nav_order: 5
 - Computer Graphics
 - Asymptotic Statistics
 - Operating Systems
-- Computer Networks
 
 ## University of Goettingen (2023)
 - Probabilistic Machine Learning
