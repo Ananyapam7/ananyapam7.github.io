@@ -2,46 +2,35 @@
 layout: page
 ---
 
-<!-- about.html -->
-      <div class="post">
+<!-- resources.html -->
+<div class="post">
 
-        <article>
-          {% if page.profiles -%}
-          {% for profile in page.profiles %}
+  <article>
+    {% if page.resources %}
+      {% for category in page.resources %}
+        <br><br>
+        <h2>{{ category.subject }}</h2>
+        {% for resource in category.items %}
           <hr>
-          <div class="profile float-{%- if profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
-            {%- if profile.image %}
-              {%- assign profile_image_path = profile.image | prepend: 'assets/img/' -%}
-
-              {% if profile.image_circular %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
-              {% else %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
-              {% endif %}
-
-              {% include figure.html
-              path=profile_image_path
-              class=profile_image_class
-              alt=profile.image -%}
-            {% endif -%}
-            {%- if profile.more_info %}
-            <div class="more-info">
-              {{ profile.more_info }}
+          <div class="resource" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4>{{ resource.title }}</h4>
+              <p>{{ resource.description }}</p>
             </div>
-            {%- endif %}
+            <a href="{{ resource.link }}" target="_blank" style="text-decoration: none;">
+              {% case resource.type %}
+                {% when 'pdf' %}
+                  <i class="fas fa-file-pdf" style="font-size: 24px;"></i>
+                {% when 'video' %}
+                  <i class="fas fa-video" style="font-size: 24px;"></i>
+                {% when 'article' %}
+                  <i class="fas fa-newspaper" style="font-size: 24px;"></i>
+              {% endcase %}
+            </a>
           </div>
-
-          <div class="clearfix">
-            {% if profile.content -%}
-            {% capture profile_content %}{%- include_relative {{ profile.content }} %}{% endcapture %}
-            {{ profile_content | markdownify }}
-            {%- else -%}
-            {{ content }}
-            {%- endif %}
-          </div>
-
-          {% endfor %}
-          {%- endif %}
-        </article>
+        {% endfor %}
+      {% endfor %}
+    {% endif %}
+  </article>
 
 </div>

@@ -10,9 +10,8 @@ nav_order: 5
 ## IIT Bombay (2023 - 2024)
 - Computer Graphics
 - Asymptotic Statistics
-- Categorical Data Analysis
-- Convex Optimization
-- Software Systems Lab
+- Operating Systems
+- Computer Networks
 
 ## University of Goettingen (2023)
 - Probabilistic Machine Learning
