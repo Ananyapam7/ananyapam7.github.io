@@ -23,10 +23,10 @@ resources:
         description: "In-depth material on deep learning."
   - subject: "Quant Finance"
     items:
-      - title: "Options, Futures, and Other Derivatives Solutions Manual by John C. Hull"
+      - title: "Options, Futures, and Other Derivatives by John C. Hull"
         type: pdf
         link: Quant_Finance/OptionsFutures_Hull.pdf
-        description: "Solutions manual for a foundational text in derivatives trading."
+        description: "A foundational text in derivatives trading."
       - title: "The Concepts and Practice of Mathematical Finance by Mark S. Joshi"
         type: pdf
         link: Quant_Finance/MathematicalFinance_Joshi.pdf
