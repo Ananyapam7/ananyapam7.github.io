@@ -27,10 +27,6 @@ resources:
         type: pdf
         link: Quant_Finance/OptionsFutures_Hull.pdf
         description: "Solutions manual for a foundational text in derivatives trading."
-      - title: "Quantitative Finance Interviews: Part 1"
-        type: pdf
-        link: Quant_Finance/FE_InterviewQs_Pt1.pdf
-        description: "Part one of a series on quantitative finance interview questions."
       - title: "The Concepts and Practice of Mathematical Finance by Mark S. Joshi"
         type: pdf
         link: Quant_Finance/MathematicalFinance_Joshi.pdf
@@ -43,10 +39,6 @@ resources:
         type: pdf
         link: Quant_Finance/FinTimeSeries_Handbook.pdf
         description: "A comprehensive guide to financial time series analysis."
-      - title: "Jane Street Trading Guide"
-        type: pdf
-        link: Quant_Finance/JaneStreet_TradingGuide.pdf
-        description: "A practical guide to trading from Jane Street."
       - title: "Basic Black-Scholes: Option Pricing and Trading by Timothy Falcon Crack"
         type: pdf
         link: Quant_Finance/BlackScholes_Basics.pdf
@@ -71,10 +63,6 @@ resources:
         description: "Techniques for mastering C++11 and C++14."
   - subject: "Puzzles and Math"
     items:
-      - title: "15IQs Solutions"
-        type: pdf
-        link: Puzzles_Math/15IQs_Solutions.pdf
-        description: "Solutions to fifteen challenging IQ questions."
       - title: "Engel Problems"
         type: pdf
         link: Puzzles_Math/Engel_Problems.pdf
@@ -87,10 +75,6 @@ resources:
         type: pdf
         link: Puzzles_Math/50Prob_Problems.pdf
         description: "Problems that provide a great test of probabilistic thinking."
-      - title: "IQ Brainteasers"
-        type: pdf
-        link: Puzzles_Math/IQ_Brainteasers.pdf
-        description: "A set of 10 sample questions to challenge your IQ."
       - title: "Mathematical Puzzles by Peter Winkler"
         type: pdf
         link: Puzzles_Math/Math_Puzzles_Winkler.pdf
