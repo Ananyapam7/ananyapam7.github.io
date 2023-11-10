@@ -61,6 +61,10 @@ resources:
         type: pdf
         link: C++/Scott_Meyers_Effective_Modern_C++.pdf
         description: "Techniques for mastering C++11 and C++14."
+      - title: "CppNuts"
+        type: video
+        link: https://www.youtube.com/@CppNuts
+        description: "A channel which contains very niche C++ interview content"
   - subject: "Puzzles and Math"
     items:
       - title: "Engel Problems"
