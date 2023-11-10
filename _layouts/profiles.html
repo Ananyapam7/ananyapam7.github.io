@@ -9,7 +9,7 @@ layout: page
     {% if page.resources %}
       {% for category in page.resources %}
         <br><br>
-        <h2>{{ category.subject }}</h2>
+        <h2><u>{{ category.subject }}</u></h2>
         {% for resource in category.items %}
           <hr>
           <div class="resource" style="display: flex; justify-content: space-between; align-items: center;">
@@ -25,6 +25,8 @@ layout: page
                   <i class="fas fa-video" style="font-size: 24px;"></i>
                 {% when 'article' %}
                   <i class="fas fa-newspaper" style="font-size: 24px;"></i>
+                  {% when 'website' %}
+                <i class="fas fa-globe" style="font-size: 24px;"></i>
               {% endcase %}
             </a>
           </div>

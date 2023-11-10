@@ -11,85 +11,111 @@ resources:
     items:
       - title: "Machine Learning and Pattern Recognition by CM Bishop"
         type: pdf
-        link: ../_resources/Stats_ML/bishop.pdf
+        link: Stats_ML/bishop.pdf
         description: "The Bible of Machine Learning"
       - title: "Introduction to Statistical Learning"
         type: pdf
-        link: link_to_ISL.pdf
+        link: Stats_ML/ISLR.pdf
         description: "A comprehensive introduction to statistical methods used in machine learning."
       - title: "Deep Learning Book by Goodfellow, Bengio, and Courville"
         type: pdf
-        link: link_to_Deep_Learning_Book.pdf
+        link: Stats_ML/Ian_Goodfellow_DeepLearning.pdf
         description: "In-depth material on deep learning."
   - subject: "Quant Finance"
     items:
-      - title: "Options, Futures, and Other Derivatives by John C. Hull"
+      - title: "Options, Futures, and Other Derivatives Solutions Manual by John C. Hull"
         type: pdf
-        link: link_to_Hull.pdf
-        description: "A foundational text in derivatives trading."
-      - title: "Quantitative Finance Interviews by Timothy Falcon Crack"
+        link: Quant_Finance/OptionsFutures_Hull.pdf
+        description: "Solutions manual for a foundational text in derivatives trading."
+      - title: "Quantitative Finance Interviews: Part 1"
         type: pdf
-        link: link_to_QF_Interviews.pdf
-        description: "A guide to acing quantitative finance interviews."
+        link: Quant_Finance/FE_InterviewQs_Pt1.pdf
+        description: "Part one of a series on quantitative finance interview questions."
       - title: "The Concepts and Practice of Mathematical Finance by Mark S. Joshi"
         type: pdf
-        link: link_to_Mathematical_Finance.pdf
+        link: Quant_Finance/MathematicalFinance_Joshi.pdf
         description: "A mathematical approach to financial engineering."
+      - title: "Introduction to Stochastic Calculus by Rajeeva L. Karandikar & B. V. Rao"
+        type: pdf
+        link: Quant_Finance/StochCalc_Intro_Karandikar.pdf
+        description: "An introduction to stochastic calculus within the Indian Statistical Institute Series."
+      - title: "Handbook of Financial Time Series"
+        type: pdf
+        link: Quant_Finance/FinTimeSeries_Handbook.pdf
+        description: "A comprehensive guide to financial time series analysis."
+      - title: "Jane Street Trading Guide"
+        type: pdf
+        link: Quant_Finance/JaneStreet_TradingGuide.pdf
+        description: "A practical guide to trading from Jane Street."
+      - title: "Basic Black-Scholes: Option Pricing and Trading by Timothy Falcon Crack"
+        type: pdf
+        link: Quant_Finance/BlackScholes_Basics.pdf
+        description: "An explanatory text on Black-Scholes option pricing and trading."
+      - title: "Inside the Black Box: A Simple Guide to Quantitative and High-Frequency Trading by Rishi K. Narang"
+        type: pdf
+        link: Quant_Finance/HFT_QuantGuide.pdf
+        description: "A simplified exploration into the world of quantitative and high-frequency trading."
+      - title: "Quantitative Primer"
+        type: pdf
+        link: Quant_Finance/QuantitativePrimer.pdf
+        description: "A primer on quantitative analysis techniques."
   - subject: "C++"
     items:
       - title: "The Cherno's C++ Playlist"
         type: video
         link: https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
         description: "An excellent series of tutorials on C++ by The Cherno on YouTube."
-      - title: "C++ Primer by Stanley B. Lippman"
-        type: pdf
-        link: link_to_CPP_Primer.pdf
-        description: "A well-regarded book for learning C++."
       - title: "Effective Modern C++ by Scott Meyers"
         type: pdf
-        link: link_to_Effective_Modern_CPP.pdf
+        link: C++/Scott_Meyers_Effective_Modern_C++.pdf
         description: "Techniques for mastering C++11 and C++14."
   - subject: "Puzzles and Math"
     items:
-      - title: "Fifty Challenging Problems in Probability"
+      - title: "15IQs Solutions"
         type: pdf
-        link: link_to_Problems_Probability.pdf
+        link: Puzzles_Math/15IQs_Solutions.pdf
+        description: "Solutions to fifteen challenging IQ questions."
+      - title: "Engel Problems"
+        type: pdf
+        link: Puzzles_Math/Engel_Problems.pdf
+        description: "Problem book by Arthur Engel."
+      - title: "Mathematical Puzzles by Martin Gardner"
+        type: pdf
+        link: Puzzles_Math/Math_Puzzles_Gardner.pdf
+        description: "A delightful collection of mathematical puzzles by the renowned Martin Gardner."
+      - title: "50 Challenging Problems in Probability"
+        type: pdf
+        link: Puzzles_Math/50Prob_Problems.pdf
         description: "Problems that provide a great test of probabilistic thinking."
-      - title: "Algorithmic Puzzles by Anany Levitin"
+      - title: "IQ Brainteasers"
         type: pdf
-        link: link_to_Algorithmic_Puzzles.pdf
-        description: "Puzzles focusing on algorithmic thinking."
-      - title: "The Moscow Puzzles by Boris A. Kordemsky"
+        link: Puzzles_Math/IQ_Brainteasers.pdf
+        description: "A set of 10 sample questions to challenge your IQ."
+      - title: "Mathematical Puzzles by Peter Winkler"
         type: pdf
-        link: link_to_Moscow_Puzzles.pdf
-        description: "A classic collection of brain teasers."
-  - subject: "Computer Networks"
-    items:
-      - title: "Computer Networking: A Top-Down Approach"
+        link: Puzzles_Math/Math_Puzzles_Winkler.pdf
+        description: "Intriguing puzzles that challenge mathematical and logical thinking."
+      - title: "Heard on the Street by Timothy Crack"
         type: pdf
-        link: link_to_Networking_Top_Down.pdf
-        description: "A top-down approach to computer networking principles."
-      - title: "Computer Networks by Andrew S. Tanenbaum"
+        link: Puzzles_Math/HeardOnStreet_Crack.pdf
+        description: "Quantitative questions from Wall Street job interviews."
+      - title: "Practical Guide to Quantitative Finance Guide by Xinfeng Zhou"
         type: pdf
-        link: link_to_Computer_Networks_Tanenbaum.pdf
-        description: "Classic textbook that provides a deep understanding of computer networks."
-      - title: "Networks, Crowds, and Markets by David Easley and Jon Kleinberg"
+        link: Puzzles_Math/QuantFinanceGuide_Zhou.pdf
+        description: "A practical guide to quantitative finance interviews."
+      - title: "Websites"
         type: pdf
-        link: link_to_Networks_Crowds_Markets.pdf
-        description: "Interdisciplinary look at networks and behavior."
+        link: Puzzles_Math/Websites.docx
+        description: "A list of websites containing quant puzzles."
   - subject: "Operating Systems"
     items:
-      - title: "Operating Systems: Three Easy Pieces"
+      - title: "Modern Operating Systems by Mythili Vutukuru"
+        type: video
+        link: https://www.youtube.com/playlist?list=PLDW872573QAb4bj0URobvQTD41IV6gRkx
+        description: "An introduction to operating systems taught at IIT-B."
+      - title: "The Linux Programming Interface"
         type: pdf
-        link: link_to_OS_Three_Easy_Pieces.pdf
-        description: "A straightforward book on the essentials of operating systems."
-      - title: "Modern Operating Systems by Andrew S. Tanenbaum"
-        type: pdf
-        link: link_to_Modern_OS_Tanenbaum.pdf
-        description: "An in-depth guide to modern operating systems."
-      - title: "Linux Kernel Development by Robert Love"
-        type: pdf
-        link: link_to_Linux_Kernel_Development.pdf
+        link: OS/Kerrisk_The_Linux_programming_interface.pdf
         description: "A detailed look at the design and implementation of the Linux kernel."
   - subject: "Data Structures and Algorithms"
     items:
@@ -105,4 +131,8 @@ resources:
         type: video
         link: https://www.youtube.com/playlist?list=PLauivoElc3ggagradg8MfOZreCMmXMmJ-
         description: "Provides an introduction to CP"
+      - title: CSES Problem Set
+        type: website
+        link: https://cses.fi/problemset/
+        description: "An essential problemset in CP"
 ---
