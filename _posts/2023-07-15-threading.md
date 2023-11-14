@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Threading in C+++
-date: 2023-07-16 15:09:00
+title: Threading in C++
+date: 2023-07-15 15:09:00
 description: Revise threading in depth
 tags: finance code
-categories: sample-posts
+categories: tech
 featured: true
 ---
 
@@ -195,58 +195,116 @@ int main(){
 }
 ```
 
+# Types of Mutex and Locks
 
-For displaying code in a list item, you have to be aware of the indentation, as stated in this [Stackoverflow answer](https://stackoverflow.com/questions/34987908/embed-a-code-block-in-a-list-item-with-proper-indentation-in-kramdown/38090598#38090598). You must indent your code by **(3 * bullet_indent_level)** spaces. This is because kramdown (the markdown engine used by Jekyll) indentation for the code block in lists is determined by the column number of the first non-space character after the list item marker. For example:
+In C++, there are different types of mutexes and locks to cater to various needs and scenarios:
 
-```markdown
-1. We can put fenced code blocks inside nested bullets, too.
-   1. Like this:
-      ```c
-      printf("Hello, World!");
-      ```
+1. **std::mutex**: The most basic mutex type. It provides exclusive, non-recursive ownership.
+2. **std::recursive_mutex**: Allows the same thread to acquire the mutex multiple times.
+3. **std::timed_mutex**: Extends std::mutex, allowing for time-based locking.
+4. **std::recursive_timed_mutex**: Combines features of recursive_mutex and timed_mutex.
 
-   2. The key is to indent your fenced block in the same line as the first character of the line.
-```
+Locks are used in conjunction with mutexes to manage locking and unlocking in a more exception-safe manner:
 
-Which displays:
+- **std::lock_guard**: Automatically locks the mutex when it's created and unlocks it when destroyed.
+- **std::unique_lock**: More flexible than lock_guard. Can lock and unlock mutexes multiple times.
+- **std::scoped_lock (since C++17)**: Automatically locks and unlocks multiple mutexes without deadlock.
 
-1. We can put fenced code blocks inside nested bullets, too.
-   1. Like this:
-      ```c
-      printf("Hello, World!");
-      ```
+# Condition Variables
 
-   2. The key is to indent your fenced block in the same line as the first character of the line.
+Condition variables are synchronization primitives used to block a thread or multiple threads until a particular condition is met. They require a mutex to lock the shared data and a predicate that defines the condition to wait for.
 
-By default, it does not display line numbers. If you want to display line numbers for every code block, you can set `kramdown.syntax_highlighter_opts.block.line_numbers` to true in your `_config.yml` file.
+```c++
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
-If you want to display line numbers for a specific code block, all you have to do is wrap your code in a liquid tag:
+std::mutex mtx;
+std::condition_variable cv;
+bool ready = false;
 
-{% raw %}
-{% highlight c++ linenos %}  <br/> code code code <br/> {% endhighlight %}
-{% endraw %}
-
-The keyword `linenos` triggers display of line numbers.
-Produces something like this:
-
-{% highlight c++ linenos %}
-
-int main(int argc, char const \*argv[])
-{
-    string myString;
-
-    cout << "input a string: ";
-    getline(cin, myString);
-    int length = myString.length();
-
-    char charArray = new char * [length];
-
-    charArray = myString;
-    for(int i = 0; i < length; ++i){
-        cout << charArray[i] << " ";
+void print_id(int id) {
+    std::unique_lock<std::mutex> lock(mtx);
+    while (!ready) {
+        cv.wait(lock);
     }
+    std::cout << "Thread " << id << '\n';
+}
+
+void go() {
+    std::unique_lock<std::mutex> lock(mtx);
+    ready = true;
+    cv.notify_all();
+}
+
+int main() {
+    std::thread threads[10];
+    for (int i = 0; i < 10; ++i)
+        threads[i] = std::thread(print_id, i);
+
+    std::cout << "10 threads ready to race...\n";
+    go();
+
+    for (auto &th : threads) th.join();
 
     return 0;
 }
+```
 
-{% endhighlight %}
+# Thread Synchronization and Producer-Consumer Problem
+
+Thread synchronization is crucial in multi-threaded applications to ensure that only one thread accesses a critical section of code at a time. This is achieved using mutexes, locks, and condition variables as described above.
+
+The producer-consumer problem is a classic example of a multi-process synchronization problem. The problem describes two processes, the producer and the consumer, who share a common, fixed-size buffer as a queue. The producer’s job is to generate data, put it into the buffer, and start again. At the same time, the consumer is consuming the data (i.e., removing it from the buffer), one piece at a time.
+
+Here's a simple implementation using C++:
+
+```c++
+#include <iostream>
+#include <thread>
+#include <queue>
+#include <mutex>
+#include <condition_variable>
+
+std::mutex mtx;
+std::condition_variable cv;
+std::queue<int> products;
+
+void producer(int id) {
+    for (int i = 0; i < 5; ++i) {
+        std::unique_lock<std::mutex> lock(mtx);
+        std::cout << "Producer " << id << " produced " << i << std::endl;
+        products.push(i);
+        cv.notify_one(); // Notify consumer
+        lock.unlock();
+    }
+}
+
+void consumer(int id) {
+    while (true) {
+        std::unique_lock<std::mutex> lock(mtx);
+        while (products.empty()) {
+            cv.wait(lock); // Wait for a product
+        }
+        int product = products.front();
+        products.pop();
+        std::cout << "Consumer " << id << " consumed " << product << std::endl;
+        lock.unlock();
+    }
+}
+
+int main() {
+    std::thread prod1(producer, 1);
+    std::thread cons1(consumer, 1);
+    std::thread cons2(consumer, 2);
+
+    prod1.join();
+    cons1.detach();
+    cons2.detach();
+
+    return 0;
+}
+```
+
+This example showcases the basic principle of the producer-consumer problem, where synchronization tools like mutexes and condition variables are used to ensure safe and efficient data sharing between threads.
