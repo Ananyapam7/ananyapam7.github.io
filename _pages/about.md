@@ -18,7 +18,7 @@ social: true  # includes social icons at the bottom of the page
 
 Did you know the entire mathematics would topple without using σ-algebras to define probability theory? Something a statistician might not use everyday while working but subtly appreciates at the back of his mind :)
 
-I'm a statistician by major, programmer by passion, and a researcher at heart. Fascinated by mathematics since childhood, I was thrilled to pursue it as my major at IISER Kolkata which built my foundations in Statistics and Mathematics. My enthusiasm for programming led me to complement my studies with a minor in the Computational and Data Sciences. My MS thesis at MPI-NAT was pivotal to my career, where I worked on Variational Inference.
+I'm a statistician by major, programmer by passion, and a researcher at heart. Fascinated by mathematics since childhood, I was thrilled to pursue it as my major at IISER Kolkata which built my foundations in Statistics and Mathematics. My enthusiasm for programming led me to complement my studies with a minor in the Computational and Data Sciences. My MS thesis at MPI-NAT was pivotal to my career, where I worked on Variational Inference, which is the area I wish to work on in the future.
 
 Joining IIT Bombay as a Pre-Doctoral student marked a significant expansion of my expertise where I broadened my knowledge in areas like Operating Systems, Microprocessors, and Computer Networks while continuing my research in Statistical Machine Learning. I have decent experience in C++, Python and Problem Solving. 
 
