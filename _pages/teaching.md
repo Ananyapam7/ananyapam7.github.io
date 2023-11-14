@@ -17,7 +17,7 @@ nav_order: 5
 
 ## IISER Kolkata (2018 - 2023)
 
-### Mathematics
+#### Mathematics
 - Real Analysis
 - Linear Algebra
 - Abstract Algebra
@@ -31,17 +31,17 @@ nav_order: 5
 - Ordinary Differential Equations
 - Partial Differential Equations
 
-### Statistics
+#### Statistics
 - Probability Theory
 - Statistical Inference
 - Linear Models
 - Time Series
 
-### Economics
+#### Economics
 - Economics
 - Applied Mirco-econometrics
 
-### Computer Science
+#### Computer Science
 - Data Structures and Algorithms
 - Machine Learning and Network Analysis
 - Natural Language Processing
