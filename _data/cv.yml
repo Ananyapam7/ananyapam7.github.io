@@ -22,58 +22,72 @@
   type: time_table
   contents:
     - title: Pre-Doctoral Student
-      institution: Centre for Machine Intelligence and Data Science, IIT Bombay
-      year: 2023 - Current
+      institution: Indian Institute of Technology, Bombay
+      department: Centre for Machine Intelligence and Data Science
+      year: 2023 - Present
       description:
-        - Utilising statistics and ML to interpret behavioural risk markers
-        - Supervisor: Prof. Sharat Chandran
-
-    - title: Master's Thesis Student
-      institution: Max Planck Institute for Multidisciplinary Sciences, Göttingen
-      year: 2022
+        - <b>Project Supervisor:</b> <a href="https://www.cse.iitb.ac.in/~sharat/">Prof. Sharat Chandran</a>, IIT-B.
+        - <b>Courses:</b> Computer Graphics, Asymptotic Statistics, Operating Systems
+    - title: Bachelors and Masters (BS-MS) Dual Degree
+      institution: Indian Instiute of Science Education and Research, Kolkata
+      department: Department of Mathematics and Statistics
+      year: 2018 - 2023
       description:
-        - Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference
-        - Supervisor: Prof. Johannes Söding
+        - <b>MS Thesis Title:</b> Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference
+        - <b>MS Thesis Supervisor:</b> <a href="https://www.mpinat.mpg.de/soeding">Prof. Johannes Soeding</a>, Max Planck Institute for Multidisciplinary Sciences, co-advised by <a href="https://www.iiserkol.ac.in/web/en/people/faculty/dms/satyaki/">Prof. Satyaki Mazumder</a>.
+        - <b>Courses:</b>
+          <ul><b>Mathematics:</b> Real Analysis, Linear Algebra, Abstract Algebra, Graph Theory and Combinatorics, Topology, Complex Analysis, Functional Analysis, Measure Theory, Differential Geometry, Ordinary Differential Equations, Partial Differential Equations</ul>
+          <ul><b>Statistics:</b> Probability Theory and Measure Theoretic Probability, Statistical Inference, Linear Models, Time Series</ul>
+          <ul><b>Economics:</b> Economics, Applied Micro-econometrics </ul>
+          <ul><b>Computer Science:</b> Data Structures and Algorithms, Machine Learning and Network Analysis, Natural Language Processing, Search Methods in Artificial Intelligence, Information Retrieval</ul>
 
-    - title: Bachelors and Masters (BS-MS)
-      institution: Indian Institute of Science Education and Research, Kolkata
-      year: 2023
-      description:
-        - Mathematics and Statistics
-
-- title: Work
+- title: Research Experience
   type: time_table
   contents:
     - title: Research Assistant
-      institution: Decision Sciences Department, Indian Institute of Management, Bangalore (IIM-B)
-      year: Dec 2022
+      institution: Indian Institute of Management, Bangalore
+      department: Decision Sciences Department
+      year: Dec 2022 - March 2023
       description:
-        - Optimal Staring Lineup and Substitution Strategy for NBA using GRASP and Deep Q Learning.
-        - Supervisor: Prof. Soudeep Deb, Prof. Rishideep Roy and Prof. Subhabrata Das
+        - <b>Project Title:</b> Optimal Staring Lineup and Substitution Strategy for NBA using GRASP and Deep Q Learning.
+        - <b>Project Supervisor:</b> Prof. Soudeep Deb, Prof. Rishideep Roy and Prof. Subhabrata Das
 
-    - title: Research Software Developer
-      institution: Max Planck Institute of Multidisciplinary Sciences, Göttingen
-      year: May-August, 2021
-      description:
-        - Gappiness Match Score Correction
-        - Supervisor: Prof. Johannes Söding
-        
     - title: Machine Learning Research Assistant
       institution: Google Winter of Code, Skit AI
-      year: Dec - Feb '22
+      year: Dec 2021 - Feb 2022
       description:
-        - Improving Text-to-Speech(TTS) systems.
+        - <b>Project Title:</b> Improving Text-to-Speech(TTS) systems.
+        - <b>Project Supervisor:</b> Mr. Swaraj Dalmia
 
-- title: Scholastic Achievements
+    - title: Quantitative Research Intern
+      institution: JP Morgan Chase
+      year: July - August, 2021
+      description:
+        - <b>Project Title:</b> Crude Oil Pricing
+    
+    - title: Research Software Developer
+      institution: Max Planck Institute of Multidisciplinary Sciences, Göttingen
+      department: Quantitative and Computational Biology Group
+      year: May - July, 2021
+      description:
+        - <b>Project Title:</b> Gappiness Match Score Correction
+        - <b>Project Supervisor:</b> Prof. Johannes Söding
+
+    - title: Quant Trading Intern
+      institution: Stellar Alpha Global (Now Greenland Investment)
+      year: April - May, 2020
+      description:
+        - <b>Project Title:</b> Researched on Alpha Generation Strategies
+
+- title: Teaching Experience
   type: time_table
   contents:
-    - year: 2016
-      items:
-        - Received the National Talent Search Examination (NTSE) scholarship.
-    - year: 2018
-      items:
-        - Secured All India Rank 24 in Nationwide Entrance and Scholarship Test (NEST).
-    - year: 2016
-      items:
-        - Received Vedant Mehra Memorial Award for scoring highest in Mathematics.
-    - year: 2014
+    - title: , Teaching Fellow
+      institution: Ashoka University, Sonipat
+      year: May - June 2023
+      description: Taught and assisted undergrads and high school students in olympiad level mathematics problem solving in Number Theory, Geometry and Combinatorics.
+
+    - title: Teaching Assistant
+      institution: Indian Institute of Science Education and Research, Kolkata
+      year: Aug 2022 - Dec 2023
+      description: Acted as the TA for the introductory Statistcs-I (MA3205) course.
