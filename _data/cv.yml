@@ -78,3 +78,16 @@
       year: April - May, 2020
       description:
         - <b>Project Title:</b> Researched on Alpha Generation Strategies
+
+- title: Teaching Experience
+  type: time_table
+  contents:
+    - title: Teaching Fellow
+      institution: Ashoka University, Sonipat
+      year: May - June 2023
+      description: Taught and assisted undergrads and high school students in olympiad level mathematics problem solving in Number Theory, Geometry and Combinatorics.
+
+    - title: Teaching Assistant
+      institution: Indian Institute of Science Education and Research, Kolkata
+      year: Aug 2022 - Dec 2023
+      description: Acted as the TA for the introductory Statistcs-I (MA3205) course.
