@@ -2,7 +2,7 @@
 layout: page
 permalink: /repositories/
 title: Repositories
-description: Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.
+description: Codes released for some of my open source projects. Feel free to check them out.
 nav: true
 nav_order: 3
 ---
@@ -35,8 +35,6 @@ nav_order: 3
 
 ## GitHub Repositories
 
-These are some projects that I worked on. Feel free to explore them further.
-
 {% if site.data.repositories.github_repos %}
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
   {% for repo in site.data.repositories.github_repos %}
@@ -47,7 +45,7 @@ These are some projects that I worked on. Feel free to explore them further.
 
 ## Websites designed
 
-These are some websites I developed during my undergrad days at IISER-K with the help of [Satvik](https://sahasatvik.github.io/).
+These are some websites I developed during my undergrad days with [Satvik](https://sahasatvik.github.io/).
 
 {% if site.data.repositories.websites_designed %}
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">

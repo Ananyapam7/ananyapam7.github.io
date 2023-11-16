@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: 
+subtitle: <b>Pre-Doc Student</b> @ IIT Bombay  •  <b>Previously:</b> Soeding Lab<a href='https://www.mpinat.mpg.de/soeding'> @ MPI-NAT Goettingen</a> | <a href='https://www.iiserkol.ac.in/'>IISER Kolkata</a>
 
 profile:
   align: right
@@ -22,6 +22,6 @@ I'm a statistician by major, programmer by passion, and a researcher at heart. F
 
 Joining IIT Bombay as a Pre-Doctoral student marked a significant expansion of my expertise where I broadened my knowledge in areas like Operating Systems, Microprocessors, and Computer Networks while continuing my research in Statistical Machine Learning. I have decent experience in C++, Python and Problem Solving. 
 
-Next stop: PhD?
+Next stop: PhD? Probably.
 
-[comment]: <> ( Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically. Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.)
+[comment]: <> ( Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically. Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. <b>Pre-Doc Student</b> @ IIT Bombay  •  <b>Previously:</b> Soeding Lab<a href='https://www.mpinat.mpg.de/soeding'> @ MPI-NAT Goettingen</a> | <a href='https://www.iiserkol.ac.in/'>IISER Kolkata</a>)
