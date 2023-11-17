@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: <b>Pre-Doc Student</b> @ IIT Bombay  •  <b>Previously:</b> Soeding Lab<a href='https://www.mpinat.mpg.de/soeding'> @ MPI-NAT Goettingen</a> | <a href='https://www.iiserkol.ac.in/'>IISER Kolkata</a>
+subtitle: <b>Pre-Doc Student</b> @ <a href='https://www.iitb.ac.in/'>IIT Bombay</a> • <b>Previously:</b> <a href='https://www.mpinat.mpg.de/soeding'> Soeding Lab @ MPI-NAT Goettingen</a> | <a href='https://www.iiserkol.ac.in/'>IISER Kolkata</a>
 
 profile:
   align: right
