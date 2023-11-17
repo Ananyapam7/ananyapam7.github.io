@@ -21,18 +21,12 @@
 - title: Education
   type: time_table
   contents:
-    - title: Pre-Doctoral Student
-      institution: Indian Institute of Technology, Bombay
-      department: Centre for Machine Intelligence and Data Science
-      year: 2023 - Present
-      description:
-        - <b>Project Supervisor:</b> <a href="https://www.cse.iitb.ac.in/~sharat/">Prof. Sharat Chandran</a>, IIT-B.
-        - <b>Courses:</b> Computer Graphics, Asymptotic Statistics, Operating Systems
     - title: Bachelors and Masters (BS-MS) Dual Degree
       institution: Indian Instiute of Science Education and Research, Kolkata
       department: Department of Mathematics and Statistics
       year: 2018 - 2023
       description:
+        - <b>Minor:</b> Computational and Data Sciences
         - <b>MS Thesis Title:</b> Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference
         - <b>MS Thesis Supervisor:</b> <a href="https://www.mpinat.mpg.de/soeding">Prof. Johannes Soeding</a>, Max Planck Institute for Multidisciplinary Sciences, co-advised by <a href="https://www.iiserkol.ac.in/web/en/people/faculty/dms/satyaki/">Prof. Satyaki Mazumder</a>.
         - <b>Courses:</b>
@@ -40,10 +34,20 @@
           <ul><b>Statistics:</b> Probability Theory and Measure Theoretic Probability, Statistical Inference, Linear Models, Time Series</ul>
           <ul><b>Economics:</b> Economics, Applied Micro-econometrics </ul>
           <ul><b>Computer Science:</b> Data Structures and Algorithms, Machine Learning and Network Analysis, Natural Language Processing, Search Methods in Artificial Intelligence, Information Retrieval</ul>
+    - title: High School
+      institution: St. Columba's School, New Delhi
+      year: 2004 - 2018
 
 - title: Research Experience
   type: time_table
   contents:
+    - title: Pre-Doctoral Student
+      institution: Indian Institute of Technology, Bombay
+      department: Centre for Machine Intelligence and Data Science
+      year: 2023 - Present
+      description:
+        - <b>Project Supervisor:</b> <a href="https://www.cse.iitb.ac.in/~sharat/">Prof. Sharat Chandran</a>, IIT-B.
+        - <b>Courses:</b> Computer Graphics, Asymptotic Statistics, Operating Systems
     - title: Research Assistant
       institution: Indian Institute of Management, Bangalore
       department: Decision Sciences Department
@@ -77,7 +81,7 @@
       institution: Stellar Alpha Global (Now Greenland Investment)
       year: April - May, 2020
       description:
-        - <b>Project Title:</b> Researched on Alpha Generation Strategies
+        - <b>Project Title:</b> Researched on Alpha Generation Strategies using Fractal Analysis
 
 - title: Teaching Experience
   type: time_table
