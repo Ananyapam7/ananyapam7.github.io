@@ -3,7 +3,7 @@ layout: page
 permalink: /teaching/
 title: Courses
 description: An overview of courses I've pursued in the different institutions I have been to.
-nav: true
+nav: false
 nav_order: 5
 ---
 
