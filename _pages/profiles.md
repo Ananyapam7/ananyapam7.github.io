@@ -1,5 +1,5 @@
 ---
-layout: profiles
+layout: resources
 permalink: /resources/
 title: Resources
 description: These resources have enriched my studies and I highly recommend them for anyone interested in the respective topics. Click to view.

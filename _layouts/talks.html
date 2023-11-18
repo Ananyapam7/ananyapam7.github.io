@@ -1,0 +1,63 @@
+---
+layout: page
+---
+
+<!-- talks.html -->
+
+<div class="talks-container">
+  {% for talk in page.talks %}
+    <div class="talk">
+      <div class="talk-header">
+        <img src="{{ talk.thumbnail }}" alt="Thumbnail for {{ talk.title }}" class="talk-thumbnail">
+        <h3>{{ talk.title }}</h3>
+      </div>
+      <div class="talk-body">
+        <p>{{ talk.description }}</p>
+        <a href="{{ talk.link }}" target="_blank" class="talk-link">View Slides/Summary</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  .talks-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  .talk {
+    border: 1px solid #dddddd;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 400px;
+  }
+  .talk-header {
+    padding: 10px;
+    background-color: #191515;
+    text-align: center;
+  }
+  .talk-thumbnail {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+  }
+  .talk-body {
+    padding: 15px;
+  }
+  .talk-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  .talk-link:hover {
+    background-color: #0056b3;
+  }
+</style>
