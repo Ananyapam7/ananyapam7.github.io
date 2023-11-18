@@ -18,7 +18,7 @@ talks:
   - title: "Computational Number Theory"
     thumbnail: ../assets/img/img1_talk1.jpg
     description: "An introductory talk on CNT introducing Binary Exponentiation, Euler Theorem and Gauss Lemma."
-    link: --
+    link: ../assets/pdf/Fast_Exp_Talk.pdf
   - title: "Speech Enhancement in TTS Systems"
     thumbnail: ../assets/img/Skit_TTS.png
     description: "My findings on enhancing speech in TTS Systems using Signal Processing, ML and DL techniques presented to the Tech team of Skit AI."

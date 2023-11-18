@@ -1,13 +1,12 @@
 ---
 layout: page
-title: submenus
-nav: false
-nav_order: 7
+title: Shelf
+nav: true
+nav_order: 10
 dropdown: true
 children:
-    - title: publications
-      permalink: /publications/
-    - title: divider
-    - title: projects
-      permalink: /projects/
+    - title: Resources
+      permalink: /resources/
+    - title: PapersShelf
+      permalink: /papersshelf/
 ---

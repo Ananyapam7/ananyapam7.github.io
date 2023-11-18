@@ -8,11 +8,11 @@ layout: page
   {% for category in page.resources %}
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">
+        <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.index }}">
             {{ category.subject }}
           </a>
-        </h3>
+        </h4>
       </div>
       <div id="collapse{{ forloop.index }}" class="panel-collapse collapse {% if forloop.first %}in{% endif %}">
         <div class="panel-body">
@@ -20,7 +20,7 @@ layout: page
             <!-- Your existing resource display code here -->
             <ul>
               <a href="{{ resource.link }}" target="_blank" style="text-decoration: none;">
-                <h5 style="display: inline-block; margin-right: 10px;">{{ resource.title }}</h5>
+                <h6 style="display: inline-block; margin-right: 10px;">{{ resource.title }}</h6>
                 {% case resource.type %}
                   {% when 'pdf' %}
                     <i class="fas fa-file-pdf" style="font-size: 24px;"></i>
