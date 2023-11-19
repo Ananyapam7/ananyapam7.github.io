@@ -11,6 +11,9 @@ layout: page
         <img src="{{ talk.thumbnail }}" alt="Thumbnail for {{ talk.title }}" class="talk-thumbnail">
         <h3>{{ talk.title }}</h3>
       </div>
+      <div class="talk-date">
+        <p>{{ talk.date }}</p>
+      </div>
       <div class="talk-body">
         <p>{{ talk.description }}</p>
         <a href="{{ talk.link }}" target="_blank" class="talk-link">View Slides/Summary</a>
@@ -38,6 +41,8 @@ layout: page
   .talk-header {
     padding: 10px;
     background-color: #191515;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
     text-align: center;
   }
   .talk-thumbnail {
@@ -47,6 +52,9 @@ layout: page
   }
   .talk-body {
     padding: 15px;
+  }
+  .talk-date {
+    padding: 5px;
   }
   .talk-link {
     display: inline-block;
