@@ -33,6 +33,12 @@ nav_order: 3
 {% endif %}
 {% endif %}
 
+### Contribution Graph
+
+<img src="http://ghchart.rshah.org/Ananyapam7" alt="Ananyapam7's Github chart" />
+
+---
+
 ## GitHub Repositories
 
 {% if site.data.repositories.github_repos %}
@@ -42,6 +48,8 @@ nav_order: 3
   {% endfor %}
 </div>
 {% endif %}
+
+---
 
 ## Websites designed
 
