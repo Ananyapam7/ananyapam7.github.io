@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Shelf
-nav: true
+nav: false
 nav_order: 10
-dropdown: true
+dropdown: false
 children:
     - title: Resources
       permalink: /resources/

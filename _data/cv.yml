@@ -81,19 +81,12 @@
       year: April - May, 2020
       description:
         - <b>Project Title:</b> Researched on Alpha Generation Strategies using Fractal Analysis
-    - title: Research Intern
-      institution: Indian Institute of Science Education and Research, Pune
-      department: Mathematics Department
-      year: Dec 2019 - Jan 2020
-      description:
-        - <b>Project Title:</b> Vulnerability Analysis of Blockchain and Tangles
-        - <b>Project Supervisor:</b> Prof. Anindya Goswami
 
 - title: Teaching Experience
   type: time_table
   contents:
     - title: Teaching Fellow
-      institution: Ashoka University, Sonipat
+      institution: Ashoka University, Sonipat (in collaboration with IIT-D, ISI-D, JNU)
       year: May - June 2023
       description: Taught and assisted undergrads and high school students in olympiad level mathematics problem solving in Number Theory, Geometry and Combinatorics.
 

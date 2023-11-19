@@ -4,56 +4,122 @@ layout: page
 
 <!-- talks.html -->
 
+<h2>Workshops</h2>
+
+<div class="workshops-container">
+  {% for workshop in page.workshops %}
+    <div class="workshop">
+      <div class="workshop-header">
+        <h4>{{ workshop.name }}</h4>
+        <p>{{ workshop.institute }}, {{ workshop.location }}, {{ workshop.date }}</p>
+      </div>
+      <div class="workshop-body">
+        <p>{{ workshop.description }}</p>
+        <a href="{{ workshop.link }}" target="_blank" class="workshop-link">View Details</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<h2>Talks</h2>
+
 <div class="talks-container">
   {% for talk in page.talks %}
     <div class="talk">
-      <div class="talk-header">
-        <img src="{{ talk.thumbnail }}" alt="Thumbnail for {{ talk.title }}" class="talk-thumbnail">
-        <h3>{{ talk.title }}</h3>
-      </div>
-      <div class="talk-date">
-        <p>{{ talk.date }}</p>
-      </div>
-      <div class="talk-body">
-        <p>{{ talk.description }}</p>
+      <div class="talk-content">
+        <div class="talk-header">
+          <h4>{{ talk.title }}</h4>
+          <span>{{ talk.date }}</span>
+        </div>
+        <div class="talk-body">
+          <p>{{ talk.description }}</p>
+        </div>
         <a href="{{ talk.link }}" target="_blank" class="talk-link">View Slides/Summary</a>
+      </div>
+      <div class="talk-thumbnail-container">
+        <img src="{{ talk.thumbnail }}" alt="Thumbnail for {{ talk.title }}" class="talk-thumbnail">
       </div>
     </div>
   {% endfor %}
 </div>
 
 <style>
+  .workshops-container {
+    padding: 20px;
+  }
+  .workshop {
+    border-bottom: 1px solid #dddddd;
+    padding: 15px;
+    text-align: left;
+  }
+  .workshop:last-child {
+    border-bottom: none;
+  }
+  .workshop-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #20435c;
+    margin-bottom: 5px;
+  }
+  .workshop-header span {
+    font-weight: normal;
+    font-size: 0.9em;
+    color: #666;
+  }
+  .workshop-body {
+    font-size: 0.9em;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .workshop-link {
+    font-size: 0.9em;
+    color: #28a745;
+    text-decoration: none;
+  }
+  .workshop-link:hover {
+    text-decoration: underline;
+  }
   .talks-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
     padding: 20px;
   }
   .talk {
-    border: 1px solid #dddddd;
-    margin: 10px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #dddddd;
+    padding: 15px;
+    text-align: left;
+  }
+  .talk:last-child {
+    border-bottom: none;
+  }
+  .talk-content {
+    flex-grow: 1;
+    margin-right: 20px;
   }
   .talk-header {
-    border: 1px solid #ffffff;
-    padding: 10px;
-    background-color: #191515;
-    border-radius: 4px;
-    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #20435c;
+    margin-bottom: 5px;
+  }
+  .talk-header span {
+    display: block;
+    font-weight: normal;
+    font-size: 0.9em;
+    color: #666;
+  }
+  .talk-thumbnail-container {
+    flex-shrink: 0;
   }
   .talk-thumbnail {
-    max-width: 100%;
+    max-width: 250px; /* Adjust thumbnail size as needed */
     height: auto;
   }
   .talk-body {
-    padding: 15px;
-  }
-  .talk-date {
-    padding: 5px;
+    font-size: 0.9em;
+    color: #333;
+    margin-bottom: 10px;
   }
   .talk-link {
     display: inline-block;
@@ -63,8 +129,10 @@ layout: page
     color: white;
     border-radius: 4px;
     text-decoration: none;
+    font-size: 0.9em;
   }
   .talk-link:hover {
     background-color: #0056b3;
+    text-decoration: none;
   }
 </style>

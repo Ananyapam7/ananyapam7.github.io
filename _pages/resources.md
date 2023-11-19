@@ -3,7 +3,7 @@ layout: resources
 permalink: /resources/
 title: Resources
 description: These resources have enriched my studies and I highly recommend them for anyone interested in the respective topics. Click to view.
-nav: false
+nav: true
 nav_order: 6
 
 resources:
