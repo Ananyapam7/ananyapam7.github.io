@@ -7,6 +7,6 @@ dropdown: true
 children:
     - title: Resources
       permalink: /resources/
-    - title: PapersShelf
+    - title: Papers Shelf
       permalink: /papersshelf/
 ---
