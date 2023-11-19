@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Completion of My Teaching Fellowship in Mathematics at Ashoka University
-date: 2023-05-15 07:59:00-0400
+date: 2023-06-15 07:59:00-0400
 inline: false
 related_posts: false
 ---
@@ -15,5 +15,11 @@ But our exploration of Number Theory was particularly memorable. Modular arithme
 This was also a trip down memory lane for me as I found myself diving back into Arthur Engel's book, a masterclass in problem solving. The book, teeming with challenging problems, became an essential part of our curriculum. There's nothing like the joy of seeing a student tackle a tricky problem, their eyes narrowing in concentration, and then widening in realization as they find the solution.
 
 What made this experience even more enriching was the company I was in. The presence of fellow educators from other institutions like IISERs, NISER, IISc, IIT's etc gave every session a fresh perspective and I was humbled to be in the same teaching space as Prof. Amitabha Tripathi from IIT-D, Prof. Krishnan from JNU, Prof. Shanta from ISI-D, and Prof. Bhatnagar from Ashoka. Discovering mutual connections amidst intense mathematical discussions was an unexpected delight.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/ashoka_tf.jpeg" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
 
 As I retrospectively journey through this chapter at Ashoka, it emerges not merely as a teaching endeavour but symbolises the profound beauty of mathematics and the joy of collaborative curiosity. For those with a knack for number theory, a visit to Prof. Tripathi's Quora page promises a treasure trove of challenges.
