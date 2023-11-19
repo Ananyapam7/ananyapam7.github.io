@@ -1,22 +1,22 @@
 ---
 layout: post
 title: Successfully defended my MS Thesis!
-date: 2023-05-11 07:59:00-0400
+date: 2023-05-15 07:59:00-0400
 inline: false
 related_posts: false
 ---
 
 Today marks a significant milestone in my academic journey – the successful defense of my Master's thesis. This feat, while a personal achievement, is a testament to the collective support and guidance of many incredible individuals who have been part of this journey.
 
-Firstly, immense gratitude to my supervisor, Dr. Johannes Soeding whose unwavering support and astute guidance have been the cornerstone of my research.
+Firstly, immense gratitude to my supervisor, Dr. Johannes Soeding. Johannes, your unwavering support and astute guidance have been the cornerstone of my research. Your belief in my potential, especially after a challenging first semester, became the catalyst for my renewed dedication and success.
 
-I extend my heartfelt thanks to Amelie, my mentor who inspired me to refine my presentation skills, transforming my work into its final, polished form.
+I extend my heartfelt thanks to Amelie, my guide. Your insightful feedback and meticulous review of my thesis were invaluable. You inspired me to refine my presentation skills, transforming my work into its final, polished form.
 
-Special thanks to Benjamin and Etienne for their expert advice and encouragement which was crucial in navigating the challenges of this project.
+Special thanks to Benjamin and Etienne for their expert advice and encouragement. Your support was crucial in navigating the challenges of this project.
 
 To Satyaki and Anirvan sir, my mentors – your wisdom and support have been instrumental in shaping my academic path. Your open doors and readiness to help, even unannounced, reflect the profound impact you've had on my journey.
 
-My journey was made brighter by friends like Abhay, Divyanshu, Rithik, Rahul, Harshal, Shashank, Dakshesh, Adwait, Shreyas, Praful, and Ankit. More than friends; you were pillars of support, always ready to lend an ear or share a laugh. The Department of Mathematical Sciences (DMS) was less daunting because of you.
+My journey was made brighter by friends like Abhay, Divyanshu, Rithik, Rahul, Harshal, Shashank, Dakshesh, Adwait, Shreyas, Praful, and Ankit. You were more than friends; you were pillars of support, always ready to lend an ear or share a laugh. The Department of Mathematical Sciences (DMS) was less daunting because of you.
 
 To Vivek, Siddhikant, and Prince – my seniors and mentors, your guidance and wisdom have been invaluable. You’ve shaped my path with your advice and unwavering support.
 
