@@ -10,8 +10,10 @@ layout: page
   {% for workshop in page.workshops %}
     <div class="workshop">
       <div class="workshop-header">
-        <h4>{{ workshop.name }}</h4>
-        <p>{{ workshop.institute }}, {{ workshop.location }}, {{ workshop.date }}</p>
+        <h4>{{ workshop.name }}, {{ workshop.institute }}</h4>
+      </div>
+      <div class="workshop-date">
+        <p>{{ workshop.date }}</p>
       </div>
       <div class="workshop-body">
         <p>{{ workshop.description }}</p>
@@ -75,6 +77,9 @@ layout: page
     font-size: 0.9em;
     color: #28a745;
     text-decoration: none;
+  }
+  .workshop-date{
+    font-size: 0.9em
   }
   .workshop-link:hover {
     text-decoration: underline;
