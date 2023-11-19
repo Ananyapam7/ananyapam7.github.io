@@ -10,7 +10,7 @@ layout: page
   {% for workshop in page.workshops %}
     <div class="workshop">
       <div class="workshop-header">
-        <h4>{{ workshop.name }}, {{ workshop.institute }}</h4>
+        <h4>{{ workshop.name }}</h4>
       </div>
       <div class="workshop-date">
         <p>{{ workshop.date }}</p>
@@ -31,7 +31,9 @@ layout: page
       <div class="talk-content">
         <div class="talk-header">
           <h4>{{ talk.title }}</h4>
-          <span>{{ talk.date }}</span>
+        </div>
+        <div class="workshop-date">
+          <p>{{ talk.date }}</p>
         </div>
         <div class="talk-body">
           <p>{{ talk.description }}</p>
