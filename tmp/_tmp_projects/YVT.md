@@ -1,8 +1,8 @@
 ---
 layout: page
-title: project 4
-description: another without an image
-img:
+title: Youtube Volume Transition
+description: Switch Songs Smoothly!
+img: assets/img/YVT-logos_black.png
 importance: 3
 category: Minor
 ---
