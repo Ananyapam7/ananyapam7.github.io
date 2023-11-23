@@ -12,15 +12,15 @@ workshops:
     description: "The program covered three main areas: 
     Foundations, which focused on combinatorial mathematics, including Polya Theory, Graph Theory, and Number Theory,
     Cryptography, which explored cryptographic methods like Ciphers and Public Key Cryptography, with an introduction to Quantum Computation and Combinatorial Topology exploring the Topological Tverberg Problem and Discrete Morse Theory."
-    link: "https://drive.google.com/file/d/1gsmz9TSSX-tz1rELWP3YgRV7elclg0Xz/view?usp=sharing"
+    link: "https://www.tcgcrest.org/crest-school-2022/"
   - name: "Amazon Machine Learning Summer School"
     date: July 2022
     description: "Learnt key topics like Supervised Learning, Deep Neural Networks, Deep Learning, Dimensionality Reduction and advanced topics Probabilistic Graphical Models, Sequential Learning, Causal Inference and Reinforcement Learning."
-    link: "#"
+    link: "https://www.amazon.science/academic-engagements/second-annual-ml-summer-school-amazon-india"
   - name: "Winter School on Blockchain and Cryptography"
     date: 2 - 27 Dec 2019, IISER Pune
     description: "Conducted an in-depth exploration of Blockchain architecture and Distributed Ledger Technologies, focusing on their applications beyond finance in areas like supply chain, healthcare, and voting systems. This included studying various consensus mechanisms such as proof of work and proof of stake, and analyzing the security aspects of Blockchain 1.0, 2.0, and the Tangle, identifying key vulnerabilities and risks."
-    link: https://github.com/Ananyapam7/Exploring-Blockchain-and-Cryptocurrency
+    link: "https://sites.google.com/site/anindyagoswami/teaching/w2019"
 
 talks:
   - title: "Deep Item Response Theory"
