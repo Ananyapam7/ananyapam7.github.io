@@ -20,7 +20,7 @@ I'm currently a Pre-Doctoral fellow at the Indian Institute of Technology, Bomba
 
 My interest in mathematics led me to pursue it as a major at IISER Kolkata, complemented with a minor in the Computational and Data Sciences. There I enjoyed studying statistics through courses like Statistical Inference and Linear Models, but things got really interesting when I attended the Amazon ML Summer School. That's when I got hooked to deep learning and probabilistic machine learning and decided to do my MS Thesis with Prof. Johannes Soeding on Variational Inference at Max Planck Institute for Natural Sciences (MPI-NAT), who had supervised me in my third year as well for a summer project. These events significantly shaped my research interests in the areas of Probabilistic ML, Approximate Inference, MCMC and Optimization, which require a perfect blend of statistical theory with practical programming skills.
 
-At IIT Bombay, my expertise has significantly broadened to encompass Operating Systems, Microprocessors, and Computer Networks, while also advancing my research in Statistical Machine Learning. I have decent experience in C++, Python, and [Problem Solving](https://leetcode.com/ananyapam7/). 
+At IIT Bombay, my expertise significantly broadened to encompass Operating Systems, Microprocessors, and Computer Networks, while also advancing my research in Statistical Machine Learning. I have decent experience in C++, Python, and [Problem Solving](https://leetcode.com/ananyapam7/). 
 
 Off duty you'll find me playing Table-Tennis, chess, football or strumming my uke. 
 
