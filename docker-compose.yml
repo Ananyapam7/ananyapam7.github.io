@@ -1,4 +1,4 @@
-version: "3"
+version: "4"
 # this file uses prebuilt image in dockerhub
 services:
   jekyll:
