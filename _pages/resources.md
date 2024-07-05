@@ -72,8 +72,8 @@ resources:
         type: pdf
         link: Puzzles_Math/Math_Puzzles_Gardner.pdf
       - title: "50 Challenging Problems in Probability"
-        type: pdf
-        link: Puzzles_Math/50Prob_Problems.pdf
+        type: website
+        link: https://mbapreponline.wordpress.com/wp-content/uploads/2013/07/fifty_challenging_problems_in__2.pdf
       - title: "Mathematical Puzzles by Peter Winkler"
         type: pdf
         link: Puzzles_Math/Math_Puzzles_Winkler.pdf
