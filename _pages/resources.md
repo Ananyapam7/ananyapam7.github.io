@@ -26,6 +26,9 @@ resources:
       - title: "Deep Learning Book by Goodfellow, Bengio, and Courville"
         type: pdf
         link: Stats_ML/Ian_Goodfellow_DeepLearning.pdf
+      - title: "Regression Models"
+        type: pdf
+        link: Stats_ML/Regression-Models,-Methods-and-Applications.pdf
   - subject: "Quant Finance"
     items:
       - title: "Options, Futures, and Other Derivatives by John C. Hull"
