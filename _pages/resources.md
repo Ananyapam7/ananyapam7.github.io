@@ -11,21 +11,21 @@ resources:
     items:
       - title: "First Course in Probability by Shledon Ross"
         type: pdf
-        link: Math/A-First-Course-in-Probability-8th-ed.-Sheldon-Ross.pdf
+        link: https://www.seyedkalali.com/wp-content/uploads/2016/11/A-First-Course-in-Probability-8th-ed.-Sheldon-Ross.pdf
       - title: "Measure Theoretic Probability by Athreya and Lahiri"
         type: pdf
-        link: Math/measure_theoritic_probability_by_athreya_lahiri.pdf
+        link: https://www.ctanujit.org/uploads/2/5/3/9/25393293/_measure_theoritic_probability_by_athreya__lahiri.pdf
   - subject: "Statistics and ML"
     items:
       - title: "Machine Learning and Pattern Recognition by CM Bishop"
         type: pdf
-        link: Stats_ML/bishop.pdf
+        link: https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf
       - title: "Introduction to Statistical Learning"
         type: pdf
-        link: Stats_ML/ISLR.pdf
+        link: https://static1.squarespace.com/static/5ff2adbe3fe4fe33db902812/t/6009dd9fa7bc363aa822d2c7/1611259312432/ISLR+Seventh+Printing.pdf
       - title: "Deep Learning Book by Goodfellow, Bengio, and Courville"
         type: pdf
-        link: Stats_ML/Ian_Goodfellow_DeepLearning.pdf
+        link: http://imlab.postech.ac.kr/dkim/class/csed514_2019s/DeepLearningBook.pdf
       - title: "Regression Models"
         type: pdf
         link: Stats_ML/Regression-Models,-Methods-and-Applications.pdf
@@ -33,13 +33,13 @@ resources:
     items:
       - title: "Options, Futures, and Other Derivatives by John C. Hull"
         type: pdf
-        link: Quant_Finance/OptionsFutures_Hull.pdf
+        link: http://dl.fxf1.com/files/books/english/Hull-Options_%20Futures%20And%20Other%20Derivative%20Securities_%205Th%20Ed.pdf
       - title: "The Concepts and Practice of Mathematical Finance by Mark S. Joshi"
         type: pdf
         link: Quant_Finance/MathematicalFinance_Joshi.pdf
       - title: "Introduction to Stochastic Calculus by Rajeeva L. Karandikar & B. V. Rao"
         type: pdf
-        link: Quant_Finance/StochCalc_Intro_Karandikar.pdf
+        link: http://ndl.ethernet.edu.et/bitstream/123456789/64514/1/433.pdf
       - title: "Handbook of Financial Time Series"
         type: pdf
         link: Quant_Finance/FinTimeSeries_Handbook.pdf
@@ -65,14 +65,14 @@ resources:
         link: https://www.youtube.com/@CppNuts
   - subject: "Puzzles and Math"
     items:
-      - title: "Engel Problems"
+      - title: "Problem Solving Strategies"
         type: pdf
         link: https://mathematicalolympiads.wordpress.com/wp-content/uploads/2012/08/75427434-problem-books-in-mathematics-problem-solving-strategies.pdf
       - title: "Mathematical Puzzles by Martin Gardner"
         type: pdf
         link: Puzzles_Math/Math_Puzzles_Gardner.pdf
       - title: "50 Challenging Problems in Probability"
-        type: website
+        type: pdf
         link: https://mbapreponline.wordpress.com/wp-content/uploads/2013/07/fifty_challenging_problems_in__2.pdf
       - title: "Mathematical Puzzles by Peter Winkler"
         type: pdf
@@ -82,7 +82,7 @@ resources:
         link: Puzzles_Math/HeardOnStreet_Crack.pdf
       - title: "Practical Guide to Quantitative Finance Guide by Xinfeng Zhou"
         type: pdf
-        link: Puzzles_Math/QuantFinanceGuide_Zhou.pdf
+        link: https://academyflex.com/wp-content/uploads/2024/03/a-practical-guide-to-quantitative-finance-interviews.pdf
       - title: "Websites"
         type: pdf
         link: Puzzles_Math/Websites.docx
