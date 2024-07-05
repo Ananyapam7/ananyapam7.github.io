@@ -2,7 +2,7 @@
 layout: resources
 permalink: /resources/
 title: Resources
-description: These resources have enriched my studies and I highly recommend them for anyone interested in the respective topics. Click to view.
+description: I referred to these resources either as a part of my course or on my own out of sheer curiosity. In either case, they have enriched my studies and I highly recommend them for anyone interested in the respective topics. Click to view.
 nav: true
 nav_order: 6
 
@@ -13,20 +13,20 @@ resources:
         items:
           - title: "Linear Algebra Done Right by Sheldon Axler"
             type: pdf
+            link: https://www.cin.ufpe.br/~jrsl/Books/Linear%20Algebra%20Done%20Right%20-%20Sheldon%20Axler.pdf
           - title: "Introduction to Linear Algebra by Gilbert Strang"
             type: pdf
+            link: https://students.aiu.edu/submissions/profiles/resources/onlineBook/Y5B7M4_Introduction_to_Linear_Algebra-_Fourth_Edition.pdf
           - title: "Linear Algebra by Stephen H. Friedberg, Arnold J. Insel, and Lawrence E. Spence"
             type: pdf
           - title: "3Blue1Brown's Linear Algebra Playlist"
             type: video
-            link: https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9KNR3vO8boZHooNFu-6
+            link: https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab
       - subsection: "Real Analysis"
         items:
           - title: "Principles of Mathematical Analysis by Walter Rudin"
             type: pdf
           - title: "Real Analysis by H.L. Royden and P.M. Fitzpatrick"
-            type: pdf
-          - title: "A First Course in Real Analysis by Murray H. Protter and Charles B. Morrey Jr."
             type: pdf
       - subsection: "Complex Analysis"
         items:
@@ -75,11 +75,6 @@ resources:
             link: http://imlab.postech.ac.kr/dkim/class/csed514_2019s/DeepLearningBook.pdf
           - title: "Basic Econometrics by Damodar N. Gujarati"
             type: pdf
-      - subsection: "General"
-        items:
-          - title: Ctanujit Blog
-            type: website
-            link: https://www.ctanujit.org/lecture-notes.html
       - subsection: "Causal Inference"
         items:
           - title: "Causal Inference in Statistics: A Primer by Judea Pearl, Madelyn Glymour, and Nicholas P. Jewell"
@@ -88,6 +83,11 @@ resources:
             type: pdf
           - title: "Causality: Models, Reasoning, and Inference by Judea Pearl"
             type: pdf
+      - subsection: "General"
+        items:
+          - title: Ctanujit Blog
+            type: website
+            link: https://www.ctanujit.org/lecture-notes.html
 
   - subject: "Quant Finance"
     items:
@@ -122,18 +122,6 @@ resources:
         type: pdf
         link: Quant_Finance/QuantitativePrimer.pdf
 
-  - subject: "C++"
-    items:
-      - title: "The Cherno's C++ Playlist"
-        type: video
-        link: https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
-      - title: "Effective Modern C++ by Scott Meyers"
-        type: pdf
-        link: C++/Scott_Meyers_Effective_Modern_C++.pdf
-      - title: "CppNuts"
-        type: video
-        link: https://www.youtube.com/@CppNuts
-
   - subject: "Puzzles and Problem Solving"
     items:
       - title: "Problem Solving Strategies by Arthur Engel"
@@ -158,15 +146,6 @@ resources:
         type: pdf
         link: Puzzles_Math/Websites.docx
 
-  - subject: "Operating Systems"
-    items:
-      - title: "Modern Operating Systems by Mythili Vutukuru"
-        type: video
-        link: https://www.youtube.com/playlist?list=PLDW872573QAb4bj0URobvQTD41IV6gRkx
-      - title: "The Linux Programming Interface by Michael Kerrisk"
-        type: pdf
-        link: OS/Kerrisk_The_Linux_programming_interface.pdf
-
   - subject: "Data Structures and Algorithms"
     items:
       - title: "Introduction to Algorithms by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein"
@@ -184,6 +163,27 @@ resources:
       - title: "CSES Problem Set"
         type: website
         link: https://cses.fi/problemset/
+
+  - subject: "C++"
+    items:
+      - title: "The Cherno's C++ Playlist"
+        type: video
+        link: https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
+      - title: "Effective Modern C++ by Scott Meyers"
+        type: pdf
+        link: C++/Scott_Meyers_Effective_Modern_C++.pdf
+      - title: "CppNuts"
+        type: video
+        link: https://www.youtube.com/@CppNuts
+
+  - subject: "Operating Systems"
+    items:
+      - title: "Modern Operating Systems by Mythili Vutukuru"
+        type: video
+        link: https://www.youtube.com/playlist?list=PLDW872573QAb4bj0URobvQTD41IV6gRkx
+      - title: "The Linux Programming Interface by Michael Kerrisk"
+        type: pdf
+        link: OS/Kerrisk_The_Linux_programming_interface.pdf
 
   - subject: "Recreational"
     items:
