@@ -9,15 +9,12 @@ nav_order: 6
 resources:
   - subject: "Math"
     items:
+      - title: "First Course in Probability by Shledon Ross"
+        type: pdf
+        link: Math/A-First-Course-in-Probability-8th-ed.-Sheldon-Ross.pdf
       - title: "Measure Theoretic Probability by Athreya and Lahiri"
         type: pdf
-        link: Stats_ML/bishop.pdf
-      - title: "Introduction to Statistical Learning"
-        type: pdf
-        link: Stats_ML/ISLR.pdf
-      - title: "Deep Learning Book by Goodfellow, Bengio, and Courville"
-        type: pdf
-        link: Stats_ML/Ian_Goodfellow_DeepLearning.pdf
+        link: Math/measure_theoritic_probability_by_athreya_lahiri.pdf
   - subject: "Statistics and ML"
     items:
       - title: "Machine Learning and Pattern Recognition by CM Bishop"
