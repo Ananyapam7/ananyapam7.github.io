@@ -1,7 +1,7 @@
 ---
 layout: talks
 permalink: /talks/
-title: Workshops and Talks
+title: Workshops & Talks
 description: 
 nav: true
 nav_order: 5
