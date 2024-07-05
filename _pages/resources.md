@@ -67,7 +67,7 @@ resources:
     items:
       - title: "Engel Problems"
         type: pdf
-        link: Puzzles_Math/Engel_Problems.pdf
+        link: https://mathematicalolympiads.wordpress.com/wp-content/uploads/2012/08/75427434-problem-books-in-mathematics-problem-solving-strategies.pdf
       - title: "Mathematical Puzzles by Martin Gardner"
         type: pdf
         link: Puzzles_Math/Math_Puzzles_Gardner.pdf
