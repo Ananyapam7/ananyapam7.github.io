@@ -9,33 +9,48 @@ nav_order: 1
 <!-- _pages/publications.md -->
 <div class="publications">
 
-<h2>Math</h2>
+<h2>Mathematics</h2>
 <ul>
   <li>
-    <strong><a href="https://link.springer.com/book/10.1007/978-1-4614-8356-7">The Theory of Interest</a></strong> - Stephen G. Kellison (2008)
-  </li>
-  <li>
-    <strong><a href="https://www.crcpress.com/Elliptic-Curves-Number-Theory-and-Cryptography/Washington/p/book/9781498775200">Elliptic Curves: Number Theory and Cryptography</a></strong> - Lawrence C. Washington (2003)
+    <strong><a href="https://arxiv.org/abs/1803.03765">How to solve the stochastic partial differential equation that gives a Matérn random field using the finite element method</a></strong> - Haakon Bakka (2018)
   </li>
 </ul>
 
-<h2>Stats</h2>
+<h2>Statistics</h2>
 <ul>
   <li>
-    <strong><a href="https://www.crcpress.com/Statistical-Learning-with-Sparsity-The-Lasso-and-Generalizations/Hastie-Tibshirani-Wainwright/p/book/9781498712168">Statistical Learning with Sparsity: The Lasso and Generalizations</a></strong> - Trevor Hastie, Robert Tibshirani, Martin Wainwright (2015)
+    <strong><a href="https://www.ime.unicamp.br/~dias/SLS.pdf">Statistical Learning with Sparsity: The Lasso and Generalizations</a></strong> - Hastie, Tibshirani, Wainwright (2015)
   </li>
   <li>
     <strong><a href="http://www.stat.columbia.edu/~gelman/book/">Bayesian Data Analysis</a></strong> - Andrew Gelman, John B. Carlin, Hal S. Stern, David B. Dunson, Aki Vehtari, Donald B. Rubin (2013)
   </li>
-</ul>
-
-<h2>CS</h2>
-<ul>
   <li>
-    <strong><a href="https://dl.acm.org/doi/10.1145/3065386">ImageNet Classification with Deep Convolutional Neural Networks</a></strong> - Alex Krizhevsky, Ilya Sutskever, Geoffrey Hinton (2012)
+    <strong><a href="https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf">Variational Inference I</a></strong> - Course Notes (2011)
   </li>
   <li>
-    <strong><a href="https://ieeexplore.ieee.org/document/7801943">A Survey on Deep Learning in Medical Image Analysis</a></strong> - Geert Litjens, Thijs Kooi, Babak Ehteshami Bejnordi, Arnaud Arindra Adiyoso Setio, Francesco Ciompi, Mohsen Ghafoorian, Jeroen A. W. M. van der Laak, Bram van Ginneken, Clara I. Sánchez (2017)
+    <strong><a href="https://www.columbia.edu/~ww2040/8100F16/RM51.pdf">A Stochastic Approximation Method</a></strong> - Robbins, H. and Monro, S. (1951)
+  </li>
+  <li>
+    <strong><a href="https://arxiv.org/pdf/1601.00670">Variational Inference: A Review for Statisticians</a></strong> - Blei, D. M., Kucukelbir, A., McAuliffe, J. D. (2017)
+  </li>
+  <li>
+    <strong><a href="https://arxiv.org/abs/2004.13912">Neural Additive Models: Interpretable Machine Learning with Neural Nets</a></strong> - Agarwal, R., Frosst, N., Zhang, X., Caruana, R., and Hinton, G. (2020)
+  </li>
+  <li>
+    <strong><a href="https://arxiv.org/abs/2301.11862">NAMLSS: Neural Additive Models for Location Scale and Shape</a></strong> - Thielmann, A., Kruse, R., Kneib, T., Safken, B. (2023)
+  </li>
+</ul>
+
+<h2>Machine Learning</h2>
+<ul>
+  <li>
+    <strong><a href="https://arxiv.org/abs/1706.03762">Attention is All You Need</a></strong> - Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017)
+  </li>
+  <li>
+    <strong><a href="https://arxiv.org/abs/2012.06678v1">Tab-Transformer: Tabular Data Modeling Using Contextual Embeddings</a></strong> - Huang, X., Khetan, A., Cvitkovic, M., & Karnin, Z. (2020)
+  </li>
+  <li>
+    <strong><a href="https://dl.acm.org/doi/10.1145/3292500.3330701">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></strong> - Devlin, Chang, Lee, Toutanova (2019)
   </li>
 </ul>
 
@@ -46,6 +61,9 @@ nav_order: 1
   </li>
   <li>
     <strong><a href="https://press.princeton.edu/books/hardcover/9780691092563/a-non-random-walk-down-wall-street">A Non-Random Walk Down Wall Street</a></strong> - Andrew W. Lo, A. Craig MacKinlay (1999)
+  </li>
+  <li>
+    <strong><a href="https://www.jstor.org/stable/30035052">The Recovery Theorem</a></strong> - Ross, S. (2015)
   </li>
 </ul>
 
