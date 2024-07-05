@@ -23,6 +23,11 @@ workshops:
     link: "https://sites.google.com/site/anindyagoswami/teaching/w2019"
 
 talks:
+  - title: "Unsupervised Learning"
+    thumbnail: ../assets/img/Unsupervised_learning.png
+    date: 9 April 2024, St. Stephen's College, DU
+    description: "This talk was a part of a workshop at DU. Unsupervised Learning is a class of ML methods for learning unlabelled data. We discussed Latent Variable Models, SVD, PCA, Autoencoders, t-SNE, Variational Inference and K-means clustering"
+    link: ../assets/pdf/Unsupervised_Learning_Stephen.pdf
   - title: "Deep Item Response Theory"
     thumbnail: ../assets/img/deep_irt.png
     date: 11 September 2023, IIT-Bombay

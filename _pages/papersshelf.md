@@ -77,7 +77,4 @@ nav_order: 1
   </li>
 </ul>
 
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="script.js"></script>
-
 </div>
