@@ -96,6 +96,9 @@ resources:
         link: OS/Kerrisk_The_Linux_programming_interface.pdf
   - subject: "Data Structures and Algorithms"
     items:
+      - title: "Introduction to Algorithms"
+        type: pdf
+        link: https://dl.ebooksworld.ir/books/Introduction.to.Algorithms.4th.Leiserson.Stein.Rivest.Cormen.MIT.Press.9780262046305.EBooksWorld.ir.pdf
       - title: "Dynamic Programming Bootcamp IIT-GN"
         type: video
         link: https://www.youtube.com/playlist?list=PLAj_13N2fk-RA6wvOUmWOyUeL9zmWFJoI
