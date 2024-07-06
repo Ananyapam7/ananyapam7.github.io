@@ -1,9 +1,9 @@
 ---
-layout: page
+layout: papersshelf
 permalink: /papersshelf/
 title: Papers Shelf
 description: A collection of papers I've read on various topics (although it's difficult to segregate papers into topics). Keeping an organized list of the papers I've read helps in building mental models and quickly remembering the crux of the work.
-nav: false
+nav: true
 nav_order: 1
 ---
 <!-- _pages/publications.md -->

@@ -1,110 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Papers Shelf</title>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <style>
-    .node circle {
-      fill: #1f77b4;
-      stroke: #fff;
-      stroke-width: 1.5px;
-    }
-    .node text {
-      font: 12px sans-serif;
-      pointer-events: none;
-    }
-    .tooltip {
-      position: absolute;
-      text-align: center;
-      padding: 5px;
-      font: 12px sans-serif;
-      background: lightsteelblue;
-      border: 0px;
-      border-radius: 8px;
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
-  <h1>Papers Shelf</h1>
-  <div id="chart"></div>
-  <script>
-    const width = 960;
-const height = 600;
+<!-- page.html -->
+<div class="post">
 
-const papers = [
-  {
-    "title": "How to solve the stochastic partial differential equation that gives a Matérn random field using the finite element method",
-    "author": "Haakon Bakka",
-    "year": 2018,
-    "link": "https://arxiv.org/abs/1803.03765",
-    "abstract": "Abstract of the paper",
-    "math": 80,
-    "statistics": 15,
-    "machine_learning": 5,
-    "finance": 0
-  },
-  {
-    "title": "Statistical Learning with Sparsity: The Lasso and Generalizations",
-    "author": "Hastie, Tibshirani, Wainwright",
-    "year": 2015,
-    "link": "https://www.ime.unicamp.br/~dias/SLS.pdf",
-    "abstract": "Abstract of the paper",
-    "math": 10,
-    "statistics": 80,
-    "machine_learning": 10,
-    "finance": 0
-  },
-  // Add more papers here
-];
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-description">{{ page.description }}</p>
+  </header>
 
+  <article>
+    {{ content }}
+  </article>
 
-const svg = d3.select("#chart")
-  .append("svg")
-  .attr("width", width)
-  .attr("height", height);
+  {%- if page.related_publications != null and page.related_publications.size > 0 -%}
+  {% assign publications = page.related_publications | replace: ", ", "," | split: "," | join: "|" %}
+  <h2>References</h2>
+  <div class="publications">
+    {% bibliography -f {{ site.scholar.bibliography }} -q @*[key^={{ publications }}]* %}
+  </div>
+  {%- endif %}
 
-const tooltip = d3.select("body").append("div")
-  .attr("class", "tooltip")
-  .style("opacity", 0);
-
-const simulation = d3.forceSimulation(papers)
-  .force("x", d3.forceX(d => (d.math + d.statistics + d.machine_learning + d.finance) / 4 * width).strength(0.05))
-  .force("y", d3.forceY(d => (d.math + d.statistics + d.machine_learning + d.finance) / 4 * height).strength(0.05))
-  .force("collide", d3.forceCollide(50))
-  .on("tick", ticked);
-
-function ticked() {
-  const u = svg.selectAll("g")
-    .data(papers)
-    .enter()
-    .append("g")
-    .attr("class", "node")
-    .on("mouseover", function(event, d) {
-      tooltip.transition()
-        .duration(200)
-        .style("opacity", .9);
-      tooltip.html(`<strong>${d.title}</strong><br>${d.author}<br>${d.year}<br>${d.abstract}`)
-        .style("left", (event.pageX) + "px")
-        .style("top", (event.pageY - 28) + "px");
-    })
-    .on("mouseout", function(d) {
-      tooltip.transition()
-        .duration(500)
-        .style("opacity", 0);
-    });
-
-  u.append("circle")
-    .attr("r", 20);
-
-  u.append("text")
-    .attr("dy", -3)
-    .text(d => d.title);
-
-  u.attr("transform", d => `translate(${d.x},${d.y})`);
-}
-
-  </script>
-</body>
-</html>
+  {%- if site.giscus and page.giscus_comments -%}
+    {% include giscus.html %}
+  {%- endif -%}
+</div>
