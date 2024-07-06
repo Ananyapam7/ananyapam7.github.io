@@ -1,6 +1,6 @@
 ---
 layout: papershelf
-permalink: /papersshelf/
+permalink: /papersshelf2/
 title: Papers Shelf
 description: A collection of papers I've read on various topics.
 nav: true
