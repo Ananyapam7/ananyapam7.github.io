@@ -53,7 +53,7 @@ layout: default
   const width = 960;
   const height = 600;
   const margin = 50;
-  const labelPadding = 30; // Additional padding to avoid overlap with labels
+  const labelPadding = 60; // Increased padding to avoid overlap with labels
 
   const fixedNodeSize = 10;  // Define a fixed size for all nodes
 
@@ -121,7 +121,7 @@ layout: default
       } else {
         return margin + labelPadding;
       }
-    }).strength(0.1))
+    }).strength(0.2))  // Adjusted strength
     .force("y", d3.forceY(d => {
       if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
         return margin + labelPadding;
@@ -132,8 +132,8 @@ layout: default
       } else {
         return height / 2;
       }
-    }).strength(0.1))
-    .force("collide", d3.forceCollide(fixedNodeSize + 5))
+    }).strength(0.2))  // Adjusted strength
+    .force("collide", d3.forceCollide(fixedNodeSize + 5))  // Increased collision radius
     .on("tick", ticked);
 
   function ticked() {
