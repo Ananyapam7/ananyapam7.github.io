@@ -111,12 +111,12 @@ layout: default
 
   const simulation = d3.forceSimulation(papers)
     .force("x", d3.forceX(d => {
-      const edgeCenterX = (d.math > 50 ? width : 0) + (d.math / 100) * (width - margin);
-      return edgeCenterX;
+      const edgeCenterX = d.math > 50 ? width - margin : margin;
+      return edgeCenterX + (d.math / 100) * (width - 2 * margin);
     }).strength(0.1))
     .force("y", d3.forceY(d => {
-      const edgeCenterY = (d.finance > 50 ? height : 0) + (d.finance / 100) * (height - margin);
-      return edgeCenterY;
+      const edgeCenterY = d.finance > 50 ? height - margin : margin;
+      return edgeCenterY + (d.finance / 100) * (height - 2 * margin);
     }).strength(0.1))
     .force("collide", d3.forceCollide(fixedNodeSize + 5))
     .on("tick", ticked);
@@ -147,14 +147,5 @@ layout: default
     u.append("circle")
       .attr("r", fixedNodeSize)
       .attr("fill", getColor);
-
-    // Remove the text elements
-    // u.append("text")
-    //   .attr("dy", -12)
-    //   .attr("text-anchor", "middle")
-    //   .attr("font-size", "10px")
-    //   .attr("fill", "black")
-    //   .style("background-color", "white")
-    //   .text(d => d.title.split(' ').slice(0, 3).join(' ') + '...');
   }
 </script>
