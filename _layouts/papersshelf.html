@@ -37,11 +37,11 @@ layout: default
   .tooltip {
     position: absolute;
     text-align: center;
-    width: 120px;
+    width: 200px; /* Updated width */
     height: auto;
-    padding: 5px;
+    padding: 10px; /* Updated padding */
     font: 12px sans-serif;
-    background: lightsteelblue;
+    background: grey; /* Updated background color */
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
@@ -118,7 +118,7 @@ layout: default
         tooltip.transition()
           .duration(200)
           .style("opacity", .9);
-        tooltip.html(`<strong>${d.title}</strong><br>${d.author}<br>${d.year}<br>${d.abstract}`)
+        tooltip.html(`<strong>${d.title}</strong><br>${d.author}<br>${d.abstract}`)  // Removed year
           .style("left", (event.pageX + 5) + "px")
           .style("top", (event.pageY - 28) + "px");
       })
