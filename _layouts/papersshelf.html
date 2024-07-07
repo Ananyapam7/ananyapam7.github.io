@@ -42,10 +42,11 @@ layout: default
     .attr("class", "tooltip")
     .style("opacity", 0);
 
+  const margin = 50;
   const simulation = d3.forceSimulation(papers)
-    .force("x", d3.forceX(d => (d.math / 100) * width).strength(0.1))
-    .force("y", d3.forceY(d => (d.finance / 100) * height).strength(0.1))
-    .force("collide", d3.forceCollide(50))
+    .force("x", d3.forceX(d => margin + (d.math / 100) * (width - 2 * margin)).strength(0.1))
+    .force("y", d3.forceY(d => margin + (d.finance / 100) * (height - 2 * margin)).strength(0.1))
+    .force("collide", d3.forceCollide(30))
     .on("tick", ticked);
 
   function ticked() {
@@ -66,6 +67,9 @@ layout: default
         tooltip.transition()
           .duration(500)
           .style("opacity", 0);
+      })
+      .on("click", function(event, d) {
+        window.open(d.url, "_blank");
       });
 
     u.append("circle")
@@ -76,6 +80,8 @@ layout: default
       .attr("dy", -12)
       .attr("text-anchor", "middle")
       .attr("font-size", "10px")
+      .attr("fill", "white")
+      .style("background-color", "grey")
       .text(d => d.title);
   }
 </script>
