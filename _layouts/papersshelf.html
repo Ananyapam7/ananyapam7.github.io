@@ -54,10 +54,6 @@ layout: default
   const height = 600;
   const margin = 50;
 
-  const colorScale = d3.scaleOrdinal()
-    .domain(["math", "statistics", "machine_learning", "finance"])
-    .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);
-
   const fixedNodeSize = 10;  // Define a fixed size for all nodes
 
   const svg = d3.select("#chart")
@@ -102,6 +98,17 @@ layout: default
     .attr("font-size", "20px")
     .text("Finance");
 
+  const colorScale = d3.scaleLinear()
+    .domain([0, 1])
+    .interpolate(d3.interpolateRgb)
+    .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);  // Adjust as needed
+
+  function getColor(d) {
+    const total = d.math + d.statistics + d.machine_learning + d.finance;
+    const weightedScore = (d.math * 0 + d.statistics * 0.33 + d.machine_learning * 0.67 + d.finance * 1) / total;
+    return colorScale(weightedScore);
+  }
+
   const simulation = d3.forceSimulation(papers)
     .force("x", d3.forceX(d => margin + (d.math / 100) * (width - 2 * margin)).strength(0.1))
     .force("y", d3.forceY(d => margin + (d.finance / 100) * (height - 2 * margin)).strength(0.1))
@@ -133,7 +140,7 @@ layout: default
 
     u.append("circle")
       .attr("r", fixedNodeSize)
-      .attr("fill", d => colorScale(d3.max([d.math, d.statistics, d.machine_learning, d.finance])));
+      .attr("fill", getColor);
 
     // Remove the text elements
     // u.append("text")
