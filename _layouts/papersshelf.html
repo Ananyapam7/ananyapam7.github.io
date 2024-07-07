@@ -8,19 +8,11 @@ layout: default
     <p class="post-description">{{ page.description }}</p>
   </header>
 
-  <div style="display: flex;">
-    <div style="flex: 1;">
-      <article>
-        {{ content }}
-      </article>
-    </div>
-    <div style="flex: 0 0 300px; margin-left: 20px;">
-      <h2>Search Papers</h2>
-      <input type="text" id="search" placeholder="Search by title or abstract" style="width: 100%; padding: 10px;">
-    </div>
-  </div>
+  <article>
+    {{ content }}
+  </article>
 
-  <div id="chart" style="margin-top: 20px;"></div>
+  <div id="chart"></div>
 
   {%- if page.related_publications != null and page.related_publications.size > 0 -%}
   {% assign publications = page.related_publications | replace: ", ", "," | split: "," | join: "|" %}
@@ -66,12 +58,12 @@ layout: default
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-  const width = 960;
+  const width = 1000;
   const height = 600;
   const margin = 50;
-  const labelPadding = 60;
+  const labelPadding = 40;
 
-  const fixedNodeSize = 10;
+  const fixedNodeSize = 5;
 
   const svg = d3.select("#chart")
     .append("svg")
@@ -104,7 +96,7 @@ layout: default
     .attr("text-anchor", "middle")
     .attr("fill", "#ccc")
     .attr("font-size", "20px")
-    .text("Machine Learning");
+    .text("Computer Science");
 
   svg.append("text")
     .attr("x", margin)
@@ -117,70 +109,32 @@ layout: default
   const colorScale = d3.scaleLinear()
     .domain([0, 1])
     .interpolate(d3.interpolateRgb)
-    .range(["#1f77b4", "#71A6D2", "#A8E6CF", "#FF474C"]);
+    .range(["#1f77b4", "#ff6969"]);
 
   function getColor(d) {
-    const total = d.math + d.statistics + d.machine_learning + d.finance;
-    const weightedScore = (d.math * 0 + d.statistics * 0.33 + d.machine_learning * 0.67 + d.finance * 1) / total;
+    const total = d.math + d.statistics + d.comp_sci + d.finance;
+    const weightedScore = (d.math * 0 + d.statistics * 0.33 + d.comp_sci * 0.67 + d.finance * 1) / total;
     return colorScale(weightedScore);
   }
 
-  function updateChart(papers) {
-    const nodes = svg.selectAll("g")
-      .data(papers, d => d.title)
-      .join(
-        enter => {
-          const g = enter.append("g")
-            .attr("class", "node")
-            .attr("transform", d => `translate(${d.x},${d.y})`)
-            .on("mouseover", function(event, d) {
-              tooltip.transition()
-                .duration(200)
-                .style("opacity", .9);
-              tooltip.html(`<div class="title">${d.title}</div><div class="author">${d.author}</div>${d.abstract}`)
-                .style("left", (event.pageX + 5) + "px")
-                .style("top", (event.pageY - 28) + "px");
-            })
-            .on("mouseout", function(d) {
-              tooltip.transition()
-                .duration(500)
-                .style("opacity", 0);
-            })
-            .on("click", function(event, d) {
-              window.open(d.link, "_blank");
-            });
-
-          g.append("circle")
-            .attr("r", fixedNodeSize)
-            .attr("fill", getColor);
-
-          return g;
-        },
-        update => update,
-        exit => exit.remove()
-      );
-
-    simulation.nodes(papers).alpha(1).restart();
-  }
-
-  const simulation = d3.forceSimulation()
+  const simulation = d3.forceSimulation(papers)
     .force("x", d3.forceX(d => {
-      if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
+      if (d.math > d.statistics && d.math > d.comp_sci && d.math > d.finance) {
         return width / 2;
-      } else if (d.statistics > d.math && d.statistics > d.machine_learning && d.statistics > d.finance) {
+      } else if (d.statistics > d.math && d.statistics > d.comp_sci && d.statistics > d.finance) {
         return width - margin - labelPadding;
-      } else if (d.machine_learning > d.math && d.machine_learning > d.statistics && d.machine_learning > d.finance) {
+      } else if (d.comp_sci > d.math && d.comp_sci > d.statistics && d.comp_sci > d.finance) {
         return width / 2;
       } else {
         return margin + labelPadding;
       }
     }).strength(0.2))
     .force("y", d3.forceY(d => {
-      if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
+      if (d.math > d.statistics && d.math > d.comp_sci && d.math > d.finance) {
         return margin + labelPadding;
-      } else if (d.statistics > d.math && d.statistics > d.machine_learning && d.statistics > d.finance) {
+      } else if (d.statistics > d.math && d.statistics > d.comp_sci && d.statistics > d.finance) {
         return height / 2;
-      } else if (d.machine_learning > d.math && d.machine_learning > d.statistics && d.machine_learning > d.finance) {
+      } else if (d.comp_sci > d.math && d.comp_sci > d.statistics && d.comp_sci > d.finance) {
         return height - margin - labelPadding;
       } else {
         return height / 2;
@@ -190,20 +144,30 @@ layout: default
     .on("tick", ticked);
 
   function ticked() {
-    svg.selectAll("g")
-      .attr("transform", d => `translate(${d.x},${d.y})`);
+    const u = svg.selectAll("g")
+      .data(papers)
+      .join("g")
+      .attr("class", "node")
+      .attr("transform", d => `translate(${d.x},${d.y})`)
+      .on("mouseover", function(event, d) {
+        tooltip.transition()
+          .duration(200)
+          .style("opacity", .9);
+        tooltip.html(`<div class="title">${d.title}</div><div class="author">${d.author}</div>${d.abstract}`)
+          .style("left", (event.pageX + 5) + "px")
+          .style("top", (event.pageY - 28) + "px");
+      })
+      .on("mouseout", function(d) {
+        tooltip.transition()
+          .duration(500)
+          .style("opacity", 0);
+      })
+      .on("click", function(event, d) {
+        window.open(d.link, "_blank");
+      });
+
+    u.append("circle")
+      .attr("r", fixedNodeSize)
+      .attr("fill", getColor);
   }
-
-  // Initial chart rendering
-  updateChart(papers);
-
-  // Search functionality
-  d3.select("#search").on("input", function() {
-    const query = this.value.toLowerCase();
-    const filteredPapers = papers.filter(paper => 
-      paper.title.toLowerCase().includes(query) || 
-      paper.abstract.toLowerCase().includes(query)
-    );
-    updateChart(filteredPapers);
-  });
 </script>
