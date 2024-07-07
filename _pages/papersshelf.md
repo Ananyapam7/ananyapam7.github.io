@@ -18,7 +18,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 80,
     "statistics": 15,
-    "machine_learning": 5,
+    "comp_sci": 5,
     "finance": 0
   },
   {
@@ -29,7 +29,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 10,
     "statistics": 80,
-    "machine_learning": 10,
+    "comp_sci": 10,
     "finance": 0
   },
   {
@@ -40,7 +40,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 0,
     "statistics": 20,
-    "machine_learning": 80,
+    "comp_sci": 80,
     "finance": 0
   },
   {
@@ -51,7 +51,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 0,
     "statistics": 0,
-    "machine_learning": 10,
+    "comp_sci": 10,
     "finance": 90
   },
   {
@@ -62,7 +62,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 0,
     "statistics": 20,
-    "machine_learning": 10,
+    "comp_sci": 10,
     "finance": 70
   },
   {
@@ -73,7 +73,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 20,
     "statistics": 60,
-    "machine_learning": 20,
+    "comp_sci": 20,
     "finance": 0
   },
   {
@@ -84,7 +84,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 30,
     "statistics": 50,
-    "machine_learning": 20,
+    "comp_sci": 20,
     "finance": 0
   },
   {
@@ -95,7 +95,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 40,
     "statistics": 40,
-    "machine_learning": 20,
+    "comp_sci": 20,
     "finance": 0
   },
   {
@@ -106,7 +106,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 30,
     "statistics": 50,
-    "machine_learning": 20,
+    "comp_sci": 20,
     "finance": 0
   },
   {
@@ -117,7 +117,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 10,
     "statistics": 30,
-    "machine_learning": 60,
+    "comp_sci": 60,
     "finance": 0
   },
   {
@@ -128,7 +128,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 10,
     "statistics": 30,
-    "machine_learning": 60,
+    "comp_sci": 60,
     "finance": 0
   },
   {
@@ -139,7 +139,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 10,
     "statistics": 20,
-    "machine_learning": 70,
+    "comp_sci": 70,
     "finance": 0
   },
   {
@@ -150,7 +150,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 10,
     "statistics": 20,
-    "machine_learning": 70,
+    "comp_sci": 70,
     "finance": 0
   },
   {
@@ -161,7 +161,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 10,
     "statistics": 20,
-    "machine_learning": 10,
+    "comp_sci": 10,
     "finance": 60
   },
   {
@@ -172,7 +172,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 0,
     "statistics": 20,
-    "machine_learning": 0,
+    "comp_sci": 0,
     "finance": 80
   },
   {
@@ -183,7 +183,7 @@ const papers = [
     "abstract": "Abstract of the paper",
     "math": 0,
     "statistics": 20,
-    "machine_learning": 0,
+    "comp_sci": 0,
     "finance": 80
   }
 ];
