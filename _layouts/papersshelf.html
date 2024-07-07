@@ -32,17 +32,26 @@ layout: default
 <script>
   const width = 960;
   const height = 600;
+  const margin = 50;
 
   const svg = d3.select("#chart")
     .append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .style("background-color", "#f9f9f9");
 
   const tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
-    .style("opacity", 0);
+    .style("opacity", 0)
+    .style("background-color", "white")
+    .style("border", "1px solid #ddd")
+    .style("padding", "10px")
+    .style("box-shadow", "0px 0px 10px rgba(0, 0, 0, 0.1)");
 
-  const margin = 50;
+  const colorScale = d3.scaleOrdinal()
+    .domain(["math", "statistics", "machine_learning", "finance"])
+    .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);
+
   const simulation = d3.forceSimulation(papers)
     .force("x", d3.forceX(d => margin + (d.math / 100) * (width - 2 * margin)).strength(0.1))
     .force("y", d3.forceY(d => margin + (d.finance / 100) * (height - 2 * margin)).strength(0.1))
@@ -69,19 +78,26 @@ layout: default
           .style("opacity", 0);
       })
       .on("click", function(event, d) {
-        window.open(d.url, "_blank");
+        window.open(d.link, "_blank");
       });
 
     u.append("circle")
       .attr("r", 10)
-      .attr("fill", "lightblue");
+      .attr("fill", d => {
+        if (d.math > 50) return colorScale("math");
+        if (d.statistics > 50) return colorScale("statistics");
+        if (d.machine_learning > 50) return colorScale("machine_learning");
+        if (d.finance > 50) return colorScale("finance");
+        return "lightgrey";
+      });
 
     u.append("text")
       .attr("dy", -12)
       .attr("text-anchor", "middle")
       .attr("font-size", "10px")
-      .attr("fill", "white")
-      .style("background-color", "grey")
+      .attr("fill", "black")
       .text(d => d.title);
   }
+
+  simulation.on("tick", ticked);
 </script>
