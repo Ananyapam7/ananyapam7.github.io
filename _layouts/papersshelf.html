@@ -111,12 +111,26 @@ layout: default
 
   const simulation = d3.forceSimulation(papers)
     .force("x", d3.forceX(d => {
-      const edgeCenterX = d.math > 50 ? width - margin : margin;
-      return edgeCenterX + (d.math / 100) * (width - 2 * margin);
+      if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
+        return width / 2;
+      } else if (d.statistics > d.math && d.statistics > d.machine_learning && d.statistics > d.finance) {
+        return width - margin;
+      } else if (d.machine_learning > d.math && d.machine_learning > d.statistics && d.machine_learning > d.finance) {
+        return width / 2;
+      } else {
+        return margin;
+      }
     }).strength(0.1))
     .force("y", d3.forceY(d => {
-      const edgeCenterY = d.finance > 50 ? height - margin : margin;
-      return edgeCenterY + (d.finance / 100) * (height - 2 * margin);
+      if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
+        return margin;
+      } else if (d.statistics > d.math && d.statistics > d.machine_learning && d.statistics > d.finance) {
+        return height / 2;
+      } else if (d.machine_learning > d.math && d.machine_learning > d.statistics && d.machine_learning > d.finance) {
+        return height - margin;
+      } else {
+        return height / 2;
+      }
     }).strength(0.1))
     .force("collide", d3.forceCollide(fixedNodeSize + 5))
     .on("tick", ticked);
