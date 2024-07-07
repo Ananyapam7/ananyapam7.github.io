@@ -36,15 +36,23 @@ layout: default
   }
   .tooltip {
     position: absolute;
-    text-align: center;
-    width: 200px; /* Updated width */
+    text-align: left;
+    width: 250px;
     height: auto;
-    padding: 10px; /* Updated padding */
-    font: 12px sans-serif;
-    background: grey; /* Updated background color */
-    border: 0px;
+    padding: 10px;
+    font: 14px sans-serif;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
     border-radius: 8px;
     pointer-events: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  .tooltip .title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .tooltip .author {
+    margin-bottom: 5px;
   }
 </style>
 
@@ -53,9 +61,9 @@ layout: default
   const width = 960;
   const height = 600;
   const margin = 50;
-  const labelPadding = 60; // Increased padding to avoid overlap with labels
+  const labelPadding = 80;
 
-  const fixedNodeSize = 10;  // Define a fixed size for all nodes
+  const fixedNodeSize = 7;
 
   const svg = d3.select("#chart")
     .append("svg")
@@ -66,7 +74,6 @@ layout: default
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-  // Add background labels
   svg.append("text")
     .attr("x", width / 2)
     .attr("y", margin / 2)
@@ -102,7 +109,7 @@ layout: default
   const colorScale = d3.scaleLinear()
     .domain([0, 1])
     .interpolate(d3.interpolateRgb)
-    .range(["#1f77b4", "#71A6D2", "#A8E6CF", "#FF474C"]);  // Adjust as needed
+    .range(["#1f77b4", "#71A6D2", "#A8E6CF", "#FF474C"]);
 
   function getColor(d) {
     const total = d.math + d.statistics + d.machine_learning + d.finance;
@@ -121,7 +128,7 @@ layout: default
       } else {
         return margin + labelPadding;
       }
-    }).strength(0.2))  // Adjusted strength
+    }).strength(0.2))
     .force("y", d3.forceY(d => {
       if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
         return margin + labelPadding;
@@ -132,8 +139,8 @@ layout: default
       } else {
         return height / 2;
       }
-    }).strength(0.2))  // Adjusted strength
-    .force("collide", d3.forceCollide(fixedNodeSize + 5))  // Increased collision radius
+    }).strength(0.2))
+    .force("collide", d3.forceCollide(fixedNodeSize + 5))
     .on("tick", ticked);
 
   function ticked() {
@@ -146,7 +153,7 @@ layout: default
         tooltip.transition()
           .duration(200)
           .style("opacity", .9);
-        tooltip.html(`<strong>${d.title}</strong><br>${d.author}<br>${d.abstract}`)  // Removed year
+        tooltip.html(`<div class="title">${d.title}</div><div class="author">${d.author}</div>${d.abstract}`)
           .style("left", (event.pageX + 5) + "px")
           .style("top", (event.pageY - 28) + "px");
       })
