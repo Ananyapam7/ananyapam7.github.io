@@ -53,6 +53,7 @@ layout: default
   const width = 960;
   const height = 600;
   const margin = 50;
+  const labelPadding = 20;
 
   const fixedNodeSize = 10;  // Define a fixed size for all nodes
 
@@ -66,37 +67,22 @@ layout: default
     .style("opacity", 0);
 
   // Add background labels
-  svg.append("text")
-    .attr("x", width / 2)
-    .attr("y", margin / 2)
-    .attr("text-anchor", "middle")
-    .attr("fill", "#ccc")
-    .attr("font-size", "20px")
-    .text("Math");
+  const labels = [
+    { text: "Math", x: width / 2, y: margin / 2 },
+    { text: "Statistics", x: width - margin, y: height / 2 },
+    { text: "Machine Learning", x: width / 2, y: height - margin / 2 },
+    { text: "Finance", x: margin, y: height / 2 }
+  ];
 
-  svg.append("text")
-    .attr("x", width - margin)
-    .attr("y", height / 2)
-    .attr("text-anchor", "middle")
-    .attr("fill", "#ccc")
-    .attr("font-size", "20px")
-    .text("Statistics");
-
-  svg.append("text")
-    .attr("x", width / 2)
-    .attr("y", height - margin / 2)
-    .attr("text-anchor", "middle")
-    .attr("fill", "#ccc")
-    .attr("font-size", "20px")
-    .text("Machine Learning");
-
-  svg.append("text")
-    .attr("x", margin)
-    .attr("y", height / 2)
-    .attr("text-anchor", "middle")
-    .attr("fill", "#ccc")
-    .attr("font-size", "20px")
-    .text("Finance");
+  labels.forEach(label => {
+    svg.append("text")
+      .attr("x", label.x)
+      .attr("y", label.y)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#ccc")
+      .attr("font-size", "20px")
+      .text(label.text);
+  });
 
   const colorScale = d3.scaleLinear()
     .domain([0, 1])
@@ -133,6 +119,17 @@ layout: default
       }
     }).strength(0.1))
     .force("collide", d3.forceCollide(fixedNodeSize + 5))
+    .force("avoid-labels", d3.forceCollide(d => {
+      if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
+        return d.y < margin ? labelPadding : 0;
+      } else if (d.statistics > d.math && d.statistics > d.machine_learning && d.statistics > d.finance) {
+        return d.x > width - margin ? labelPadding : 0;
+      } else if (d.machine_learning > d.math && d.machine_learning > d.statistics && d.machine_learning > d.finance) {
+        return d.y > height - margin ? labelPadding : 0;
+      } else {
+        return d.x < margin ? labelPadding : 0;
+      }
+    }))
     .on("tick", ticked);
 
   function ticked() {
