@@ -53,7 +53,7 @@ layout: default
   const width = 960;
   const height = 600;
   const margin = 50;
-  const labelPadding = 20;
+  const labelPadding = 30; // Additional padding to avoid overlap with labels
 
   const fixedNodeSize = 10;  // Define a fixed size for all nodes
 
@@ -67,27 +67,42 @@ layout: default
     .style("opacity", 0);
 
   // Add background labels
-  const labels = [
-    { text: "Math", x: width / 2, y: margin / 2 },
-    { text: "Statistics", x: width - margin, y: height / 2 },
-    { text: "Machine Learning", x: width / 2, y: height - margin / 2 },
-    { text: "Finance", x: margin, y: height / 2 }
-  ];
+  svg.append("text")
+    .attr("x", width / 2)
+    .attr("y", margin / 2)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#ccc")
+    .attr("font-size", "20px")
+    .text("Math");
 
-  labels.forEach(label => {
-    svg.append("text")
-      .attr("x", label.x)
-      .attr("y", label.y)
-      .attr("text-anchor", "middle")
-      .attr("fill", "#ccc")
-      .attr("font-size", "20px")
-      .text(label.text);
-  });
+  svg.append("text")
+    .attr("x", width - margin)
+    .attr("y", height / 2)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#ccc")
+    .attr("font-size", "20px")
+    .text("Statistics");
+
+  svg.append("text")
+    .attr("x", width / 2)
+    .attr("y", height - margin / 2)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#ccc")
+    .attr("font-size", "20px")
+    .text("Machine Learning");
+
+  svg.append("text")
+    .attr("x", margin)
+    .attr("y", height / 2)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#ccc")
+    .attr("font-size", "20px")
+    .text("Finance");
 
   const colorScale = d3.scaleLinear()
     .domain([0, 1])
     .interpolate(d3.interpolateRgb)
-    .range(["#95b8d1", "#b8e0d2", "#eac4d5", "#ffc09f"]);  // Adjust as needed
+    .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);  // Adjust as needed
 
   function getColor(d) {
     const total = d.math + d.statistics + d.machine_learning + d.finance;
@@ -100,36 +115,25 @@ layout: default
       if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
         return width / 2;
       } else if (d.statistics > d.math && d.statistics > d.machine_learning && d.statistics > d.finance) {
-        return width - margin;
+        return width - margin - labelPadding;
       } else if (d.machine_learning > d.math && d.machine_learning > d.statistics && d.machine_learning > d.finance) {
         return width / 2;
       } else {
-        return margin;
+        return margin + labelPadding;
       }
     }).strength(0.1))
     .force("y", d3.forceY(d => {
       if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
-        return margin;
+        return margin + labelPadding;
       } else if (d.statistics > d.math && d.statistics > d.machine_learning && d.statistics > d.finance) {
         return height / 2;
       } else if (d.machine_learning > d.math && d.machine_learning > d.statistics && d.machine_learning > d.finance) {
-        return height - margin;
+        return height - margin - labelPadding;
       } else {
         return height / 2;
       }
     }).strength(0.1))
     .force("collide", d3.forceCollide(fixedNodeSize + 5))
-    .force("avoid-labels", d3.forceCollide(d => {
-      if (d.math > d.statistics && d.math > d.machine_learning && d.math > d.finance) {
-        return d.y < margin ? labelPadding : 0;
-      } else if (d.statistics > d.math && d.statistics > d.machine_learning && d.statistics > d.finance) {
-        return d.x > width - margin ? labelPadding : 0;
-      } else if (d.machine_learning > d.math && d.machine_learning > d.statistics && d.machine_learning > d.finance) {
-        return d.y > height - margin ? labelPadding : 0;
-      } else {
-        return d.x < margin ? labelPadding : 0;
-      }
-    }))
     .on("tick", ticked);
 
   function ticked() {
