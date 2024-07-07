@@ -110,8 +110,14 @@ layout: default
   }
 
   const simulation = d3.forceSimulation(papers)
-    .force("x", d3.forceX(d => margin + (d.math / 100) * (width - 2 * margin)).strength(0.1))
-    .force("y", d3.forceY(d => margin + (d.finance / 100) * (height - 2 * margin)).strength(0.1))
+    .force("x", d3.forceX(d => {
+      const edgeCenterX = (d.math > 50 ? width : 0) + (d.math / 100) * (width - margin);
+      return edgeCenterX;
+    }).strength(0.1))
+    .force("y", d3.forceY(d => {
+      const edgeCenterY = (d.finance > 50 ? height : 0) + (d.finance / 100) * (height - margin);
+      return edgeCenterY;
+    }).strength(0.1))
     .force("collide", d3.forceCollide(fixedNodeSize + 5))
     .on("tick", ticked);
 
