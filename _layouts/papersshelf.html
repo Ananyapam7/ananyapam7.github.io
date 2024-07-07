@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-<!-- page.html -->
 <div class="post">
 
   <header class="post-header">
@@ -13,6 +12,8 @@ layout: default
     {{ content }}
   </article>
 
+  <div id="chart"></div>
+
   {%- if page.related_publications != null and page.related_publications.size > 0 -%}
   {% assign publications = page.related_publications | replace: ", ", "," | split: "," | join: "|" %}
   <h2>References</h2>
@@ -23,5 +24,55 @@ layout: default
 
   {%- if site.giscus and page.giscus_comments -%}
     {% include giscus.html %}
-  {%- endif -%}
+  {%- endif %}
+
 </div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+  const width = 960;
+  const height = 600;
+
+  const svg = d3.select("#chart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  const tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  const simulation = d3.forceSimulation(papers)
+    .force("x", d3.forceX(d => (d.math / 100) * width).strength(0.1))
+    .force("y", d3.forceY(d => (d.finance / 100) * height).strength(0.1))
+    .force("collide", d3.forceCollide(50))
+    .on("tick", ticked);
+
+  function ticked() {
+    const u = svg.selectAll("g")
+      .data(papers)
+      .join("g")
+      .attr("class", "node")
+      .attr("transform", d => `translate(${d.x},${d.y})`)
+      .on("mouseover", function(event, d) {
+        tooltip.transition()
+          .duration(200)
+          .style("opacity", .9);
+        tooltip.html(`<strong>${d.title}</strong><br>${d.author}<br>${d.year}<br>${d.abstract}`)
+          .style("left", (event.pageX) + "px")
+          .style("top", (event.pageY - 28) + "px");
+      })
+      .on("mouseout", function(d) {
+        tooltip.transition()
+          .duration(500)
+          .style("opacity", 0);
+      });
+
+    u.append("circle")
+      .attr("r", 20);
+
+    u.append("text")
+      .attr("dy", -3)
+      .text(d => d.title);
+  }
+</script>
