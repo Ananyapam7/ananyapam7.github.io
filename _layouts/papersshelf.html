@@ -69,10 +69,13 @@ layout: default
       });
 
     u.append("circle")
-      .attr("r", 20);
+      .attr("r", 10)
+      .attr("fill", "lightblue");
 
     u.append("text")
-      .attr("dy", -3)
+      .attr("dy", -12)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "10px")
       .text(d => d.title);
   }
 </script>
