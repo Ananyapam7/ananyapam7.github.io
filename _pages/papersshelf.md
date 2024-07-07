@@ -11,7 +11,7 @@ nav_order: 1
 <script>
 const papers = [
   {
-    "title": "How to solve the stochastic partial differential equation that gives a Matérn random field using the finite element method",
+    "title": "Solving SPDE giving a Matérn random field using the FEM",
     "author": "Haakon Bakka",
     "year": 2018,
     "link": "https://arxiv.org/abs/1803.03765",
@@ -33,7 +33,7 @@ const papers = [
     "finance": 0
   },
   {
-    "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+    "title": "BERT",
     "author": "Devlin, Chang, Lee, Toutanova",
     "year": 2019,
     "link": "https://dl.acm.org/doi/10.1145/3292500.3330701",
