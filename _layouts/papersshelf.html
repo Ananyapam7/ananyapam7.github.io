@@ -58,9 +58,7 @@ layout: default
     .domain(["math", "statistics", "machine_learning", "finance"])
     .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);
 
-  const sizeScale = d3.scaleLinear()
-    .domain([0, 100])
-    .range([5, 20]);
+  const fixedNodeSize = 10;  // Define a fixed size for all nodes
 
   const svg = d3.select("#chart")
     .append("svg")
@@ -107,7 +105,7 @@ layout: default
   const simulation = d3.forceSimulation(papers)
     .force("x", d3.forceX(d => margin + (d.math / 100) * (width - 2 * margin)).strength(0.1))
     .force("y", d3.forceY(d => margin + (d.finance / 100) * (height - 2 * margin)).strength(0.1))
-    .force("collide", d3.forceCollide(d => sizeScale(d.math + d.finance) + 5))
+    .force("collide", d3.forceCollide(fixedNodeSize + 5))
     .on("tick", ticked);
 
   function ticked() {
@@ -134,15 +132,16 @@ layout: default
       });
 
     u.append("circle")
-      .attr("r", d => sizeScale(d.math + d.finance))
+      .attr("r", fixedNodeSize)
       .attr("fill", d => colorScale(d3.max([d.math, d.statistics, d.machine_learning, d.finance])));
 
-    u.append("text")
-      .attr("dy", -12)
-      .attr("text-anchor", "middle")
-      .attr("font-size", "10px")
-      .attr("fill", "black")
-      .style("background-color", "white")
-      .text(d => d.title.split(' ').slice(0, 3).join(' ') + '...');
+    // Remove the text elements
+    // u.append("text")
+    //   .attr("dy", -12)
+    //   .attr("text-anchor", "middle")
+    //   .attr("font-size", "10px")
+    //   .attr("fill", "black")
+    //   .style("background-color", "white")
+    //   .text(d => d.title.split(' ').slice(0, 3).join(' ') + '...');
   }
 </script>
