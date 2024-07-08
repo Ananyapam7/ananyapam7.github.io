@@ -61,7 +61,7 @@ layout: default
   const width = 1000;
   const height = 600;
   const margin = 50;
-  const labelPadding = 40;
+  const labelPadding = 50;
 
   const fixedNodeSize = 5;
 
@@ -83,7 +83,7 @@ layout: default
     .text("Math");
 
   svg.append("text")
-    .attr("x", width)
+    .attr("x", width-margin/2)
     .attr("y", height / 2)
     .attr("text-anchor", "middle")
     .attr("fill", "#ccc")
@@ -99,7 +99,7 @@ layout: default
     .text("Computer Science");
 
   svg.append("text")
-    .attr("x", margin/2)
+    .attr("x", margin)
     .attr("y", height / 2)
     .attr("text-anchor", "middle")
     .attr("fill", "#ccc")
