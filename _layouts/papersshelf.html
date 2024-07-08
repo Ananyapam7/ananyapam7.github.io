@@ -60,10 +60,10 @@ layout: default
 <script>
   const width = 960;
   const height = 600;
-  const margin = 40;
-  const labelPadding = 30;
+  const margin = 50;
+  const labelPadding = 40;
 
-  const fixedNodeSize = 10;
+  const fixedNodeSize = 5;
 
   const svg = d3.select("#chart")
     .append("svg")
@@ -83,7 +83,7 @@ layout: default
     .text("Math");
 
   svg.append("text")
-    .attr("x", width + margin)
+    .attr("x", width - margin)
     .attr("y", height / 2)
     .attr("text-anchor", "middle")
     .attr("fill", "#ccc")
