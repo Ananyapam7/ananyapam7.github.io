@@ -119,14 +119,23 @@ layout: default
 
   const simulation = d3.forceSimulation(papers)
     .force("x", d3.forceX(d => {
-      if (d.math > d.statistics && d.math > d.comp_sci && d.math > d.finance) {
+      if (d.math >= d.statistics && d.math >= d.comp_sci && d.math >= d.finance) {
         return width / 2;
       } else if (d.statistics > d.math && d.statistics > d.comp_sci && d.statistics > d.finance) {
         return width - margin - labelPadding;
       } else if (d.comp_sci > d.math && d.comp_sci > d.statistics && d.comp_sci > d.finance) {
         return width / 2;
       } else {
-        return margin + labelPadding;
+        // Handle ties
+        if (d.math === d.statistics && d.math > d.comp_sci && d.math > d.finance) {
+          return (width / 2 + (width - margin - labelPadding)) / 2; // Average center and right
+        } else if (d.math === d.comp_sci && d.math > d.statistics && d.math > d.finance) {
+          return (width / 2 + margin + labelPadding) / 2; // Average center and left
+        } else if (d.statistics === d.comp_sci && d.statistics > d.math && d.statistics > d.finance) {
+          return (width - margin - labelPadding + margin + labelPadding) / 2; // Average right and left
+        } else {
+          return margin + labelPadding;
+        }
       }
     }).strength(0.2))
     .force("y", d3.forceY(d => {
@@ -137,7 +146,16 @@ layout: default
       } else if (d.comp_sci > d.math && d.comp_sci > d.statistics && d.comp_sci > d.finance) {
         return height - margin - labelPadding;
       } else {
-        return height / 2;
+        // Handle ties
+        if (d.math === d.statistics && d.math > d.comp_sci && d.math > d.finance) {
+          return (margin + labelPadding + height / 2) / 2; // Average top and center
+        } else if (d.math === d.comp_sci && d.math > d.statistics && d.math > d.finance) {
+          return (margin + labelPadding + height - margin - labelPadding) / 2; // Average top and bottom
+        } else if (d.statistics === d.comp_sci && d.statistics > d.math && d.statistics > d.finance) {
+          return (height / 2 + height - margin - labelPadding) / 2; // Average center and bottom
+        } else {
+          return height / 2;
+        }
       }
     }).strength(0.2))
     .force("collide", d3.forceCollide(fixedNodeSize + 5))
