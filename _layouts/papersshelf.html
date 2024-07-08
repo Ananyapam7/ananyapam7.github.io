@@ -171,7 +171,7 @@ layout: default
         tooltip.transition()
           .duration(200)
           .style("opacity", .9);
-        tooltip.html(`<div class="title">${d.title}</div><div class="author">${d.author}</div>${d.abstract}`)
+        tooltip.html(`<div class="title">${d.title}</div><div class="author">${d.author}</div>`)
           .style("left", (event.pageX + 5) + "px")
           .style("top", (event.pageY - 28) + "px");
       })
