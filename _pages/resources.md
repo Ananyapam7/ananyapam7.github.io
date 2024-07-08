@@ -64,6 +64,9 @@ resources:
           - title: "Machine Learning and Pattern Recognition by CM Bishop"
             type: pdf
             link: https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf
+          - title: "Bayesian Data Analysis by Gelman"
+            type: pdf
+            link: http://www.stat.columbia.edu/~gelman/book/BDA3.pdf
           - title: "Introduction to Statistical Learning by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani"
             type: pdf
             link: https://static1.squarespace.com/static/5ff2adbe3fe4fe33db902812/t/6009dd9fa7bc363aa822d2c7/1611259312432/ISLR+Seventh+Printing.pdf
