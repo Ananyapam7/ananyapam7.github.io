@@ -2,7 +2,7 @@
 layout: papersshelf
 permalink: /papersshelf/
 title: Papers Shelf
-description: A collection of some of the best articles on various topics. Keeping an organized list helps in building mental models and quickly remembering the crux of the work.
+description: A collection of some papers on various topics. Keeping an organized list helps in building mental models and quickly remembering the crux of the work.
 nav: true
 nav_order: 1
 ---
