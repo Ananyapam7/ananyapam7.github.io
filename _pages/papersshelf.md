@@ -130,7 +130,7 @@ const papers = [
     "statistics": 70,
     "comp_sci": 20,
     "finance": 0
-  }
+  },
   {
     "title": "Attention is All You Need",
     "author": "Vaswani, A.",
