@@ -36,7 +36,7 @@ const papers = [
     "title": "Variable Selection Methods in regression models for binary data",
     "author": "S. Bag",
     "year": 2017,
-    "link": "https://arxiv.org/pdf/1601.00670",
+    "link": "https://arxiv.org/abs/1601.00670",
     "abstract": "In this paper, we explore four main typologies (test-based, penalty-based, screening-based, and tree-based) of frequentist variable selection methods in logistic regression setup.",
     "math": 0,
     "statistics": 95,
