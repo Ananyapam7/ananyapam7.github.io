@@ -66,6 +66,72 @@ const papers = [
     "finance": 0
   },
   {
+    "title": "How Interpretable and Trustworthy are GAMs?",
+    "author": "Benjamin L, S Tan, C Chang, G Hooker and R Caruana",
+    "year": 2020,
+    "link": "https://arxiv.org/abs/2006.06466",
+    "abstract": "Which GAM should we trust?",
+    "math": 10,
+    "statistics": 45,
+    "comp_sci": 45,
+    "finance": 0
+  },
+  {
+    "title": "Purifying Interaction Effects with the Functional ANOVA",
+    "author": "Benjamin L, S Tan, C Chang, G Hooker and R Caruana",
+    "year": 2020,
+    "link": "https://arxiv.org/abs/1911.04974",
+    "abstract": "An Efficient Algorithm for Recovering Identifiable Additive Models",
+    "math": 20,
+    "statistics": 40,
+    "comp_sci": 40,
+    "finance": 0
+  },
+  {
+    "title": "Sparse Sequence-to-Sequence Models",
+    "author": "B. Peters, V. Niculae and A. Martins ",
+    "year": 2019,
+    "link": "https://arxiv.org/abs/1905.05702",
+    "abstract": "Introduces alpha entmax",
+    "math": 30,
+    "statistics": 30,
+    "comp_sci": 40,
+    "finance": 0
+  },
+  {
+    "title": "NODE: Neural Oblivious Decision Ensembles",
+    "author": "Popov S., Stanislav S., Babenko A.",
+    "year": 2019,
+    "link": "https://arxiv.org/abs/1909.06312",
+    "abstract": "Generalizes ensembles of oblivious decision trees, but benefits from both end-to-end gradient-based optimization",
+    "math": 10,
+    "statistics": 60,
+    "comp_sci": 30,
+    "finance": 0
+  },
+  {
+    "title": "GAMLSS: Generalized Additive Models for Location Scale and Shape",
+    "author": "Mikis D., Rigby R.",
+    "year": 2007,
+    "link": "https://www.jstatsoft.org/article/view/v023i07",
+    "abstract": "Foundational work in Distributional Regression",
+    "math": 10,
+    "statistics": 70,
+    "comp_sci": 20,
+    "finance": 0
+  },
+  {
+    "title": "NODE-GAM: Neural Generalized Additive Model for Interpretable Deep Learning",
+    "author": "C Chang, R Caruana, A Goldenberg",
+    "year": 2021,
+    "link": "https://arxiv.org/abs/2106.01613",
+    "abstract": "Combines Node and GAMs",
+    "math": 10,
+    "statistics": 70,
+    "comp_sci": 20,
+    "finance": 0
+  }
+  {
     "title": "Attention is All You Need",
     "author": "Vaswani, A.",
     "year": 2017,
