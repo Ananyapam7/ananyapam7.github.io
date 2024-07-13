@@ -22,6 +22,14 @@ nav_order: 1
 - **[GAMLSS: Generalized Additive Models for Location Scale and Shape](https://www.jstatsoft.org/article/view/v023i07)** - D. Mikis Stasinopoulos, Robert A. Rigby (2007)
 - **[Rage Against the Mean – A Review of Distributional Regression Approaches](https://www.sciencedirect.com/science/article/pii/S2452306221000824)** - Thomas Kneib, Alexander Silbersdorff, Benjamin Säfken (2023)
 
+## Black-Box Models
+
+- **[NODE: Neural Oblivious Decision Ensembles](https://arxiv.org/abs/1909.06312)** - Popov S., Stanislav S., Babenko A. (2019)
+
+## Glass-Box Models
+
+- **[NODE-GAM: Neural Generalized Additive Model for Interpretable Deep Learning](https://arxiv.org/abs/2106.01613)** - C Chang, R Caruana, A Goldenberg (2021)
+
 ## Variational Inference
 
 - **[Variational Inference I](https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf)** - Course Notes (2011)
