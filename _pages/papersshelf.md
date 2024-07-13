@@ -1,12 +1,40 @@
 ---
-layout: papersshelf
+layout: page
 permalink: /papersshelf/
 title: Papers Shelf
 description: A collection of some papers on various topics. Keeping an organized list helps in building mental models and quickly remembering the crux of the work.
 nav: true
 nav_order: 1
 ---
-<div id="chart"></div>
+
+<!-- _pages/publications.md -->
+<!-- <div class="publications"> -->
+
+## Stochastic PDE's
+
+- **[How to solve the stochastic partial differential equation that gives a Matérn random field using the finite element method](https://arxiv.org/abs/1803.03765)** - Haakon Bakka (2018)
+
+## Distributional Regression
+
+- **[Neural Additive Models: Interpretable Machine Learning with Neural Nets](https://arxiv.org/abs/2004.13912)** - Agarwal, R., Frosst, N., Zhang, X., Caruana, R., and Hinton, G. (2020)
+- **[NAMLSS: Neural Additive Models for Location Scale and Shape](https://arxiv.org/abs/2301.11862)** - Thielmann, A., Kruse, R., Kneib, T., Safken, B. (2023)
+- **[Generalized Additive Models for Location, Scale and Shape for High Dimensional Data—A Flexible Approach Based on Boosting](https://academic.oup.com/jrsssc/article/61/3/403/7079619)** - Andreas Mayr, Nora Fenske, Benjamin Hofner, Thomas Kneib, Matthias Schmid (2012)
+- **[GAMLSS: Generalized Additive Models for Location Scale and Shape](https://www.jstatsoft.org/article/view/v023i07)** - D. Mikis Stasinopoulos, Robert A. Rigby (2007)
+- **[Rage Against the Mean – A Review of Distributional Regression Approaches](https://www.sciencedirect.com/science/article/pii/S2452306221000824)** - Thomas Kneib, Alexander Silbersdorff, Benjamin Säfken (2023)
+
+## Variational Inference
+
+- **[Variational Inference I](https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf)** - Course Notes (2011)
+- **[A Stochastic Approximation Method](https://www.columbia.edu/~ww2040/8100F16/RM51.pdf)** - Robbins, H. and Monro, S. (1951)
+- **[Variational Inference: A Review for Statisticians](https://arxiv.org/pdf/1601.00670)** - Blei, D. M., Kucukelbir, A., McAuliffe, J. D. (2017)
+
+## Transformers
+
+- **[Attention is All You Need](https://arxiv.org/abs/1706.03762)** - Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017)
+- **[Tab-Transformer: Tabular Data Modeling Using Contextual Embeddings](https://arxiv.org/abs/2012.06678v1)** - Huang, X., Khetan, A., Cvitkovic, M., & Karnin, Z. (2020)
+- **[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://dl.acm.org/doi/10.1145/3292500.3330701)** - Devlin, Chang, Lee, Toutanova (2019)
+
+<!-- <div id="chart"></div>
 
 <script>
 const papers = [
@@ -154,4 +182,4 @@ const papers = [
     "finance": 0
   }
 ];
-</script>
+</script> -->
