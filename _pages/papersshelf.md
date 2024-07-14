@@ -30,6 +30,10 @@ nav_order: 1
 
 - **[NODE-GAM: Neural Generalized Additive Model for Interpretable Deep Learning](https://arxiv.org/abs/2106.01613)** - C Chang, R Caruana, A Goldenberg (2021)
 
+## Regression
+
+- **[A review and recommendations on variable selection methods in regression models for binary data](https://arxiv.org/abs/2201.06063)** - Souvik Bag, Kapil Gupta, Soudeep Deb
+
 ## Variational Inference
 
 - **[Variational Inference I](https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf)** - Course Notes (2011)

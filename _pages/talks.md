@@ -4,7 +4,7 @@ permalink: /talks/
 title: Workshops & Talks
 description: 
 nav: true
-nav_order: 5
+nav_order: 4
 
 workshops:
   - name: "Summer School on Applied Combinatorics – Cryptography and Combinatorial Topology"

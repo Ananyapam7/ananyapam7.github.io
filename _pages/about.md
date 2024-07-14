@@ -18,7 +18,9 @@ social: true  # includes social icons at the bottom of the page
 
 I'm currently a Research Assistant at TU-Clausthal. Previously I've been a Pre-Doctoral fellow at the Indian Institute of Technology, Bombay.
 
-My interest in mathematics led me to pursue it as a major at IISER Kolkata, complemented with a minor in the Computational and Data Sciences where I enjoyed studying statistics through courses like Statistical Inference and Linear Models, but things got really interesting when I attended the Amazon ML Summer School. That's when I got really interested in probabilistic machine learning and decided to do my MS Thesis with Prof. Johannes Soeding on Variational Inference at Max Planck Institute for Natural Sciences (MPI-NAT), who had supervised me in my third year as well for a summer project. My research interests lie in the areas of Probabilistic ML, Approximate Inference, MCMC and Optimization, which require a perfect blend of statistical theory with practical programming skills.
+I pursued a major in mathematics at IISER Kolkata along with a minor in Computational and Data Sciences, where I enjoyed learning about statistics through courses like Statistical Inference and Linear Models. My interest in this field grew further when I attended the Amazon ML Summer School which led me to do my MS Thesis on Variational Inference under Prof. Johannes Soeding at the Max Planck Institute for Natural Sciences (MPI-NAT), who had also supervised me during a summer project in my third year. My research interests include Probabilistic ML, Approximate Inference, MCMC, and Optimization, areas that combine statistical theory with practical programming skills.
+
+During my studies, I interned at Skit AI, IIM-B, JPMC and Stellar Alpha (now Greenland Investment) to explore and gain practical experience in quantitative analysis and machine learning.
 
 Joining IIT Bombay broadened my knowledge in areas like Operating Systems, Microprocessors, and Computer Networks. I have decent experience in C++, Python, and [Problem Solving](https://leetcode.com/ananyapam7/). 
 

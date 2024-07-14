@@ -11,7 +11,7 @@
 - title: Research Interests
   type: list
   contents:
-    - Probabilistic ML, Approximate Inference, Optimization, Network Analysis, Computer Vision, Deep Learning
+    - Probabilistic ML, Approximate Inference, Regression Models, Optimization, Deep Learning
 
 - title: Skills
   type: list
@@ -30,14 +30,14 @@
       department: Department of Mathematics and Statistics
       year: 2018 - 2023
       description:
-        - <b>Minor:</b> Computational and Data Sciences
-        - <b>MS Thesis Title:</b> Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference
-        - <b>MS Thesis Supervisor:</b> <a href="https://www.mpinat.mpg.de/soeding">Prof. Johannes Soeding</a>, Max Planck Institute for Multidisciplinary Sciences, co-advised by <a href="https://www.iiserkol.ac.in/web/en/people/faculty/dms/satyaki/">Prof. Satyaki Mazumder</a>.
-        - <b>Courses:</b>
-          <ul><b>Mathematics:</b> Real Analysis, Linear Algebra, Abstract Algebra, Graph Theory and Combinatorics, Topology, Complex Analysis, Functional Analysis, Measure Theory, Differential Geometry, Ordinary Differential Equations, Partial Differential Equations</ul>
-          <ul><b>Statistics:</b> Probability Theory and Measure Theoretic Probability, Statistical Inference, Linear Models, Time Series</ul>
-          <ul><b>Economics:</b> Economics, Applied Micro-econometrics </ul>
-          <ul><b>Computer Science:</b> Data Structures and Algorithms, Machine Learning and Network Analysis, Natural Language Processing, Search Methods in Artificial Intelligence, Information Retrieval</ul>
+        - <strong>Minor:</strong> Computational and Data Sciences
+        - <strong>MS Thesis Title:</strong> Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference
+        - <strong>MS Thesis Supervisor:</strong> <a href="https://www.mpinat.mpg.de/soeding">Prof. Johannes Soeding</a>, co-advised by <a href="https://www.iiserkol.ac.in/web/en/people/faculty/dms/satyaki/">Prof. Satyaki Mazumder</a>.
+        - <strong>Courses:</strong>
+          <ul><strong>Mathematics:</strong> Real Analysis, Linear Algebra, Abstract Algebra, Graph Theory and Combinatorics, Topology, Complex Analysis, Functional Analysis, Measure Theory, Differential Geometry, Ordinary Differential Equations, Partial Differential Equations</ul>
+          <ul><strong>Statistics:</strong> Probability Theory and Measure Theoretic Probability, Statistical Inference, Linear Models, Time Series</ul>
+          <ul><strong>Economics:</strong> Economics, Applied Micro-econometrics </ul>
+          <ul><strong>Computer Science:</strong> Data Structures and Algorithms, Machine Learning and Network Analysis, Natural Language Processing, Search Methods in Artificial Intelligence, Information Retrieval</ul>
     - title: High School
       institution: St. Columba's School, New Delhi
       year: 2004 - 2018
@@ -70,7 +70,7 @@
       institution: JP Morgan Chase
       year: July - August, 2021
       description:
-        - <b>Project Title:</b> Crude Oil Pricing
+        - <b>Project Title:</b> Volatility Modelling in Crude Oil Prices
     
     - title: Research Software Developer
       institution: Max Planck Institute of Multidisciplinary Sciences, Göttingen
