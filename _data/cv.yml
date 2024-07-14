@@ -89,6 +89,11 @@
 - title: Teaching Experience
   type: time_table
   contents:
+    - title: Teaching Assistant
+      institution: Technische Universität Clausthal, Germany
+      year: Mar - Jul 2024
+      description: Acted as the TA for the Statistical Data Science course.
+
     - title: Teaching Fellow
       institution: Ashoka University, Sonipat (in collaboration with IIT-D, ISI-D, JNU)
       year: May - June 2023
@@ -96,5 +101,5 @@
 
     - title: Teaching Assistant
       institution: Indian Institute of Science Education and Research, Kolkata
-      year: Aug 2022 - Dec 2023
-      description: Acted as the TA for the introductory Statistcs-I (MA3205) course.
+      year: Aug - Dec 2022
+      description: Acted as the TA for the Statistcs-I (MA3205) course.
