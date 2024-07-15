@@ -103,6 +103,7 @@ resources:
             link: https://jonnyphillips.github.io/FLS6415/Class_3/Angrist%20&%20Pischke.pdf
             type: pdf
           - title: "Causality: Models, Reasoning, and Inference by Judea Pearl"
+            link: https://www.amazon.de/-/en/Judea-Pearl/dp/052189560X
             type: pdf
       - subsection: "- General"
         items:
