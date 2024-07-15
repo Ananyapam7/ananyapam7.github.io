@@ -6,7 +6,7 @@
     - name: Date of Birth
       value: 14th September 2000
     - name: Languages
-      value: English, Bengali, Hindi, Sanskrit
+      value: Bengali, Hindi, English, Sanskrit
 
 - title: Research Interests
   type: list
