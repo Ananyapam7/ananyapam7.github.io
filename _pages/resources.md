@@ -9,7 +9,7 @@ nav_order: 6
 resources:
   - subject: "- Mathematics"
     subsections:
-      - subsection: "Real Analysis"
+      - subsection: "- Real Analysis"
         items:
           - title: "Introduction to Real Analysis : Bartle, R.G., Sherbert D.R"
             type: pdf
@@ -20,7 +20,7 @@ resources:
           - title: "Real Analysis by H.L. Royden and P.M. Fitzpatrick"
             type: pdf
             link: https://s2pnd-matematika.fkip.unpatti.ac.id/wp-content/uploads/2019/03/Real-Analysis-4th-Ed-Royden.pdf
-      - subsection: "Linear Algebra"
+      - subsection: "- Linear Algebra"
         items:
           - title: "Linear Algebra Done Right by Sheldon Axler"
             type: pdf
@@ -37,7 +37,7 @@ resources:
           - title: "3Blue1Brown's Linear Algebra Playlist"
             type: video
             link: https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab
-      - subsection: "Probability"
+      - subsection: "- Probability"
         items:
           - title: "First Course in Probability by Sheldon Ross"
             type: pdf
@@ -45,12 +45,12 @@ resources:
           - title: "Measure Theoretic Probability by Athreya and Lahiri"
             type: pdf
             link: https://www.ctanujit.org/uploads/2/5/3/9/25393293/_measure_theoritic_probability_by_athreya__lahiri.pdf
-      - subsection: "Complex Analysis"
+      - subsection: "- Complex Analysis"
         items:
           - title: "Visual Complex Analysis by Tristan Needham"
             type: pdf
             link: https://umv.science.upjs.sk/hutnik/NeedhamVCA.pdf
-      - subsection: "Ordinary and Partial Differential Equations"
+      - subsection: "- Ordinary and Partial Differential Equations"
         items:
           - title: "Partial Differential Equations by Lawrence C. Evans"
             type: pdf
@@ -58,7 +58,7 @@ resources:
 
   - subject: "- Statistics and Machine Leaarning"
     subsections:
-      - subsection: "Linear Models"
+      - subsection: "- Linear Models"
         items:
           - title: "Regression Models by Knieb"
             type: pdf
@@ -69,12 +69,12 @@ resources:
           - title: "Linear Algebra and Linear Models by RB Bapat"
             type: pdf
             link: https://rikhtehgaran.iut.ac.ir/sites/rikhtehgaran.iut.ac.ir/files/files_course/linear_algebra_and_linear_models_2nd_bapat_2000_0.pdf
-      - subsection: "Time Series Analysis"
+      - subsection: "- Time Series Analysis"
         items:
           - title: "Introduction to Time Series and Forecasting by Brockwell and Davis"
             type: pdf
             link: https://warin.ca/ressources/books/2016_Book_IntroductionToTimeSeriesAndFor.pdf
-      - subsection: "Machine Learning"
+      - subsection: "- Machine Learning"
         items:
           - title: "Machine Learning and Pattern Recognition by CM Bishop"
             type: pdf
@@ -94,7 +94,7 @@ resources:
           - title: "Basic Econometrics by Damodar N. Gujarati"
             type: pdf
             link: https://cbpbu.ac.in/userfiles/file/2020/STUDY_MAT/ECO/1.pdf
-      - subsection: "Causal Inference"
+      - subsection: "- Causal Inference"
         items:
           - title: "Causal Inference in Statistics: A Primer by Judea Pearl, Madelyn Glymour, and Nicholas P. Jewell"
             type: pdf
@@ -104,7 +104,7 @@ resources:
             type: pdf
           - title: "Causality: Models, Reasoning, and Inference by Judea Pearl"
             type: pdf
-      - subsection: "General"
+      - subsection: "- General"
         items:
           - title: Ctanujit Blog
             type: website
