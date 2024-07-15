@@ -170,7 +170,7 @@ resources:
         type: pdf
         link: Puzzles_Math/Websites.docx
 
-  - subject: "Data Structures and Algorithms"
+  - subject: "- Data Structures and Algorithms"
     items:
       - title: "Introduction to Algorithms by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein"
         type: pdf
