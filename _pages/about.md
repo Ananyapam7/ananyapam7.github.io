@@ -18,7 +18,7 @@ social: true  # includes social icons at the bottom of the page
 
 I'm currently a Research Assistant at TU-Clausthal. Previously I've been a Pre-Doctoral fellow at the Indian Institute of Technology, Bombay.
 
-I majored in Mathematics from IISER Kolkata, complemented with a minor in Computational and Data Sciences where I enjoyed learning about Statistics through courses like Statistical Inference and Linear Models. My interest in this field grew further when I attended the Amazon ML Summer School which led me to do my MS Thesis on Variational Inference under Prof. Johannes Soeding at the Max Planck Institute for Natural Sciences (MPI-NAT), who had also supervised me for a summer project in my third year.
+I majored in Mathematics from IISER Kolkata, complemented with a minor in Computational and Data Sciences where I enjoyed learning about Statistics through courses like Statistical Inference and Linear Models. My interest in this field grew further when I attended the Amazon ML Summer School which led me to do my MS Thesis on Learning Generalized Linear Mixed Models using Variational Inference under Prof. Johannes Soeding at the Max Planck Institute for Natural Sciences (MPI-NAT), who had also supervised me for a summer project in my third year.
 
 I gained significant practical experience in quantitative analysis and machine learning while interning at Skit AI, IIM-B, JPMC and Stellar Alpha (now Greenland Investment). My research interests include Probabilistic ML, Approximate Inference, MCMC, and Optimization, areas that combine statistical theory with practical programming skills.
 
