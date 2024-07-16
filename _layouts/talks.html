@@ -4,44 +4,58 @@ layout: page
 
 <!-- talks.html -->
 
-<h2>Workshops</h2>
+<div class="panel-group" id="accordion">
+  {% for category in page.resources %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.index }}">
+            {{ category.subject }}
+          </a>
+        </h4>
+      </div>
 
-<div class="workshops-container">
-  {% for workshop in page.workshops %}
-    <div class="workshop">
-      <div class="workshop-header">
-        <h4>{{ workshop.name }}</h4>
-      </div>
-      <div class="workshop-date">
-        <p>{{ workshop.date }}</p>
-      </div>
-      <div class="workshop-body">
-        <p>{{ workshop.description }}</p>
-        <a href="{{ workshop.link }}" target="_blank" class="workshop-link">View Details</a>
-      </div>
-    </div>
-  {% endfor %}
-</div>
+      <h2>Workshops</h2>
 
-<h2>Talks</h2>
-
-<div class="talks-container">
-  {% for talk in page.talks %}
-    <div class="talk">
-      <div class="talk-content">
-        <div class="talk-header">
-          <h4>{{ talk.title }}</h4>
-        </div>
-        <div class="workshop-date">
-          <p>{{ talk.date }}</p>
-        </div>
-        <div class="talk-body">
-          <p>{{ talk.description }}</p>
-        </div>
-        <a href="{{ talk.link }}" target="_blank" class="talk-link">View Slides/Summary</a>
+      <div class="workshops-container">
+        {% for workshop in page.workshops %}
+          <div class="workshop">
+            <div class="workshop-header">
+              <h4>{{ workshop.name }}</h4>
+            </div>
+            <div class="workshop-date">
+              <p>{{ workshop.date }}</p>
+            </div>
+            <div class="workshop-body">
+              <p>{{ workshop.description }}</p>
+              <a href="{{ workshop.link }}" target="_blank" class="workshop-link">View Details</a>
+            </div>
+          </div>
+        {% endfor %}
       </div>
-      <div class="talk-thumbnail-container">
-        <img src="{{ talk.thumbnail }}" alt="Thumbnail for {{ talk.title }}" class="talk-thumbnail">
+
+      <h2>Talks</h2>
+
+      <div class="talks-container">
+        {% for talk in page.talks %}
+          <div class="talk">
+            <div class="talk-content">
+              <div class="talk-header">
+                <h4>{{ talk.title }}</h4>
+              </div>
+              <div class="workshop-date">
+                <p>{{ talk.date }}</p>
+              </div>
+              <div class="talk-body">
+                <p>{{ talk.description }}</p>
+              </div>
+              <a href="{{ talk.link }}" target="_blank" class="talk-link">View Slides/Summary</a>
+            </div>
+            <div class="talk-thumbnail-container">
+              <img src="{{ talk.thumbnail }}" alt="Thumbnail for {{ talk.title }}" class="talk-thumbnail">
+            </div>
+          </div>
+        {% endfor %}
       </div>
     </div>
   {% endfor %}
