@@ -215,8 +215,13 @@ resources:
       - title: "Coffee Can Investing by Saurabh Mukherjea"
         link: None
       - title: "Bernoulli's Fallacy by Aubrey Clayton"
+        link: None
       - title: "Mathematical Mechanic by Mark Levi"
+        link: None
       - title: "My Life as a Quant by Emanuel Derman"
+        link: None
       - title: "Fooled by Randomness by Nassim Nicholas Taleb"
+        link: None
       - title: "The Black Swan by Nassim Nicholas Taleb"
+        link: None
 ---
