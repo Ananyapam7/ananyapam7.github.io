@@ -213,6 +213,7 @@ resources:
   - subject: "- Recreational"
     items:
       - title: "Coffee Can Investing by Saurabh Mukherjea"
+        link: None
       - title: "Bernoulli's Fallacy by Aubrey Clayton"
       - title: "Mathematical Mechanic by Mark Levi"
       - title: "My Life as a Quant by Emanuel Derman"
