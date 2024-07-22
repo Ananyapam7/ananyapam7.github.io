@@ -198,25 +198,25 @@ resources:
         type: video
         link: https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
       - title: "Effective STL"
-        type: book
+        type: pdf
         link: C++/Scott_Meyers_Effective_STL.pdf
       - title: "Effective C++"
-        type: book
+        type: pdf
         link: C++/Effective_C++_3rd.pdf
       - title: "More Effective C++"
-        type: book
+        type: pdf
         link: C++/Scott_Meyers-More_Effective_C++.pdf
       - title: "Effective Modern C++ by Scott Meyers"
         type: pdf
         link: C++/Scott_Meyers_Effective_Modern_C++.pdf
       - title: "Concurrency in Action"
-        type: book
+        type: pdf
         link: https://www.bogotobogo.com/cplusplus/files/CplusplusConcurrencyInAction_PracticalMultithreading.pdf
       - title: "Modern C++ Design"
-        type: book
+        type: pdf
         link: https://elhacker.info/manuales/Lenguajes%20de%20Programacion/C++/%5BAddison%20Wesley%5D%20Andrei%20Alexandrescu%20-%20Modern%20C++%20Design%20Generic%20Programming%20and%20Design%20Patterns%20Applied.pdf
       - title: "The Art of Multiprocessor Programming"
-        type: book
+        type: pdf
         link: https://cs.ipm.ac.ir/asoc2016/Resources/Theartofmulticore.pdf
       - title: "CppNuts"
         type: video
