@@ -134,6 +134,9 @@ resources:
       - title: "Handbook of Financial Time Series"
         type: pdf
         link: Quant_Finance/FinTimeSeries_Handbook.pdf
+      - title: "Quantitative Trading by Ernst P Chan"
+        type: pdf
+        link: https://www.myquant.cn/uploads/default/original/1X/4c7037365a4bf1623734c1c899baed7855061ace.pdf
       - title: "Basic Black-Scholes: Option Pricing and Trading by Timothy Falcon Crack"
         type: pdf
         link: Quant_Finance/BlackScholes_Basics.pdf
@@ -194,9 +197,27 @@ resources:
       - title: "The Cherno's C++ Playlist"
         type: video
         link: https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
+      - title: "Effective STL"
+        type: book
+        link: C++/Scott_Meyers_Effective_STL.pdf
+      - title: "Effective C++"
+        type: book
+        link: C++/Effective_C++_3rd.pdf
+      - title: "More Effective C++"
+        type: book
+        link: C++/Scott_Meyers-More_Effective_C++.pdf
       - title: "Effective Modern C++ by Scott Meyers"
         type: pdf
         link: C++/Scott_Meyers_Effective_Modern_C++.pdf
+      - title: "Concurrency in Action"
+        type: book
+        link: https://www.bogotobogo.com/cplusplus/files/CplusplusConcurrencyInAction_PracticalMultithreading.pdf
+      - title: "Modern C++ Design"
+        type: book
+        link: https://elhacker.info/manuales/Lenguajes%20de%20Programacion/C++/%5BAddison%20Wesley%5D%20Andrei%20Alexandrescu%20-%20Modern%20C++%20Design%20Generic%20Programming%20and%20Design%20Patterns%20Applied.pdf
+      - title: "The Art of Multiprocessor Programming"
+        type: book
+        link: https://cs.ipm.ac.ir/asoc2016/Resources/Theartofmulticore.pdf
       - title: "CppNuts"
         type: video
         link: https://www.youtube.com/@CppNuts
