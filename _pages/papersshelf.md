@@ -38,6 +38,8 @@ nav_order: 1
 - **[A Stochastic Approximation Method](https://www.columbia.edu/~ww2040/8100F16/RM51.pdf)** - Robbins, H. and Monro, S. (1951)
 - **[Variational Inference: A Review for Statisticians](https://arxiv.org/pdf/1601.00670)** - Blei, D. M., Kucukelbir, A., McAuliffe, J. D. (2017)
 
+- **[Logistic VB](https://arxiv.org/abs/2406.00713)** - Michael Komodromos, Marina Evangelou, Sarah Filippi (2024): An approximation for integral (log(1+e^x)N(mu, sigma^2)).
+
 ## Transformers
 
 - **[Attention is All You Need](https://arxiv.org/abs/1706.03762)** - Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017)
