@@ -37,7 +37,7 @@ talks:
     date: 11 July 2023, IISER-Kolkata, MPI-NAT
     thumbnail: ../assets/img/ms_page2.png
     description: "My Master's Thesis under Prof. Johannes Soeding was presented in front of the Quantitative and Computational Biology group at MPI-NAT along with my mentors Prof. Satyaki Mazumder and Prof. Anirvan Chakraborty at IISER Kolkata."
-    link: ../assets/pdf/MS_Thesis_Presentation.pdf
+    link: 
   - title: "Variational Inference"
     date: 10 November 2022, IISER-Kolkata
     thumbnail: ../assets/img/vi.png
