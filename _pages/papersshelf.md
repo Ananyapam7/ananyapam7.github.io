@@ -12,39 +12,46 @@ nav_order: 1
 
 ## Stochastic PDE's
 
-- **[How to solve the stochastic partial differential equation that gives a Matérn random field using the finite element method](https://arxiv.org/abs/1803.03765)** - Haakon Bakka (2018)
+- **[How to solve the stochastic partial differential equation that gives a Matérn random field using the finite element method](https://arxiv.org/abs/1803.03765)** - Haakon Bakka (2018) - A method for solving SPDEs giving Matérn random fields using the finite element method.
 
 ## Distributional Regression
 
-- **[Neural Additive Models: Interpretable Machine Learning with Neural Nets](https://arxiv.org/abs/2004.13912)** - Agarwal, R., Frosst, N., Zhang, X., Caruana, R., and Hinton, G. (2020)
-- **[NAMLSS: Neural Additive Models for Location Scale and Shape](https://arxiv.org/abs/2301.11862)** - Thielmann, A., Kruse, R., Kneib, T., Safken, B. (2023)
-- **[Generalized Additive Models for Location, Scale and Shape for High Dimensional Data—A Flexible Approach Based on Boosting](https://academic.oup.com/jrsssc/article/61/3/403/7079619)** - Andreas Mayr, Nora Fenske, Benjamin Hofner, Thomas Kneib, Matthias Schmid (2012)
-- **[GAMLSS: Generalized Additive Models for Location Scale and Shape](https://www.jstatsoft.org/article/view/v023i07)** - D. Mikis Stasinopoulos, Robert A. Rigby (2007)
-- **[Rage Against the Mean – A Review of Distributional Regression Approaches](https://www.sciencedirect.com/science/article/pii/S2452306221000824)** - Thomas Kneib, Alexander Silbersdorff, Benjamin Säfken (2023)
+- **[Neural Additive Models: Interpretable Machine Learning with Neural Nets](https://arxiv.org/abs/2004.13912)** - Agarwal, R., Frosst, N., Zhang, X., Caruana, R., Hinton, G. (2020) - Introduces interpretable neural nets for regression tasks.
+- **[NAMLSS: Neural Additive Models for Location Scale and Shape](https://arxiv.org/abs/2301.11862)** - Thielmann, A., Kruse, R., Kneib, T., Safken, B. (2023) - Focuses on distributional regression using machine learning methods.
+- **[Generalized Additive Models for Location, Scale, and Shape for High Dimensional Data](https://academic.oup.com/jrsssc/article/61/3/403/7079619)** - Andreas Mayr et al. (2012) - Boosting techniques for high-dimensional data.
+- **[GAMLSS: Generalized Additive Models for Location Scale and Shape](https://www.jstatsoft.org/article/view/v023i07)** - Stasinopoulos, D. Mikis, Rigby, R. A. (2007) - Foundational work in distributional regression.
+- **[Rage Against the Mean – A Review of Distributional Regression Approaches](https://www.sciencedirect.com/science/article/pii/S2452306221000824)** - Kneib, T., Silbersdorff, A., Säfken, B. (2023) - A comprehensive review of distributional regression methods.
+- **[Semi-Structured Distributional Regression Paper](https://www.tandfonline.com/doi/abs/10.1080/00031305.2022.2164054)** - Combines structured regression models with deep neural networks, addressing identifiability issues with an orthogonalization cell.
 
-## Deep Learning
+## Interpretable Deep Learning
 
-- **[NODE: Neural Oblivious Decision Ensembles](https://arxiv.org/abs/1909.06312)** - Popov S., Stanislav S., Babenko A. (2019)
-
-- **[NODE-GAM: Neural Generalized Additive Model for Interpretable Deep Learning](https://arxiv.org/abs/2106.01613)** - C Chang, R Caruana, A Goldenberg (2021)
+- **[NODE: Neural Oblivious Decision Ensembles](https://arxiv.org/abs/1909.06312)** - Popov S., Stanislav S., Babenko A. (2019) - Generalizes ensembles of oblivious decision trees, with gradient-based optimization.
+- **[NODE-GAM: Neural Generalized Additive Model for Interpretable Deep Learning](https://arxiv.org/abs/2106.01613)** - Chang, C., Caruana, R., Goldenberg, A. (2021) - Combines NODE and GAMs.
+- **[NBM: Neural Basis Models](https://proceedings.neurips.cc/paper_files/paper/2022/file/37da88965c016dca016514df0e420c72-Paper-Conference.pdf)** - A novel model combining neural networks with basis expansions for interpretability.
+- **[SPAM: Scalable Polynomial Additive Models](https://proceedings.neurips.cc/paper_files/paper/2022/file/ee81a23d6b83ac15fbeb5b7a30934e0b-Paper-Conference.pdf)** - Uses tensor rank decompositions of polynomials for interpretable yet powerful modeling.
+- **[SNAM (Structural Neural Additive Models)](https://arxiv.org/pdf/2302.09275)** - Uses splines instead of MLPs in NAMs to fit neural models and optimize knot locations, enhancing interpretability.
+- **[NAIM (Neural Additive Image Models)](https://arxiv.org/pdf/2405.02295)** - Combines NAMs with diffusion autoencoders to identify latent image semantics and study complex image effects.
+- **[NATT (Neural Additive Tabular Transformer Networks)](https://openreview.net/pdf?id=TdJ7lpzAkD)** - Merges additive neural networks with Transformer models to model categorical features using Transformer encoders.
+- **[Sparse NAM](https://link.springer.com/chapter/10.1007/978-3-031-43418-1_21)** - Enhances NAMs with group sparsity regularization for feature selection and generalization improvements.
+- **[Sparse Interaction Additive Networks](https://proceedings.neurips.cc/paper_files/paper/2022/file/5a3674849d6d6d23ac088b9a2552f323-Paper-Conference.pdf)** - Identifies necessary feature combinations, optimizing the balance between network complexity and model generalizability.
 
 ## Regression Models
 
-- **[A review and recommendations on variable selection methods in regression models for binary data](https://arxiv.org/abs/2201.06063)** - Souvik Bag, Kapil Gupta, Soudeep Deb
+- **[A review and recommendations on variable selection methods in regression models for binary data](https://arxiv.org/abs/2201.06063)** - Souvik Bag, Kapil Gupta, Soudeep Deb - Reviews variable selection methods in binary data regression.
 
 ## Variational Inference
 
-- **[Variational Inference I](https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf)** - Course Notes (2011)
-- **[A Stochastic Approximation Method](https://www.columbia.edu/~ww2040/8100F16/RM51.pdf)** - Robbins, H. and Monro, S. (1951)
-- **[Variational Inference: A Review for Statisticians](https://arxiv.org/pdf/1601.00670)** - Blei, D. M., Kucukelbir, A., McAuliffe, J. D. (2017)
-
+- **[Variational Inference I](https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf)** - Course Notes (2011) - Introduction to variational inference techniques.
+- **[A Stochastic Approximation Method](https://www.columbia.edu/~ww2040/8100F16/RM51.pdf)** - Robbins, H., Monro, S. (1951) - A foundational method for stochastic approximation.
+- **[Variational Inference: A Review for Statisticians](https://arxiv.org/pdf/1601.00670)** - Blei, D. M., Kucukelbir, A., McAuliffe, J. D. (2017) - A comprehensive review of variational inference methods.
 - **[Logistic VB](https://arxiv.org/abs/2406.00713)** - Michael Komodromos, Marina Evangelou, Sarah Filippi (2024): An approximation for integral (log(1+e^x)N(mu, sigma^2)).
+- **[Variational Inference of Sparse Network from Count Data](https://proceedings.mlr.press/v97/chiquet19a/chiquet19a.pdf)** - Julien Chiquet (2019) - Presents an alternate optimization technique for network sparsity.
 
-## Transformers
+## Graphical Models, Bayesian Networks and Causality
 
-- **[Attention is All You Need](https://arxiv.org/abs/1706.03762)** - Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017)
-- **[Tab-Transformer: Tabular Data Modeling Using Contextual Embeddings](https://arxiv.org/abs/2012.06678v1)** - Huang, X., Khetan, A., Cvitkovic, M., & Karnin, Z. (2020)
-- **[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://dl.acm.org/doi/10.1145/3292500.3330701)** - Devlin, Chang, Lee, Toutanova (2019)
+- **[Causal Inference in Statistics: An overview](https://www.cs.princeton.edu/courses/archive/fall09/cos597A/papers/Pearl2009.pdf)** - Pearl (2009)
+- **[Elements of Causal Inference](https://library.oapen.org/bitstream/handle/20.500.12657/26040/11283.pdf?sequ)** - Jonas Peters
+- **[glasso](https://arxiv.org/pdf/0708.3517)** - Graphical Lasso
 
 <!-- <div id="chart"></div>
 
