@@ -3,10 +3,8 @@
   contents:
     - name: Full Name
       value: Ananyapam De
-    - name: Date of Birth
-      value: 14th September 2000
     - name: Languages
-      value: Bengali, Hindi, English, Sanskrit
+      value: German, Bengali, Hindi, English, Sanskrit
 
 - title: Research Interests
   type: list
