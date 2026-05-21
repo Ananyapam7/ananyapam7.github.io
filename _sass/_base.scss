@@ -463,7 +463,7 @@ footer.sticky-bottom {
 
 .repositories {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   align-items: start;
 
@@ -476,13 +476,83 @@ footer.sticky-bottom {
   .repo a {
     display: block;
   }
+}
 
-  .repo img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
+.repo-card {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 1rem;
+  min-height: 100%;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.8rem;
+  background: var(--global-card-bg-color);
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    text-decoration: none;
+    border-color: var(--global-theme-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
   }
+}
+
+.repo-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 3rem;
+  border-radius: 0.8rem;
+  background: var(--global-bg-color);
+  border: 1px solid var(--global-divider-color);
+  font-size: 1.35rem;
+  color: var(--global-text-color);
+}
+
+.repo-card-body {
+  min-width: 0;
+}
+
+.repo-card-title {
+  color: var(--global-text-color);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+.repo-card-meta {
+  margin-top: 0.2rem;
+  color: var(--global-text-color-light);
+  font-size: 0.82rem;
+}
+
+.repo-card-link {
+  margin-top: 0.45rem;
+  color: var(--global-theme-color);
+  font-size: 0.82rem;
+  word-break: break-word;
+}
+
+.repo-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+
+  img {
+    display: block;
+    height: 20px;
+    width: auto;
+    border-radius: 4px;
+  }
+}
+
+.repo-profile-card {
+  align-items: center;
 }
 
 .repo-embed {
@@ -495,6 +565,12 @@ footer.sticky-bottom {
     height: auto;
     border-radius: 0.5rem;
     border: 1px solid var(--global-divider-color);
+  }
+}
+
+@media (max-width: 768px) {
+  .repositories {
+    grid-template-columns: 1fr;
   }
 }
 

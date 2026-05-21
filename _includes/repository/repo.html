@@ -6,9 +6,24 @@
   {% assign show_owner = true %}
 {% endif %}
 
-<div class="repo p-2 text-center">
-  <a href="https://github.com/{{ include.repository }}">
-    <img class="repo-img-light w-100" alt="{{ include.repository }}" src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo_url[0] }}&repo={{ repo_url[1] }}&theme={{ site.repo_theme_light }}&show_owner={{ show_owner }}">
-    <img class="repo-img-dark w-100" alt="{{ include.repository }}" src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo_url[0] }}&repo={{ repo_url[1] }}&theme={{ site.repo_theme_dark }}&show_owner={{ show_owner }}">
+<div class="repo">
+  <a class="repo-card" href="https://github.com/{{ include.repository }}">
+    <div class="repo-card-icon" aria-hidden="true">
+      <i class="fab fa-github"></i>
+    </div>
+    <div class="repo-card-body">
+      <div class="repo-card-title">{{ repo_url[1] }}</div>
+      <div class="repo-card-meta">
+        {% if show_owner %}
+          {{ repo_url[0] }} /
+        {% endif %}
+        GitHub Repository
+      </div>
+      <div class="repo-card-badges">
+        <img alt="GitHub stars for {{ include.repository }}" src="https://img.shields.io/github/stars/{{ include.repository }}?style=flat-square&label=stars">
+        <img alt="GitHub forks for {{ include.repository }}" src="https://img.shields.io/github/forks/{{ include.repository }}?style=flat-square&label=forks">
+      </div>
+      <div class="repo-card-link">github.com/{{ include.repository }}</div>
+    </div>
   </a>
 </div>
