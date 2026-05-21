@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Tree</title>
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --card: #fffdf8;
+      --ink: #241f18;
+      --muted: #756a5a;
+      --line: #b7a68c;
+      --spouse: #8a7459;
+      --sibling: #6f8b76;
+      --accent: #2d2a26;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    header {
+      padding: 1.4rem 1.5rem 0.8rem;
+      background: #fffaf1;
+      border-bottom: 1px solid #e5dccd;
+      position: sticky;
+      top: 0;
+      z-index: 3;
+    }
+    h1 {
+      margin: 0 0 0.25rem;
+      font-size: 1.35rem;
+      font-weight: 650;
+    }
+    p.sub {
+      margin: 0;
+      color: var(--muted);
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .sample-line {
+      display: inline-block;
+      width: 2rem;
+      border-top: 2px solid var(--line);
+    }
+    .sample-line.spouse {
+      border-color: var(--spouse);
+      border-top-style: dashed;
+    }
+    .sample-line.sibling {
+      border-color: var(--sibling);
+      border-top-style: dotted;
+    }
+    .tree-shell {
+      overflow: auto;
+      padding: 1.25rem;
+    }
+    .tree-canvas {
+      position: relative;
+      width: 6714px;
+      height: 1356px;
+      min-width: 6714px;
+      background: #fffaf3;
+      border: 1px solid #e1d7c8;
+      border-radius: 10px;
+      box-shadow: 0 8px 28px rgba(36, 31, 24, 0.08);
+    }
+    .tree-links {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .tree-link {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+    .tree-link.spouse {
+      stroke: var(--spouse);
+      stroke-dasharray: 6 5;
+    }
+    .tree-link.sibling {
+      stroke: var(--sibling);
+      stroke-dasharray: 2 6;
+    }
+    .generation-label {
+      position: absolute;
+      left: 16px;
+      width: 10rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .person {
+      position: absolute;
+      width: 180px;
+      min-height: 72px;
+      background: var(--card);
+      border: 1px solid #d9cbb8;
+      border-radius: 8px;
+      padding: 0.7rem 0.75rem;
+      box-shadow: 0 3px 12px rgba(36, 31, 24, 0.08);
+    }
+    .person .name {
+      font-weight: 700;
+      line-height: 1.16;
+      margin-bottom: 0.3rem;
+    }
+    .person .meta {
+      font-size: 0.78rem;
+      line-height: 1.25;
+      color: var(--muted);
+    }
+    .person .id {
+      font-size: 0.64rem;
+      color: #a19380;
+      margin-top: 0.35rem;
+    }
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 4rem 1rem;
+    }
+    footer {
+      padding: 1rem 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    @media print {
+      @page { size: landscape; margin: 0.25in; }
+      header { position: static; }
+      .tree-shell { padding: 0; overflow: visible; }
+      .tree-canvas { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Family Tree</h1>
+    <p class="sub">88 people · 137 relationships</p>
+    <div class="legend">
+      <span><i class="sample-line"></i>Parent / child</span>
+      <span><i class="sample-line spouse"></i>Spouse</span>
+      <span><i class="sample-line sibling"></i>Sibling</span>
+    </div>
+  </header>
+  <main class="tree-shell">
+<div class="tree-canvas">
+  <svg class="tree-links" viewBox="0 0 6714 1356" aria-hidden="true">
+    <path class="tree-link" d="M 249.0 1110.0 C 249.0 1179.3, 2025.0 1179.3, 2025.0 1236.0" />
+    <path class="tree-link" d="M 471.0 1110.0 C 471.0 1179.3, 2025.0 1179.3, 2025.0 1236.0" />
+    <path class="tree-link" d="M 138.0 912.0 C 138.0 981.3, 471.0 981.3, 471.0 1038.0" />
+    <path class="tree-link" d="M 360.0 912.0 C 360.0 981.3, 471.0 981.3, 471.0 1038.0" />
+    <path class="tree-link sibling" d="M 360.0 928.0 C 360.0 946.0, 582.0 946.0, 582.0 928.0" />
+    <path class="tree-link sibling" d="M 360.0 928.0 C 360.0 946.0, 1026.0 946.0, 1026.0 928.0" />
+    <path class="tree-link sibling" d="M 360.0 928.0 C 360.0 946.0, 1248.0 946.0, 1248.0 928.0" />
+    <path class="tree-link sibling" d="M 360.0 928.0 C 360.0 946.0, 1692.0 946.0, 1692.0 928.0" />
+    <path class="tree-link" d="M 2580.0 714.0 C 2580.0 783.3, 582.0 783.3, 582.0 840.0" />
+    <path class="tree-link" d="M 2580.0 714.0 C 2580.0 783.3, 1026.0 783.3, 1026.0 840.0" />
+    <path class="tree-link" d="M 2580.0 714.0 C 2580.0 783.3, 360.0 783.3, 360.0 840.0" />
+    <path class="tree-link" d="M 2580.0 714.0 C 2580.0 783.3, 1248.0 783.3, 1248.0 840.0" />
+    <path class="tree-link" d="M 2580.0 714.0 C 2580.0 783.3, 1692.0 783.3, 1692.0 840.0" />
+    <path class="tree-link spouse" d="M 2670.0 678.0 C 2688.0 660.0, 2694.0 660.0, 2712.0 678.0" />
+    <path class="tree-link" d="M 2802.0 714.0 C 2802.0 783.3, 582.0 783.3, 582.0 840.0" />
+    <path class="tree-link" d="M 2802.0 714.0 C 2802.0 783.3, 1026.0 783.3, 1026.0 840.0" />
+    <path class="tree-link" d="M 2802.0 714.0 C 2802.0 783.3, 360.0 783.3, 360.0 840.0" />
+    <path class="tree-link" d="M 2802.0 714.0 C 2802.0 783.3, 1248.0 783.3, 1248.0 840.0" />
+    <path class="tree-link" d="M 2802.0 714.0 C 2802.0 783.3, 1692.0 783.3, 1692.0 840.0" />
+    <path class="tree-link spouse" d="M 2004.0 876.0 C 2022.0 858.0, 2028.0 858.0, 2046.0 876.0" />
+    <path class="tree-link" d="M 1914.0 912.0 C 1914.0 981.3, 249.0 981.3, 249.0 1038.0" />
+    <path class="tree-link" d="M 2136.0 912.0 C 2136.0 981.3, 249.0 981.3, 249.0 1038.0" />
+    <path class="tree-link spouse" d="M 3114.0 678.0 C 3132.0 660.0, 3138.0 660.0, 3156.0 678.0" />
+    <path class="tree-link" d="M 3024.0 714.0 C 3024.0 783.3, 1914.0 783.3, 1914.0 840.0" />
+    <path class="tree-link" d="M 3246.0 714.0 C 3246.0 783.3, 1914.0 783.3, 1914.0 840.0" />
+    <path class="tree-link" d="M 2913.0 516.0 C 2913.0 585.3, 3024.0 585.3, 3024.0 642.0" />
+    <path class="tree-link spouse" d="M 3558.0 678.0 C 3576.0 660.0, 3582.0 660.0, 3600.0 678.0" />
+    <path class="tree-link" d="M 3468.0 714.0 C 3468.0 783.3, 138.0 783.3, 138.0 840.0" />
+    <path class="tree-link" d="M 3690.0 714.0 C 3690.0 783.3, 138.0 783.3, 138.0 840.0" />
+    <path class="tree-link" d="M 3468.0 714.0 C 3468.0 783.3, 2358.0 783.3, 2358.0 840.0" />
+    <path class="tree-link" d="M 3690.0 714.0 C 3690.0 783.3, 2358.0 783.3, 2358.0 840.0" />
+    <path class="tree-link" d="M 3468.0 714.0 C 3468.0 783.3, 2802.0 783.3, 2802.0 840.0" />
+    <path class="tree-link" d="M 3690.0 714.0 C 3690.0 783.3, 2802.0 783.3, 2802.0 840.0" />
+    <path class="tree-link" d="M 3468.0 714.0 C 3468.0 783.3, 3024.0 783.3, 3024.0 840.0" />
+    <path class="tree-link" d="M 3690.0 714.0 C 3690.0 783.3, 3024.0 783.3, 3024.0 840.0" />
+    <path class="tree-link" d="M 3468.0 714.0 C 3468.0 783.3, 3468.0 783.3, 3468.0 840.0" />
+    <path class="tree-link" d="M 3690.0 714.0 C 3690.0 783.3, 3468.0 783.3, 3468.0 840.0" />
+    <path class="tree-link" d="M 3468.0 714.0 C 3468.0 783.3, 3912.0 783.3, 3912.0 840.0" />
+    <path class="tree-link" d="M 3690.0 714.0 C 3690.0 783.3, 3912.0 783.3, 3912.0 840.0" />
+    <path class="tree-link" d="M 3468.0 714.0 C 3468.0 783.3, 4134.0 783.3, 4134.0 840.0" />
+    <path class="tree-link" d="M 3690.0 714.0 C 3690.0 783.3, 4134.0 783.3, 4134.0 840.0" />
+    <path class="tree-link" d="M 360.0 912.0 C 360.0 981.3, 693.0 981.3, 693.0 1038.0" />
+    <path class="tree-link" d="M 138.0 912.0 C 138.0 981.3, 693.0 981.3, 693.0 1038.0" />
+    <path class="tree-link spouse" d="M 672.0 876.0 C 690.0 858.0, 696.0 858.0, 714.0 876.0" />
+    <path class="tree-link" d="M 582.0 912.0 C 582.0 981.3, 1137.0 981.3, 1137.0 1038.0" />
+    <path class="tree-link" d="M 804.0 912.0 C 804.0 981.3, 1137.0 981.3, 1137.0 1038.0" />
+    <path class="tree-link" d="M 582.0 912.0 C 582.0 981.3, 1581.0 981.3, 1581.0 1038.0" />
+    <path class="tree-link" d="M 804.0 912.0 C 804.0 981.3, 1581.0 981.3, 1581.0 1038.0" />
+    <path class="tree-link spouse" d="M 1338.0 876.0 C 1356.0 858.0, 1362.0 858.0, 1380.0 876.0" />
+    <path class="tree-link" d="M 1470.0 912.0 C 1470.0 981.3, 1803.0 981.3, 1803.0 1038.0" />
+    <path class="tree-link" d="M 1248.0 912.0 C 1248.0 981.3, 1803.0 981.3, 1803.0 1038.0" />
+    <path class="tree-link" d="M 1470.0 912.0 C 1470.0 981.3, 2247.0 981.3, 2247.0 1038.0" />
+    <path class="tree-link" d="M 1248.0 912.0 C 1248.0 981.3, 2247.0 981.3, 2247.0 1038.0" />
+    <path class="tree-link spouse" d="M 3114.0 876.0 C 3132.0 858.0, 3138.0 858.0, 3156.0 876.0" />
+    <path class="tree-link" d="M 3024.0 912.0 C 3024.0 981.3, 2691.0 981.3, 2691.0 1038.0" />
+    <path class="tree-link" d="M 3246.0 912.0 C 3246.0 981.3, 2691.0 981.3, 2691.0 1038.0" />
+    <path class="tree-link spouse" d="M 4224.0 876.0 C 4242.0 858.0, 4248.0 858.0, 4266.0 876.0" />
+    <path class="tree-link" d="M 4134.0 912.0 C 4134.0 981.3, 2913.0 981.3, 2913.0 1038.0" />
+    <path class="tree-link" d="M 4356.0 912.0 C 4356.0 981.3, 2913.0 981.3, 2913.0 1038.0" />
+    <path class="tree-link spouse" d="M 3558.0 876.0 C 3576.0 858.0, 3582.0 858.0, 3600.0 876.0" />
+    <path class="tree-link" d="M 3468.0 912.0 C 3468.0 981.3, 3135.0 981.3, 3135.0 1038.0" />
+    <path class="tree-link" d="M 3690.0 912.0 C 3690.0 981.3, 3135.0 981.3, 3135.0 1038.0" />
+    <path class="tree-link spouse" d="M 2448.0 876.0 C 2466.0 858.0, 2472.0 858.0, 2490.0 876.0" />
+    <path class="tree-link" d="M 2358.0 912.0 C 2358.0 981.3, 3357.0 981.3, 3357.0 1038.0" />
+    <path class="tree-link" d="M 2580.0 912.0 C 2580.0 981.3, 3357.0 981.3, 3357.0 1038.0" />
+    <path class="tree-link" d="M 2358.0 912.0 C 2358.0 981.3, 3579.0 981.3, 3579.0 1038.0" />
+    <path class="tree-link" d="M 2580.0 912.0 C 2580.0 981.3, 3579.0 981.3, 3579.0 1038.0" />
+    <path class="tree-link spouse" d="M 3669.0 1074.0 C 3687.0 1056.0, 3693.0 1056.0, 3711.0 1074.0" />
+    <path class="tree-link" d="M 3579.0 1110.0 C 3579.0 1179.3, 2247.0 1179.3, 2247.0 1236.0" />
+    <path class="tree-link" d="M 3801.0 1110.0 C 3801.0 1179.3, 2247.0 1179.3, 2247.0 1236.0" />
+    <path class="tree-link spouse" d="M 783.0 1074.0 C 801.0 1056.0, 807.0 1056.0, 825.0 1074.0" />
+    <path class="tree-link" d="M 693.0 1110.0 C 693.0 1179.3, 2469.0 1179.3, 2469.0 1236.0" />
+    <path class="tree-link" d="M 915.0 1110.0 C 915.0 1179.3, 2469.0 1179.3, 2469.0 1236.0" />
+    <path class="tree-link spouse" d="M 1227.0 1074.0 C 1245.0 1056.0, 1251.0 1056.0, 1269.0 1074.0" />
+    <path class="tree-link" d="M 1137.0 1110.0 C 1137.0 1179.3, 2691.0 1179.3, 2691.0 1236.0" />
+    <path class="tree-link" d="M 1359.0 1110.0 C 1359.0 1179.3, 2691.0 1179.3, 2691.0 1236.0" />
+    <path class="tree-link spouse" d="M 4002.0 678.0 C 4020.0 660.0, 4026.0 660.0, 4044.0 678.0" />
+    <path class="tree-link" d="M 3912.0 714.0 C 3912.0 783.3, 2136.0 783.3, 2136.0 840.0" />
+    <path class="tree-link" d="M 4134.0 714.0 C 4134.0 783.3, 2136.0 783.3, 2136.0 840.0" />
+    <path class="tree-link" d="M 3912.0 714.0 C 3912.0 783.3, 4578.0 783.3, 4578.0 840.0" />
+    <path class="tree-link" d="M 4134.0 714.0 C 4134.0 783.3, 4578.0 783.3, 4578.0 840.0" />
+    <path class="tree-link" d="M 3912.0 714.0 C 3912.0 783.3, 4800.0 783.3, 4800.0 840.0" />
+    <path class="tree-link" d="M 4134.0 714.0 C 4134.0 783.3, 4800.0 783.3, 4800.0 840.0" />
+    <path class="tree-link" d="M 3912.0 714.0 C 3912.0 783.3, 5244.0 783.3, 5244.0 840.0" />
+    <path class="tree-link" d="M 4134.0 714.0 C 4134.0 783.3, 5244.0 783.3, 5244.0 840.0" />
+    <path class="tree-link" d="M 4578.0 912.0 C 4578.0 981.3, 4023.0 981.3, 4023.0 1038.0" />
+    <path class="tree-link" d="M 4578.0 912.0 C 4578.0 981.3, 4467.0 981.3, 4467.0 1038.0" />
+    <path class="tree-link" d="M 4023.0 1110.0 C 4023.0 1179.3, 2913.0 1179.3, 2913.0 1236.0" />
+    <path class="tree-link" d="M 4467.0 1110.0 C 4467.0 1179.3, 3135.0 1179.3, 3135.0 1236.0" />
+    <path class="tree-link" d="M 4467.0 1110.0 C 4467.0 1179.3, 3357.0 1179.3, 3357.0 1236.0" />
+    <path class="tree-link spouse" d="M 4890.0 876.0 C 4908.0 858.0, 4914.0 858.0, 4932.0 876.0" />
+    <path class="tree-link" d="M 5022.0 912.0 C 5022.0 981.3, 4911.0 981.3, 4911.0 1038.0" />
+    <path class="tree-link" d="M 4800.0 912.0 C 4800.0 981.3, 4911.0 981.3, 4911.0 1038.0" />
+    <path class="tree-link" d="M 5022.0 912.0 C 5022.0 981.3, 5355.0 981.3, 5355.0 1038.0" />
+    <path class="tree-link" d="M 4800.0 912.0 C 4800.0 981.3, 5355.0 981.3, 5355.0 1038.0" />
+    <path class="tree-link spouse" d="M 5001.0 1074.0 C 5019.0 1056.0, 5025.0 1056.0, 5043.0 1074.0" />
+    <path class="tree-link" d="M 4911.0 1110.0 C 4911.0 1179.3, 3579.0 1179.3, 3579.0 1236.0" />
+    <path class="tree-link" d="M 5133.0 1110.0 C 5133.0 1179.3, 3579.0 1179.3, 3579.0 1236.0" />
+    <path class="tree-link spouse" d="M 5334.0 876.0 C 5352.0 858.0, 5358.0 858.0, 5376.0 876.0" />
+    <path class="tree-link" d="M 5466.0 912.0 C 5466.0 981.3, 5799.0 981.3, 5799.0 1038.0" />
+    <path class="tree-link" d="M 5244.0 912.0 C 5244.0 981.3, 5799.0 981.3, 5799.0 1038.0" />
+    <path class="tree-link" d="M 5466.0 912.0 C 5466.0 981.3, 6243.0 981.3, 6243.0 1038.0" />
+    <path class="tree-link" d="M 5244.0 912.0 C 5244.0 981.3, 6243.0 981.3, 6243.0 1038.0" />
+    <path class="tree-link spouse" d="M 5889.0 1074.0 C 5907.0 1056.0, 5913.0 1056.0, 5931.0 1074.0" />
+    <path class="tree-link" d="M 5799.0 1110.0 C 5799.0 1179.3, 3801.0 1179.3, 3801.0 1236.0" />
+    <path class="tree-link" d="M 6021.0 1110.0 C 6021.0 1179.3, 3801.0 1179.3, 3801.0 1236.0" />
+    <path class="tree-link spouse" d="M 6333.0 1074.0 C 6351.0 1056.0, 6357.0 1056.0, 6375.0 1074.0" />
+    <path class="tree-link" d="M 6465.0 1110.0 C 6465.0 1179.3, 4023.0 1179.3, 4023.0 1236.0" />
+    <path class="tree-link" d="M 6243.0 1110.0 C 6243.0 1179.3, 4023.0 1179.3, 4023.0 1236.0" />
+    <path class="tree-link spouse" d="M 1893.0 1074.0 C 1911.0 1056.0, 1917.0 1056.0, 1935.0 1074.0" />
+    <path class="tree-link" d="M 1803.0 1110.0 C 1803.0 1179.3, 4245.0 1179.3, 4245.0 1236.0" />
+    <path class="tree-link" d="M 2025.0 1110.0 C 2025.0 1179.3, 4245.0 1179.3, 4245.0 1236.0" />
+    <path class="tree-link spouse" d="M 2337.0 1074.0 C 2355.0 1056.0, 2361.0 1056.0, 2379.0 1074.0" />
+    <path class="tree-link" d="M 2247.0 1110.0 C 2247.0 1179.3, 4467.0 1179.3, 4467.0 1236.0" />
+    <path class="tree-link" d="M 2469.0 1110.0 C 2469.0 1179.3, 4467.0 1179.3, 4467.0 1236.0" />
+    <path class="tree-link spouse" d="M 4113.0 1074.0 C 4131.0 1056.0, 4137.0 1056.0, 4155.0 1074.0" />
+    <path class="tree-link spouse" d="M 4557.0 1074.0 C 4575.0 1056.0, 4581.0 1056.0, 4599.0 1074.0" />
+    <path class="tree-link spouse" d="M 5445.0 1074.0 C 5463.0 1056.0, 5469.0 1056.0, 5487.0 1074.0" />
+    <path class="tree-link" d="M 5355.0 1110.0 C 5355.0 1179.3, 4689.0 1179.3, 4689.0 1236.0" />
+    <path class="tree-link" d="M 5577.0 1110.0 C 5577.0 1179.3, 4689.0 1179.3, 4689.0 1236.0" />
+    <path class="tree-link" d="M 3024.0 714.0 C 3024.0 783.3, 5688.0 783.3, 5688.0 840.0" />
+    <path class="tree-link" d="M 3246.0 714.0 C 3246.0 783.3, 5688.0 783.3, 5688.0 840.0" />
+    <path class="tree-link" d="M 3024.0 714.0 C 3024.0 783.3, 5910.0 783.3, 5910.0 840.0" />
+    <path class="tree-link" d="M 3246.0 714.0 C 3246.0 783.3, 5910.0 783.3, 5910.0 840.0" />
+    <path class="tree-link" d="M 3024.0 714.0 C 3024.0 783.3, 6132.0 783.3, 6132.0 840.0" />
+    <path class="tree-link" d="M 3246.0 714.0 C 3246.0 783.3, 6132.0 783.3, 6132.0 840.0" />
+    <path class="tree-link" d="M 3024.0 714.0 C 3024.0 783.3, 6354.0 783.3, 6354.0 840.0" />
+    <path class="tree-link" d="M 3246.0 714.0 C 3246.0 783.3, 6354.0 783.3, 6354.0 840.0" />
+    <path class="tree-link" d="M 3024.0 714.0 C 3024.0 783.3, 6576.0 783.3, 6576.0 840.0" />
+    <path class="tree-link" d="M 3246.0 714.0 C 3246.0 783.3, 6576.0 783.3, 6576.0 840.0" />
+    <path class="tree-link" d="M 3135.0 516.0 C 3135.0 585.3, 2802.0 585.3, 2802.0 642.0" />
+    <path class="tree-link" d="M 3357.0 516.0 C 3357.0 585.3, 2802.0 585.3, 2802.0 642.0" />
+    <path class="tree-link" d="M 3579.0 516.0 C 3579.0 585.3, 2580.0 585.3, 2580.0 642.0" />
+    <path class="tree-link" d="M 3801.0 516.0 C 3801.0 585.3, 2580.0 585.3, 2580.0 642.0" />
+    <path class="tree-link" d="M 3246.0 318.0 C 3246.0 387.3, 3579.0 387.3, 3579.0 444.0" />
+    <path class="tree-link" d="M 3468.0 318.0 C 3468.0 387.3, 3579.0 387.3, 3579.0 444.0" />
+    <path class="tree-link" d="M 3357.0 120.0 C 3357.0 189.3, 3468.0 189.3, 3468.0 246.0" />
+  </svg>
+  <div class="generation-label" style="top:20px">Earliest generation</div>
+  <div class="generation-label" style="top:218px">Generation 2</div>
+  <div class="generation-label" style="top:416px">Generation 3</div>
+  <div class="generation-label" style="top:614px">Generation 4</div>
+  <div class="generation-label" style="top:812px">Generation 5</div>
+  <div class="generation-label" style="top:1010px">Generation 6</div>
+  <div class="generation-label" style="top:1208px">Generation 7</div>
+  <article class="person" style="left:1935px;top:1236px" title="Ananyapam De | b. 2000 · male">
+    <div class="name">Ananyapam De</div>
+    <div class="meta">b. 2000 · male</div>
+    <div class="id">id: dff580f6</div>
+  </article>
+  <article class="person" style="left:159px;top:1038px" title="Amritanshu De | b. 1970 · male">
+    <div class="name">Amritanshu De</div>
+    <div class="meta">b. 1970 · male</div>
+    <div class="id">id: 6a669962</div>
+  </article>
+  <article class="person" style="left:381px;top:1038px" title="Saraswati Mukherjee | b. 1973 · female">
+    <div class="name">Saraswati Mukherjee</div>
+    <div class="meta">b. 1973 · female</div>
+    <div class="id">id: facb5d54</div>
+  </article>
+  <article class="person" style="left:48px;top:840px" title="Mukul Rani Mukherjee | female">
+    <div class="name">Mukul Rani Mukherjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: 6c34c910</div>
+  </article>
+  <article class="person" style="left:270px;top:840px" title="Pinaki Prasad Mukherjee | male">
+    <div class="name">Pinaki Prasad Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: eb526671</div>
+  </article>
+  <article class="person" style="left:492px;top:840px" title="Tarak Prasad Mukhopadhay | male">
+    <div class="name">Tarak Prasad Mukhopadhay</div>
+    <div class="meta">male</div>
+    <div class="id">id: 4c8ae8d4</div>
+  </article>
+  <article class="person" style="left:936px;top:840px" title="Shankar Prasad Mukhopadhay | male">
+    <div class="name">Shankar Prasad Mukhopadhay</div>
+    <div class="meta">male</div>
+    <div class="id">id: a51f7824</div>
+  </article>
+  <article class="person" style="left:1158px;top:840px" title="Sunanda Banerjee | female">
+    <div class="name">Sunanda Banerjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: a3d981f4</div>
+  </article>
+  <article class="person" style="left:1602px;top:840px" title="Utpal Mukherjee | male">
+    <div class="name">Utpal Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: d0a75ae4</div>
+  </article>
+  <article class="person" style="left:2490px;top:642px" title="Raghunandan Mukhopadhay | male">
+    <div class="name">Raghunandan Mukhopadhay</div>
+    <div class="meta">male</div>
+    <div class="id">id: 13d64032</div>
+  </article>
+  <article class="person" style="left:2712px;top:642px" title="Santosh Kumari Devi | female">
+    <div class="name">Santosh Kumari Devi</div>
+    <div class="meta">female</div>
+    <div class="id">id: 4869c5c2</div>
+  </article>
+  <article class="person" style="left:1824px;top:840px" title="Dr Adhir Kumar De | male">
+    <div class="name">Dr Adhir Kumar De</div>
+    <div class="meta">male</div>
+    <div class="id">id: e41769ca</div>
+  </article>
+  <article class="person" style="left:2046px;top:840px" title="Meera Rani Chaterjee | female">
+    <div class="name">Meera Rani Chaterjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: d0e5fe69</div>
+  </article>
+  <article class="person" style="left:2934px;top:642px" title="Nasiram De | male · Making bricks | Born in Behala">
+    <div class="name">Nasiram De</div>
+    <div class="meta">male · Making bricks</div>
+    <div class="id">id: 9cabe3fa</div>
+  </article>
+  <article class="person" style="left:3156px;top:642px" title="Shibu Bala Dasi | female">
+    <div class="name">Shibu Bala Dasi</div>
+    <div class="meta">female</div>
+    <div class="id">id: ae48da28</div>
+  </article>
+  <article class="person" style="left:2823px;top:444px" title="Srishtidhar De | male · Printing Press at house | Born in Jaguli">
+    <div class="name">Srishtidhar De</div>
+    <div class="meta">male · Printing Press at house</div>
+    <div class="id">id: b06d3c7a</div>
+  </article>
+  <article class="person" style="left:3378px;top:642px" title="Naranarayan Chakraborty | male">
+    <div class="name">Naranarayan Chakraborty</div>
+    <div class="meta">male</div>
+    <div class="id">id: 9c66551d</div>
+  </article>
+  <article class="person" style="left:3600px;top:642px" title="Shobha Rani Debi | female">
+    <div class="name">Shobha Rani Debi</div>
+    <div class="meta">female</div>
+    <div class="id">id: 26ebbd99</div>
+  </article>
+  <article class="person" style="left:2268px;top:840px" title="Shyamal Kumar Chakraborty | male">
+    <div class="name">Shyamal Kumar Chakraborty</div>
+    <div class="meta">male</div>
+    <div class="id">id: ea40f3ef</div>
+  </article>
+  <article class="person" style="left:2712px;top:840px" title="Kamal Kumar Chakraborty | male">
+    <div class="name">Kamal Kumar Chakraborty</div>
+    <div class="meta">male</div>
+    <div class="id">id: 387dcdc0</div>
+  </article>
+  <article class="person" style="left:2934px;top:840px" title="Bokul Chakraborty | female">
+    <div class="name">Bokul Chakraborty</div>
+    <div class="meta">female</div>
+    <div class="id">id: 885f966d</div>
+  </article>
+  <article class="person" style="left:3378px;top:840px" title="Tamal Chakraborty | male">
+    <div class="name">Tamal Chakraborty</div>
+    <div class="meta">male</div>
+    <div class="id">id: cebe642f</div>
+  </article>
+  <article class="person" style="left:3822px;top:840px" title="Putul Chakraborty | female">
+    <div class="name">Putul Chakraborty</div>
+    <div class="meta">female</div>
+    <div class="id">id: 5ce9cf82</div>
+  </article>
+  <article class="person" style="left:4044px;top:840px" title="Bulbul Chakraborty | female">
+    <div class="name">Bulbul Chakraborty</div>
+    <div class="meta">female</div>
+    <div class="id">id: a83d18b0</div>
+  </article>
+  <article class="person" style="left:603px;top:1038px" title="Siraj Mukherjee | male">
+    <div class="name">Siraj Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 8f899f11</div>
+  </article>
+  <article class="person" style="left:714px;top:840px" title="Sandhya Mukherjee | female">
+    <div class="name">Sandhya Mukherjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: a52cad75</div>
+  </article>
+  <article class="person" style="left:1047px;top:1038px" title="Rudra Prasad Mukherjee | male">
+    <div class="name">Rudra Prasad Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 4fee08c6</div>
+  </article>
+  <article class="person" style="left:1491px;top:1038px" title="Nandini Mukherjee | female">
+    <div class="name">Nandini Mukherjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: 5c0b73b7</div>
+  </article>
+  <article class="person" style="left:1380px;top:840px" title="Lakshminarayan Banerjee | male">
+    <div class="name">Lakshminarayan Banerjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: e852f36d</div>
+  </article>
+  <article class="person" style="left:1713px;top:1038px" title="Dipanwita Chaterjee | female">
+    <div class="name">Dipanwita Chaterjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: 97420d84</div>
+  </article>
+  <article class="person" style="left:2157px;top:1038px" title="Anindya Banerjee | male">
+    <div class="name">Anindya Banerjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 39e24a2a</div>
+  </article>
+  <article class="person" style="left:3156px;top:840px" title="Tulsi Mukherjee | male">
+    <div class="name">Tulsi Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 7d145322</div>
+  </article>
+  <article class="person" style="left:2601px;top:1038px" title="Ratul Mukherjee | male">
+    <div class="name">Ratul Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 65c8fa24</div>
+  </article>
+  <article class="person" style="left:4266px;top:840px" title="Bapi Mukherjee | male">
+    <div class="name">Bapi Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="meta">baje lok, masi ke petato</div>
+    <div class="id">id: 747a40d6</div>
+  </article>
+  <article class="person" style="left:2823px;top:1038px" title="Sriyansh Mukherjee | male">
+    <div class="name">Sriyansh Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: c87bf8a4</div>
+  </article>
+  <article class="person" style="left:3600px;top:840px" title="Soma Chakroborty | female">
+    <div class="name">Soma Chakroborty</div>
+    <div class="meta">female</div>
+    <div class="id">id: d42888c4</div>
+  </article>
+  <article class="person" style="left:3045px;top:1038px" title="Subhodip Chakroborty | male">
+    <div class="name">Subhodip Chakroborty</div>
+    <div class="meta">male</div>
+    <div class="id">id: 40ec397c</div>
+  </article>
+  <article class="person" style="left:2490px;top:840px" title="Poly | female">
+    <div class="name">Poly</div>
+    <div class="meta">female</div>
+    <div class="id">id: 90d7d991</div>
+  </article>
+  <article class="person" style="left:3267px;top:1038px" title="Mrinal Kanti Chakroborty | male">
+    <div class="name">Mrinal Kanti Chakroborty</div>
+    <div class="meta">male</div>
+    <div class="meta">Nickname: Subroto</div>
+    <div class="id">id: d53fd65f</div>
+  </article>
+  <article class="person" style="left:3489px;top:1038px" title="Piyush Kanti Chakroborty | male">
+    <div class="name">Piyush Kanti Chakroborty</div>
+    <div class="meta">male</div>
+    <div class="meta">Nickname: Pota</div>
+    <div class="id">id: c4ff3cce</div>
+  </article>
+  <article class="person" style="left:3711px;top:1038px" title="Krishneshwari Chakraborty | female">
+    <div class="name">Krishneshwari Chakraborty</div>
+    <div class="meta">female</div>
+    <div class="id">id: f10e50ca</div>
+  </article>
+  <article class="person" style="left:2157px;top:1236px" title="Nandini Chakroborty | female">
+    <div class="name">Nandini Chakroborty</div>
+    <div class="meta">female</div>
+    <div class="id">id: 1154c510</div>
+  </article>
+  <article class="person" style="left:825px;top:1038px" title="Sukanya Bhattacharya | female">
+    <div class="name">Sukanya Bhattacharya</div>
+    <div class="meta">female</div>
+    <div class="id">id: 847a7d79</div>
+  </article>
+  <article class="person" style="left:2379px;top:1236px" title="Saumavo Mukherjee | male">
+    <div class="name">Saumavo Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 24f07a6c</div>
+  </article>
+  <article class="person" style="left:1269px;top:1038px" title="Kadambari Mukherjee | female">
+    <div class="name">Kadambari Mukherjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: 1449d8d2</div>
+  </article>
+  <article class="person" style="left:2601px;top:1236px" title="Maithili Mukherjee | female">
+    <div class="name">Maithili Mukherjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: 8ff09efb</div>
+  </article>
+  <article class="person" style="left:3822px;top:642px" title="Tulsi Charan Chakroborty | male">
+    <div class="name">Tulsi Charan Chakroborty</div>
+    <div class="meta">male</div>
+    <div class="id">id: 5d2dea33</div>
+  </article>
+  <article class="person" style="left:4044px;top:642px" title="Pratibha Chaterjee | female">
+    <div class="name">Pratibha Chaterjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: 1114c7e7</div>
+  </article>
+  <article class="person" style="left:4488px;top:840px" title="Tarun Kumar Chaterjee | male">
+    <div class="name">Tarun Kumar Chaterjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 4eadc91f</div>
+  </article>
+  <article class="person" style="left:4710px;top:840px" title="Dheera Chaterjee | female">
+    <div class="name">Dheera Chaterjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: 7292642b</div>
+  </article>
+  <article class="person" style="left:5154px;top:840px" title="Moyna Chaterjee | female">
+    <div class="name">Moyna Chaterjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: cd751977</div>
+  </article>
+  <article class="person" style="left:3933px;top:1038px" title="Atish Chaterjee | male">
+    <div class="name">Atish Chaterjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 6e280fee</div>
+  </article>
+  <article class="person" style="left:4377px;top:1038px" title="Aniruddha Chaterjee | male">
+    <div class="name">Aniruddha Chaterjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: b16e07d3</div>
+  </article>
+  <article class="person" style="left:2823px;top:1236px" title="Anish Chaterjee | male">
+    <div class="name">Anish Chaterjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: c5749aea</div>
+  </article>
+  <article class="person" style="left:3045px;top:1236px" title="Arush Chaterjee | male">
+    <div class="name">Arush Chaterjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: ef70d361</div>
+  </article>
+  <article class="person" style="left:3267px;top:1236px" title="Amitosh Chaterjee | male">
+    <div class="name">Amitosh Chaterjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 776616bc</div>
+  </article>
+  <article class="person" style="left:4932px;top:840px" title="Sukumar Ganguly | male">
+    <div class="name">Sukumar Ganguly</div>
+    <div class="meta">male</div>
+    <div class="id">id: f3aaf46d</div>
+  </article>
+  <article class="person" style="left:4821px;top:1038px" title="Sanjib Ganguly | male">
+    <div class="name">Sanjib Ganguly</div>
+    <div class="meta">male</div>
+    <div class="id">id: 5a23e3e4</div>
+  </article>
+  <article class="person" style="left:5265px;top:1038px" title="Sumita Ganguly | female">
+    <div class="name">Sumita Ganguly</div>
+    <div class="meta">female</div>
+    <div class="id">id: 7b543a1d</div>
+  </article>
+  <article class="person" style="left:5043px;top:1038px" title="Paromita Ganguly | female">
+    <div class="name">Paromita Ganguly</div>
+    <div class="meta">female</div>
+    <div class="meta">Nickname: Tumpa</div>
+    <div class="id">id: 80bc10dc</div>
+  </article>
+  <article class="person" style="left:3489px;top:1236px" title="Srijoni Ganguly | female">
+    <div class="name">Srijoni Ganguly</div>
+    <div class="meta">female</div>
+    <div class="meta">Nickname: Tista</div>
+    <div class="id">id: fa2332be</div>
+  </article>
+  <article class="person" style="left:5376px;top:840px" title="Dilip Kumar Banerjee | male">
+    <div class="name">Dilip Kumar Banerjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 47f50934</div>
+  </article>
+  <article class="person" style="left:5709px;top:1038px" title="Debranjan Banerjee | male">
+    <div class="name">Debranjan Banerjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 42461a2e</div>
+  </article>
+  <article class="person" style="left:6153px;top:1038px" title="Debosmita Banerjee | female">
+    <div class="name">Debosmita Banerjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: ac3979b3</div>
+  </article>
+  <article class="person" style="left:5931px;top:1038px" title="Minakshi Banerjee | female">
+    <div class="name">Minakshi Banerjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: b164494a</div>
+  </article>
+  <article class="person" style="left:3711px;top:1236px" title="Unknown Banerjee | female">
+    <div class="name">Unknown Banerjee</div>
+    <div class="meta">female</div>
+    <div class="meta">Daughter of Debranjan Banerjee and Minakshi Banerjee; name not yet remembered</div>
+    <div class="id">id: 0f2e79d3</div>
+  </article>
+  <article class="person" style="left:6375px;top:1038px" title="Abhik Chaterjee | male">
+    <div class="name">Abhik Chaterjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 14406747</div>
+  </article>
+  <article class="person" style="left:3933px;top:1236px" title="Hiya Chaterjee | female">
+    <div class="name">Hiya Chaterjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: 6304e95c</div>
+  </article>
+  <article class="person" style="left:1935px;top:1038px" title="Santanu Chaterjee | male">
+    <div class="name">Santanu Chaterjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 1a7f6850</div>
+  </article>
+  <article class="person" style="left:4155px;top:1236px" title="Abhijit Chaterjee | male">
+    <div class="name">Abhijit Chaterjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 24a3a2e7</div>
+  </article>
+  <article class="person" style="left:2379px;top:1038px" title="Lisa Banerjee | female">
+    <div class="name">Lisa Banerjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: 24edd4a0</div>
+  </article>
+  <article class="person" style="left:4377px;top:1236px" title="Arna Banerjee | female">
+    <div class="name">Arna Banerjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: cb2d65ec</div>
+  </article>
+  <article class="person" style="left:4155px;top:1038px" title="Sumita Chaterjee | female">
+    <div class="name">Sumita Chaterjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: bfc2205a</div>
+  </article>
+  <article class="person" style="left:4599px;top:1038px" title="Sonia Chaterjee | female">
+    <div class="name">Sonia Chaterjee</div>
+    <div class="meta">female</div>
+    <div class="id">id: cb80c9d6</div>
+  </article>
+  <article class="person" style="left:5487px;top:1038px" title="Anup Upadhay | male">
+    <div class="name">Anup Upadhay</div>
+    <div class="meta">male</div>
+    <div class="meta">Unknown husband of Sumita Ganguly</div>
+    <div class="id">id: 3a9d0fd0</div>
+  </article>
+  <article class="person" style="left:4599px;top:1236px" title="Torsha Upadhaya | female">
+    <div class="name">Torsha Upadhaya</div>
+    <div class="meta">female</div>
+    <div class="id">id: d82e634f</div>
+  </article>
+  <article class="person" style="left:5598px;top:840px" title="Bonolota De | female">
+    <div class="name">Bonolota De</div>
+    <div class="meta">female</div>
+    <div class="meta">Died from TB</div>
+    <div class="id">id: fa9e5b18</div>
+  </article>
+  <article class="person" style="left:5820px;top:840px" title="Amulya Charan De | male">
+    <div class="name">Amulya Charan De</div>
+    <div class="meta">male</div>
+    <div class="id">id: b5e75e37</div>
+  </article>
+  <article class="person" style="left:6042px;top:840px" title="Sunil De | male">
+    <div class="name">Sunil De</div>
+    <div class="meta">male</div>
+    <div class="id">id: 61adc2e1</div>
+  </article>
+  <article class="person" style="left:6264px;top:840px" title="Shishir De | male">
+    <div class="name">Shishir De</div>
+    <div class="meta">male</div>
+    <div class="id">id: 95a2edd2</div>
+  </article>
+  <article class="person" style="left:6486px;top:840px" title="Unknown De | male">
+    <div class="name">Unknown De</div>
+    <div class="meta">male</div>
+    <div class="meta">Name not yet known</div>
+    <div class="id">id: 4eef54f8</div>
+  </article>
+  <article class="person" style="left:3045px;top:444px" title="Tulsi Charan Goswami | male">
+    <div class="name">Tulsi Charan Goswami</div>
+    <div class="meta">male</div>
+    <div class="id">id: 4267baff</div>
+  </article>
+  <article class="person" style="left:3267px;top:444px" title="Saila Bala Devi | female">
+    <div class="name">Saila Bala Devi</div>
+    <div class="meta">female</div>
+    <div class="id">id: 4e09bcfe</div>
+  </article>
+  <article class="person" style="left:3489px;top:444px" title="Annadaprasad Mukherjee | male">
+    <div class="name">Annadaprasad Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: ed5c71cf</div>
+  </article>
+  <article class="person" style="left:3711px;top:444px" title="Anirbala Devi | female">
+    <div class="name">Anirbala Devi</div>
+    <div class="meta">female</div>
+    <div class="id">id: 5bb28b3c</div>
+  </article>
+  <article class="person" style="left:3156px;top:246px" title="Swarnamoyee Devi | female">
+    <div class="name">Swarnamoyee Devi</div>
+    <div class="meta">female</div>
+    <div class="id">id: 667b81de</div>
+  </article>
+  <article class="person" style="left:3378px;top:246px" title="Madhusudhan Mukherjee | male">
+    <div class="name">Madhusudhan Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 94709b0e</div>
+  </article>
+  <article class="person" style="left:3267px;top:48px" title="Bholanath Mukherjee | male">
+    <div class="name">Bholanath Mukherjee</div>
+    <div class="meta">male</div>
+    <div class="id">id: 7c2fdcbc</div>
+  </article>
+</div>
+  </main>
+  <footer>Standalone share file generated from your local family tree data.</footer>
+</body>
+</html>
