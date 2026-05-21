@@ -518,37 +518,23 @@ footer.sticky-bottom {
 
 .repo-card-title {
   color: var(--global-text-color);
-  font-size: 1rem;
+  font-size: 1.02rem;
   font-weight: 700;
   line-height: 1.25;
   word-break: break-word;
 }
 
 .repo-card-meta {
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
   color: var(--global-text-color-light);
   font-size: 0.82rem;
 }
 
 .repo-card-link {
-  margin-top: 0.45rem;
+  margin-top: 0.35rem;
   color: var(--global-theme-color);
   font-size: 0.82rem;
   word-break: break-word;
-}
-
-.repo-card-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.55rem;
-
-  img {
-    display: block;
-    height: 20px;
-    width: auto;
-    border-radius: 4px;
-  }
 }
 
 .repo-profile-card {

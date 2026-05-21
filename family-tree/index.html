@@ -53,6 +53,38 @@
       align-items: center;
       gap: 0.35rem;
     }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.9rem;
+    }
+    .zoom-label {
+      color: var(--muted);
+      font-size: 0.84rem;
+      min-width: 3.5rem;
+      text-align: center;
+    }
+    .zoom-btn {
+      appearance: none;
+      border: 1px solid #d8cdbd;
+      background: #fffdf8;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.45rem 0.8rem;
+      font: inherit;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+    .zoom-btn:hover {
+      background: #f4ede2;
+      border-color: #cdbca4;
+    }
+    .zoom-btn:active {
+      transform: translateY(1px);
+    }
     .sample-line {
       display: inline-block;
       width: 2rem;
@@ -69,6 +101,11 @@
     .tree-shell {
       overflow: auto;
       padding: 1.25rem;
+    }
+    .tree-stage {
+      display: inline-block;
+      transform-origin: top left;
+      transition: transform 0.12s ease;
     }
     .tree-canvas {
       position: relative;
@@ -151,6 +188,8 @@
       @page { size: landscape; margin: 0.25in; }
       header { position: static; }
       .tree-shell { padding: 0; overflow: visible; }
+      .toolbar { display: none; }
+      .tree-stage { transform: none !important; }
       .tree-canvas { box-shadow: none; }
     }
   </style>
@@ -164,8 +203,15 @@
       <span><i class="sample-line spouse"></i>Spouse</span>
       <span><i class="sample-line sibling"></i>Sibling</span>
     </div>
+    <div class="toolbar">
+      <button class="zoom-btn" id="zoom-out" type="button">Zoom out</button>
+      <div class="zoom-label" id="zoom-label">100%</div>
+      <button class="zoom-btn" id="zoom-in" type="button">Zoom in</button>
+      <button class="zoom-btn" id="zoom-reset" type="button">Reset</button>
+    </div>
   </header>
   <main class="tree-shell">
+<div class="tree-stage" id="tree-stage">
 <div class="tree-canvas">
   <svg class="tree-links" viewBox="0 0 6714 1356" aria-hidden="true">
     <path class="tree-link" d="M 249.0 1110.0 C 249.0 1179.3, 2025.0 1179.3, 2025.0 1236.0" />
@@ -763,7 +809,51 @@
     <div class="id">id: 7c2fdcbc</div>
   </article>
 </div>
+</div>
   </main>
   <footer>Standalone share file generated from your local family tree data.</footer>
+  <script>
+    (function () {
+      const stage = document.getElementById("tree-stage");
+      const label = document.getElementById("zoom-label");
+      const zoomIn = document.getElementById("zoom-in");
+      const zoomOut = document.getElementById("zoom-out");
+      const zoomReset = document.getElementById("zoom-reset");
+      const shell = document.querySelector(".tree-shell");
+      let scale = 1;
+
+      function renderZoom() {
+        stage.style.transform = `scale(${scale})`;
+        label.textContent = `${Math.round(scale * 100)}%`;
+      }
+
+      function setZoom(nextScale) {
+        const clamped = Math.max(0.35, Math.min(2, nextScale));
+        if (clamped === scale) return;
+        const rect = shell.getBoundingClientRect();
+        const centerX = shell.scrollLeft + rect.width / 2;
+        const centerY = shell.scrollTop + rect.height / 2;
+        const ratio = clamped / scale;
+        scale = clamped;
+        renderZoom();
+        shell.scrollLeft = centerX * ratio - rect.width / 2;
+        shell.scrollTop = centerY * ratio - rect.height / 2;
+      }
+
+      zoomIn.addEventListener("click", function () {
+        setZoom(Number((scale + 0.1).toFixed(2)));
+      });
+
+      zoomOut.addEventListener("click", function () {
+        setZoom(Number((scale - 0.1).toFixed(2)));
+      });
+
+      zoomReset.addEventListener("click", function () {
+        setZoom(1);
+      });
+
+      renderZoom();
+    })();
+  </script>
 </body>
 </html>

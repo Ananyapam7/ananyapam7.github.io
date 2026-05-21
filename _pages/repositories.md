@@ -5,19 +5,6 @@ title: Repositories
 description: Codes released for some of my open source projects. Feel free to check them out.
 nav: true
 nav_order: 3
----
-
-## GitHub Stats
-
-{% if site.data.repositories.github_users %}
-<div class="repositories">
-  {% for user in site.data.repositories.github_users %}
-    {% include repository/repo_user.html username=user %}
-  {% endfor %}
-</div>
-{% endif %}
----
-
 ### Contribution Graph
 
 <div class="repo-embed">
