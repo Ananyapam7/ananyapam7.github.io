@@ -37,13 +37,13 @@ class FamilyTreeModelTests(unittest.TestCase):
         self.assertIn("<svg", html)
         self.assertIn('class="tree-link"', html)
         self.assertIn('class="tree-link spouse"', html)
-        self.assertIn('class="tree-link sibling"', html)
         self.assertIn('data-person-id="', html)
         self.assertIn('data-type="parent"', html)
         self.assertIn('id="zoom-in"', html)
         self.assertIn('id="people-search"', html)
         self.assertIn("function applySelection", html)
         self.assertIn("function renderSearch", html)
+        self.assertNotIn("sample-line sibling", html)
 
     def test_repair_adds_missing_spouse_between_coparents(self):
         tree = FamilyTree()

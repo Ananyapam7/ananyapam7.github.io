@@ -12,7 +12,6 @@
       --muted: #756a5a;
       --line: #b7a68c;
       --spouse: #8a7459;
-      --sibling: #6f8b76;
       --spouse-active: #b45f3c;
       --sibling-active: #3f8a7e;
       --accent: #2d2a26;
@@ -96,10 +95,6 @@
       border-color: var(--spouse);
       border-top-style: dashed;
     }
-    .sample-line.sibling {
-      border-color: var(--sibling);
-      border-top-style: dotted;
-    }
     .tree-shell {
       overflow: auto;
       padding: 1.25rem;
@@ -136,10 +131,6 @@
     .tree-link.spouse {
       stroke: var(--spouse);
       stroke-dasharray: 6 5;
-    }
-    .tree-link.sibling {
-      stroke: var(--sibling);
-      stroke-dasharray: 2 6;
     }
     .generation-label {
       position: absolute;
@@ -391,7 +382,6 @@
     <div class="legend">
       <span><i class="sample-line"></i>Parent / child</span>
       <span><i class="sample-line spouse"></i>Spouse</span>
-      <span><i class="sample-line sibling"></i>Sibling</span>
     </div>
     <div class="toolbar">
       <button class="zoom-btn" id="zoom-out" type="button">Zoom out</button>
@@ -413,10 +403,6 @@
     <path class="tree-link" data-type="parent" data-from="facb5d54" data-to="dff580f6" d="M 360.0 1110.0 C 360.0 1179.3, 2358.0 1179.3, 2358.0 1236.0" />
     <path class="tree-link" data-type="parent" data-from="6c34c910" data-to="facb5d54" d="M 1026.0 912.0 C 1026.0 981.3, 360.0 981.3, 360.0 1038.0" />
     <path class="tree-link" data-type="parent" data-from="eb526671" data-to="facb5d54" d="M 1248.0 912.0 C 1248.0 981.3, 360.0 981.3, 360.0 1038.0" />
-    <path class="tree-link sibling" data-type="sibling" data-from="eb526671" data-to="4c8ae8d4" d="M 1248.0 928.0 C 1248.0 946.0, 1470.0 946.0, 1470.0 928.0" />
-    <path class="tree-link sibling" data-type="sibling" data-from="eb526671" data-to="a51f7824" d="M 1248.0 928.0 C 1248.0 946.0, 1914.0 946.0, 1914.0 928.0" />
-    <path class="tree-link sibling" data-type="sibling" data-from="eb526671" data-to="a3d981f4" d="M 1248.0 928.0 C 1248.0 946.0, 2136.0 946.0, 2136.0 928.0" />
-    <path class="tree-link sibling" data-type="sibling" data-from="eb526671" data-to="d0a75ae4" d="M 1248.0 928.0 C 1248.0 946.0, 2580.0 946.0, 2580.0 928.0" />
     <path class="tree-link" data-type="parent" data-from="13d64032" data-to="4c8ae8d4" d="M 3468.0 714.0 C 3468.0 783.3, 1470.0 783.3, 1470.0 840.0" />
     <path class="tree-link" data-type="parent" data-from="13d64032" data-to="a51f7824" d="M 3468.0 714.0 C 3468.0 783.3, 1914.0 783.3, 1914.0 840.0" />
     <path class="tree-link" data-type="parent" data-from="13d64032" data-to="eb526671" d="M 3468.0 714.0 C 3468.0 783.3, 1248.0 783.3, 1248.0 840.0" />
