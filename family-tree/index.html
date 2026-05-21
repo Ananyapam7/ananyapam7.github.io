@@ -263,6 +263,107 @@
       stroke-width: 3.5;
       filter: drop-shadow(0 1px 3px rgba(127, 136, 166, 0.16));
     }
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-left: auto;
+      min-width: min(100%, 22rem);
+    }
+    .search-field {
+      flex: 1 1 16rem;
+      min-width: 12rem;
+      appearance: none;
+      border: 1px solid #d8cdbd;
+      background: #fffdf8;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.5rem 0.85rem;
+      font: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .search-field:focus {
+      border-color: #b89b73;
+      box-shadow: 0 0 0 3px rgba(184, 155, 115, 0.14);
+      background: #fffaf3;
+    }
+    .search-status {
+      color: var(--muted);
+      font-size: 0.82rem;
+      min-width: 4rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .search-results[hidden] {
+      display: none;
+    }
+    .search-results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+    }
+    .search-result {
+      appearance: none;
+      width: 100%;
+      text-align: left;
+      border: 1px solid #dfd4c4;
+      background: rgba(255, 253, 248, 0.96);
+      color: var(--ink);
+      border-radius: 12px;
+      padding: 0.7rem 0.8rem;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .search-result:hover {
+      transform: translateY(-1px);
+      border-color: #cdbca4;
+      background: #fff8ee;
+      box-shadow: 0 8px 18px rgba(36, 31, 24, 0.08);
+    }
+    .search-result.active {
+      border-color: #b89b73;
+      background: #fff5e8;
+      box-shadow: 0 0 0 3px rgba(184, 155, 115, 0.12);
+    }
+    .search-result-name {
+      display: block;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+    .search-result-meta {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.25;
+    }
+    .tree-canvas.search-mode .person {
+      opacity: 0.24;
+    }
+    .tree-canvas.search-mode .person.search-match {
+      opacity: 1;
+    }
+    .person.search-match {
+      border-color: #b89b73;
+      background: #fff7eb;
+      box-shadow: 0 0 0 2px rgba(184, 155, 115, 0.1);
+    }
+    .person.search-active {
+      border-color: #9a6f2d;
+      box-shadow: 0 0 0 3px rgba(154, 111, 45, 0.16), 0 10px 24px rgba(36, 31, 24, 0.16);
+    }
+    @media (max-width: 820px) {
+      .search-wrap {
+        margin-left: 0;
+        width: 100%;
+      }
+      .search-status {
+        min-width: 0;
+      }
+    }
     .empty {
       text-align: center;
       color: var(--muted);
@@ -297,7 +398,12 @@
       <div class="zoom-label" id="zoom-label">35%</div>
       <button class="zoom-btn" id="zoom-in" type="button">Zoom in</button>
       <button class="zoom-btn" id="zoom-reset" type="button">Reset</button>
+      <label class="search-wrap" for="people-search">
+        <input class="search-field" id="people-search" type="search" placeholder="Search people" autocomplete="off" spellcheck="false">
+        <span class="search-status" id="search-status">Type to search</span>
+      </label>
     </div>
+    <div class="search-results" id="search-results" hidden></div>
   </header>
   <main class="tree-shell">
 <div class="tree-stage" id="tree-stage">
@@ -916,17 +1022,30 @@
       const zoomIn = document.getElementById("zoom-in");
       const zoomOut = document.getElementById("zoom-out");
       const zoomReset = document.getElementById("zoom-reset");
+      const searchInput = document.getElementById("people-search");
+      const searchStatus = document.getElementById("search-status");
+      const searchResults = document.getElementById("search-results");
       const shell = document.querySelector(".tree-shell");
       const canvas = document.querySelector(".tree-canvas");
       if (!stage || !canvas || !shell) return;
 
       let scale = 0.35;
       let selectedId = null;
+      let searchMatches = [];
+      let activeSearchIndex = 0;
 
       const people = Array.from(document.querySelectorAll(".person")).map((node) => ({
         id: node.dataset.personId,
         node,
+        name: (node.querySelector(".name")?.textContent || "").trim(),
+        meta: (node.querySelector(".meta")?.textContent || "").trim(),
+        searchText: [
+          node.querySelector(".name")?.textContent || "",
+          node.querySelector(".meta")?.textContent || "",
+          node.getAttribute("title") || "",
+        ].join(" ").toLowerCase(),
       }));
+      const peopleById = new Map(people.map((person) => [person.id, person]));
 
       const links = Array.from(document.querySelectorAll(".tree-link")).map((path) => ({
         path,
@@ -990,6 +1109,101 @@
             "edge-spouse"
           );
         }
+      }
+
+      function clearSearchState() {
+        canvas.classList.remove("search-mode");
+        for (const person of people) {
+          person.node.classList.remove("search-match", "search-active");
+        }
+      }
+
+      function centerPerson(personId) {
+        const person = peopleById.get(personId);
+        if (!person) return;
+        const rect = shell.getBoundingClientRect();
+        const centerX = (person.node.offsetLeft + person.node.offsetWidth / 2) * scale;
+        const centerY = (person.node.offsetTop + person.node.offsetHeight / 2) * scale;
+        shell.scrollLeft = Math.max(0, centerX - rect.width / 2);
+        shell.scrollTop = Math.max(0, centerY - rect.height / 2);
+      }
+
+      function renderSearchResults() {
+        if (!searchResults || !searchStatus) return;
+        searchResults.replaceChildren();
+        const query = searchInput?.value.trim() || "";
+        if (!query) {
+          searchResults.hidden = true;
+          searchStatus.textContent = "Type to search";
+          return;
+        }
+        if (!searchMatches.length) {
+          searchResults.hidden = true;
+          searchStatus.textContent = "No matches";
+          return;
+        }
+
+        searchStatus.textContent = `${searchMatches.length} match${searchMatches.length === 1 ? "" : "es"}`;
+        const limit = Math.min(searchMatches.length, 8);
+        for (let index = 0; index < limit; index += 1) {
+          const person = searchMatches[index];
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "search-result";
+          if (index === activeSearchIndex) button.classList.add("active");
+
+          const name = document.createElement("span");
+          name.className = "search-result-name";
+          name.textContent = person.name || "Unnamed person";
+
+          const meta = document.createElement("span");
+          meta.className = "search-result-meta";
+          meta.textContent = person.meta || "—";
+
+          button.append(name, meta);
+          button.addEventListener("click", function () {
+            activeSearchIndex = index;
+            applySelection(person.id);
+            renderSearch();
+            centerPerson(person.id);
+          });
+          searchResults.appendChild(button);
+        }
+        searchResults.hidden = false;
+      }
+
+      function renderSearch() {
+        clearSearchState();
+        const query = searchInput?.value.trim().toLowerCase() || "";
+        if (!query) {
+          searchMatches = [];
+          activeSearchIndex = 0;
+          renderSearchResults();
+          return;
+        }
+
+        searchMatches = people.filter((person) => person.searchText.includes(query));
+        if (!searchMatches.length) {
+          activeSearchIndex = 0;
+          renderSearchResults();
+          return;
+        }
+
+        activeSearchIndex = Math.max(0, Math.min(activeSearchIndex, searchMatches.length - 1));
+        canvas.classList.add("search-mode");
+        for (const person of searchMatches) person.node.classList.add("search-match");
+        searchMatches[activeSearchIndex]?.node.classList.add("search-active");
+        renderSearchResults();
+      }
+
+      function focusSearchMatch(index) {
+        if (!searchMatches.length) return;
+        activeSearchIndex = (index + searchMatches.length) % searchMatches.length;
+        const person = searchMatches[activeSearchIndex];
+        if (!person) return;
+        applySelection(person.id);
+        renderSearch();
+        centerPerson(person.id);
       }
 
       function collectAncestors(personId) {
@@ -1105,11 +1319,41 @@
         });
       }
 
+      searchInput?.addEventListener("input", function () {
+        activeSearchIndex = 0;
+        renderSearch();
+        if (!searchMatches.length) {
+          applySelection(null);
+          return;
+        }
+        applySelection(searchMatches[0].id);
+        renderSearch();
+        centerPerson(searchMatches[0].id);
+      });
+
+      searchInput?.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          focusSearchMatch(activeSearchIndex);
+        } else if (event.key === "ArrowDown") {
+          event.preventDefault();
+          focusSearchMatch(activeSearchIndex + 1);
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          focusSearchMatch(activeSearchIndex - 1);
+        } else if (event.key === "Escape") {
+          searchInput.value = "";
+          applySelection(null);
+          renderSearch();
+        }
+      });
+
       shell.addEventListener("click", function (event) {
         if (!event.target.closest(".person")) applySelection(null);
       });
 
       renderZoom();
+      renderSearch();
     })();
   </script>
 </body>
