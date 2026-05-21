@@ -923,10 +923,10 @@
 
       const people = Array.from(document.querySelectorAll(".person")).map((node) => {
         const style = node.getAttribute("style") || "";
-        const leftMatch = style.match(/left:(\\d+(?:\\.\\d+)?)px/);
-        const topMatch = style.match(/top:(\\d+(?:\\.\\d+)?)px/);
+        const leftMatch = style.match(/left:(\d+(?:\.\d+)?)px/);
+        const topMatch = style.match(/top:(\d+(?:\.\d+)?)px/);
         const idText = node.querySelector(".id")?.textContent || "";
-        const personId = idText.replace(/^id:\\s*/, "").trim();
+        const personId = idText.replace(/^id:\s*/, "").trim();
         node.dataset.personId = personId;
         node.setAttribute("tabindex", "0");
         node.setAttribute("role", "button");
@@ -960,7 +960,7 @@
       }
 
       const links = Array.from(document.querySelectorAll(".tree-link")).map((path) => {
-        const nums = (path.getAttribute("d") || "").match(/-?\\d+(?:\\.\\d+)?/g)?.map(Number) || [];
+        const nums = (path.getAttribute("d") || "").match(/-?\d+(?:\.\d+)?/g)?.map(Number) || [];
         const type = path.classList.contains("spouse")
           ? "spouse"
           : path.classList.contains("sibling")
