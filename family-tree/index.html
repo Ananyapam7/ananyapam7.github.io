@@ -13,6 +13,8 @@
       --line: #b7a68c;
       --spouse: #8a7459;
       --sibling: #6f8b76;
+      --spouse-active: #b45f3c;
+      --sibling-active: #3f8a7e;
       --accent: #2d2a26;
     }
     * { box-sizing: border-box; }
@@ -209,6 +211,16 @@
       stroke-width: 3;
       filter: drop-shadow(0 1px 2px rgba(36, 31, 24, 0.12));
     }
+    .tree-link.related.spouse {
+      stroke: var(--spouse-active);
+      stroke-width: 4;
+      filter: drop-shadow(0 2px 4px rgba(180, 95, 60, 0.2));
+    }
+    .tree-link.related.sibling {
+      stroke: var(--sibling-active);
+      stroke-width: 4;
+      filter: drop-shadow(0 2px 4px rgba(63, 138, 126, 0.2));
+    }
     .tree-link.incoming {
       opacity: 1 !important;
       stroke: #4c6b88;
@@ -220,10 +232,6 @@
       stroke: #8b5e34;
       stroke-width: 4;
       filter: drop-shadow(0 2px 4px rgba(139, 94, 52, 0.18));
-    }
-    .tree-link.related.spouse,
-    .tree-link.related.sibling {
-      stroke-width: 3.5;
     }
     .empty {
       text-align: center;
