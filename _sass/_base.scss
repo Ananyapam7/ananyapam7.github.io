@@ -461,9 +461,40 @@ footer.sticky-bottom {
 
 // Repositories
 
-@media (min-width: 768px) {
+.repositories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+  align-items: start;
+
   .repo {
-    max-width: 50%;
+    width: 100%;
+    max-width: none;
+    padding: 0 !important;
+  }
+
+  .repo a {
+    display: block;
+  }
+
+  .repo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+}
+
+.repo-embed {
+  margin: 1rem 0 2rem;
+  text-align: center;
+
+  img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid var(--global-divider-color);
   }
 }
 

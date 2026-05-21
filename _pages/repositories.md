@@ -10,7 +10,7 @@ nav_order: 3
 ## GitHub Stats
 
 {% if site.data.repositories.github_users %}
-<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
+<div class="repositories">
   {% for user in site.data.repositories.github_users %}
     {% include repository/repo_user.html username=user %}
   {% endfor %}
@@ -20,14 +20,16 @@ nav_order: 3
 
 ### Contribution Graph
 
-<img src="http://ghchart.rshah.org/Ananyapam7" alt="Ananyapam7's Github chart" />
+<div class="repo-embed">
+  <img src="https://ghchart.rshah.org/Ananyapam7" alt="Ananyapam7's GitHub contribution chart" />
+</div>
 
 ---
 
 ## GitHub Repositories
 
 {% if site.data.repositories.github_repos %}
-<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
+<div class="repositories">
   {% for repo in site.data.repositories.github_repos %}
     {% include repository/repo.html repository=repo %}
   {% endfor %}
@@ -41,7 +43,7 @@ nav_order: 3
 These are some websites I developed during my undergrad days with [Satvik](https://sahasatvik.github.io/).
 
 {% if site.data.repositories.websites_designed %}
-<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
+<div class="repositories">
   {% for repo in site.data.repositories.websites_designed %}
     {% include repository/repo.html repository=repo %}
   {% endfor %}

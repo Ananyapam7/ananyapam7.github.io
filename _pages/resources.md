@@ -56,7 +56,7 @@ resources:
             type: pdf
             link: https://math24.wordpress.com/wp-content/uploads/2013/02/partial-differential-equations-by-evans.pdf
 
-  - subject: "- Statistics and Machine Leaarning"
+  - subject: "- Statistics and Machine Learning"
     subsections:
       - subsection: "- Linear Models"
         items:
