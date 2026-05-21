@@ -175,7 +175,7 @@
       "id": "9cabe3fa",
       "birth": null,
       "death": null,
-      "birth_place": "Behala",
+      "birth_place": "behala",
       "death_place": null,
       "gender": "male",
       "occupation": "Making bricks",
@@ -201,7 +201,7 @@
       "id": "b06d3c7a",
       "birth": null,
       "death": null,
-      "birth_place": "Jaguli",
+      "birth_place": "dharmada village",
       "death_place": null,
       "gender": "male",
       "occupation": "Printing Press at house",
@@ -600,8 +600,21 @@
       "notes": ""
     },
     {
-      "name": "Tulsi Charan Chakroborty",
+      "name": "Tulsi Charan Chattopadhay",
       "id": "5d2dea33",
+      "birth": null,
+      "death": null,
+      "birth_place": "ariadaha/near dakshineshwar/baranagar",
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Hari Pada Chattopadhay",
+      "id": "2c30b226",
       "birth": null,
       "death": null,
       "birth_place": null,
@@ -617,7 +630,7 @@
       "id": "1114c7e7",
       "birth": null,
       "death": null,
-      "birth_place": null,
+      "birth_place": "shibpur/howrah",
       "death_place": null,
       "gender": "female",
       "occupation": null,
@@ -1161,6 +1174,71 @@
     {
       "name": "Vijeta De",
       "id": "739788cc",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "female",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Babul De",
+      "id": "9c1e62aa",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Tutul De",
+      "id": "4bac6c9b",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Kalpana Basu",
+      "id": "bb07cbd5",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "female",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Buddhadeb Basu",
+      "id": "8fc9b675",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Vaisakhi Basu",
+      "id": "768dc671",
       "birth": null,
       "death": null,
       "birth_place": null,
@@ -2199,6 +2277,48 @@
       "person_a": "488b9360",
       "person_b": "739788cc",
       "id": "e8bf03ed"
+    },
+    {
+      "type": "parent",
+      "person_a": "2c30b226",
+      "person_b": "5d2dea33",
+      "id": "9c084e62"
+    },
+    {
+      "type": "parent",
+      "person_a": "95a2edd2",
+      "person_b": "9c1e62aa",
+      "id": "cee175c8"
+    },
+    {
+      "type": "parent",
+      "person_a": "95a2edd2",
+      "person_b": "4bac6c9b",
+      "id": "e65cf45e"
+    },
+    {
+      "type": "parent",
+      "person_a": "95a2edd2",
+      "person_b": "bb07cbd5",
+      "id": "0cdc9d1d"
+    },
+    {
+      "type": "spouse",
+      "person_a": "8fc9b675",
+      "person_b": "bb07cbd5",
+      "id": "a1b08eb8"
+    },
+    {
+      "type": "parent",
+      "person_a": "bb07cbd5",
+      "person_b": "768dc671",
+      "id": "27f62140"
+    },
+    {
+      "type": "parent",
+      "person_a": "8fc9b675",
+      "person_b": "768dc671",
+      "id": "b78f670f"
     }
   ],
   "sibling_groups": [
@@ -2313,6 +2433,14 @@
       "order": [
         "6bca09ff",
         "a3de2453"
+      ]
+    },
+    {
+      "id": "8783681a",
+      "order": [
+        "9c1e62aa",
+        "4bac6c9b",
+        "bb07cbd5"
       ]
     }
   ]
