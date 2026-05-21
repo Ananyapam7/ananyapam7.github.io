@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from .model import SIBLING_EDGE_TYPES, FamilyTree, Person
+from .model import FamilyTree, Person
 
 NODE_W = 180
 NODE_H = 72
@@ -24,7 +24,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       --muted: #756a5a;
       --line: #b7a68c;
       --spouse: #8a7459;
-      --sibling: #6f8b76;
       --spouse-active: #b45f3c;
       --sibling-active: #3f8a7e;
       --accent: #2d2a26;
@@ -108,10 +107,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       border-color: var(--spouse);
       border-top-style: dashed;
     }
-    .sample-line.sibling {
-      border-color: var(--sibling);
-      border-top-style: dotted;
-    }
     .tree-shell {
       overflow: auto;
       padding: 1.25rem;
@@ -148,10 +143,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .tree-link.spouse {
       stroke: var(--spouse);
       stroke-dasharray: 6 5;
-    }
-    .tree-link.sibling {
-      stroke: var(--sibling);
-      stroke-dasharray: 2 6;
     }
     .generation-label {
       position: absolute;
@@ -403,7 +394,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <div class="legend">
       <span><i class="sample-line"></i>Parent / child</span>
       <span><i class="sample-line spouse"></i>Spouse</span>
-      <span><i class="sample-line sibling"></i>Sibling</span>
     </div>
     <div class="toolbar">
       <button class="zoom-btn" id="zoom-out" type="button">Zoom out</button>
@@ -868,21 +858,6 @@ def _spouse_path(first_id: str, second_id: str, first: tuple[int, int], second: 
     )
 
 
-def _sibling_path(first_id: str, second_id: str, first: tuple[int, int], second: tuple[int, int]) -> str:
-    start, end = (first, second) if first[0] <= second[0] else (second, first)
-    start_id, end_id = (
-        (first_id, second_id) if first[0] <= second[0] else (second_id, first_id)
-    )
-    y = max(start[1], end[1]) + NODE_H + 16
-    start_x = start[0] + NODE_W / 2
-    end_x = end[0] + NODE_W / 2
-    return (
-        f'<path class="tree-link sibling" data-type="sibling" data-from="{_escape(start_id)}" data-to="{_escape(end_id)}" d="M {start_x:.1f} {y:.1f} '
-        f'C {start_x:.1f} {y + 18:.1f}, {end_x:.1f} {y + 18:.1f}, '
-        f'{end_x:.1f} {y:.1f}" />'
-    )
-
-
 def _render_tree(tree: FamilyTree) -> tuple[str, int, int]:
     if not tree.people:
         return '<p class="empty">No people in the tree yet.</p>', 900, 360
@@ -910,9 +885,6 @@ def _render_tree(tree: FamilyTree) -> tuple[str, int, int]:
             link_parts.append(_parent_path(rel.person_a, rel.person_b, first, second))
         elif rel.type == "spouse":
             link_parts.append(_spouse_path(rel.person_a, rel.person_b, first, second))
-        elif rel.type in SIBLING_EDGE_TYPES:
-            link_parts.append(_sibling_path(rel.person_a, rel.person_b, first, second))
-
     for person in tree.people.values():
         position = positions.get(person.id)
         if position:
