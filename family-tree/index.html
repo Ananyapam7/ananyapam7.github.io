@@ -158,6 +158,13 @@
       border-radius: 8px;
       padding: 0.7rem 0.75rem;
       box-shadow: 0 3px 12px rgba(36, 31, 24, 0.08);
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .person:hover {
+      transform: translateY(-1px);
+      border-color: #cdbca4;
+      box-shadow: 0 6px 18px rgba(36, 31, 24, 0.12);
     }
     .person .name {
       font-weight: 700;
@@ -173,6 +180,50 @@
       font-size: 0.64rem;
       color: #a19380;
       margin-top: 0.35rem;
+    }
+    .tree-canvas.selection-mode .person,
+    .tree-canvas.selection-mode .tree-link {
+      opacity: 0.2;
+    }
+    .tree-canvas.selection-mode .generation-label {
+      opacity: 0.35;
+    }
+    .person.connected,
+    .person.selected {
+      opacity: 1 !important;
+    }
+    .person.connected {
+      border-color: #cbb89b;
+      background: #fffaf2;
+    }
+    .person.selected {
+      border-color: var(--accent);
+      background: #f4ede2;
+      box-shadow: 0 0 0 3px rgba(45, 42, 38, 0.12), 0 10px 26px rgba(36, 31, 24, 0.18);
+    }
+    .tree-link {
+      transition: opacity 0.15s ease, stroke 0.15s ease, stroke-width 0.15s ease, filter 0.15s ease;
+    }
+    .tree-link.related {
+      opacity: 1 !important;
+      stroke-width: 3;
+      filter: drop-shadow(0 1px 2px rgba(36, 31, 24, 0.12));
+    }
+    .tree-link.incoming {
+      opacity: 1 !important;
+      stroke: #4c6b88;
+      stroke-width: 4;
+      filter: drop-shadow(0 2px 4px rgba(76, 107, 136, 0.18));
+    }
+    .tree-link.outgoing {
+      opacity: 1 !important;
+      stroke: #8b5e34;
+      stroke-width: 4;
+      filter: drop-shadow(0 2px 4px rgba(139, 94, 52, 0.18));
+    }
+    .tree-link.related.spouse,
+    .tree-link.related.sibling {
+      stroke-width: 3.5;
     }
     .empty {
       text-align: center;
@@ -820,7 +871,127 @@
       const zoomOut = document.getElementById("zoom-out");
       const zoomReset = document.getElementById("zoom-reset");
       const shell = document.querySelector(".tree-shell");
-      let scale = 1;
+      const canvas = document.querySelector(".tree-canvas");
+      let scale = 0.35;
+      let selectedId = null;
+
+      const NODE_W = 180;
+      const NODE_H = 72;
+      const CENTER_X = NODE_W / 2;
+      const CENTER_Y = NODE_H / 2;
+
+      const people = Array.from(document.querySelectorAll(".person")).map((node) => {
+        const style = node.getAttribute("style") || "";
+        const leftMatch = style.match(/left:(\\d+(?:\\.\\d+)?)px/);
+        const topMatch = style.match(/top:(\\d+(?:\\.\\d+)?)px/);
+        const idText = node.querySelector(".id")?.textContent || "";
+        const personId = idText.replace(/^id:\\s*/, "").trim();
+        node.dataset.personId = personId;
+        node.setAttribute("tabindex", "0");
+        node.setAttribute("role", "button");
+        return {
+          id: personId,
+          node,
+          left: leftMatch ? Number(leftMatch[1]) : 0,
+          top: topMatch ? Number(topMatch[1]) : 0,
+        };
+      });
+
+      function nearestPerson(matchX, matchY, anchor) {
+        let best = null;
+        let bestScore = Infinity;
+        for (const person of people) {
+          let x = person.left + CENTER_X;
+          let y = person.top + CENTER_Y;
+          if (anchor === "top") y = person.top;
+          if (anchor === "bottom") y = person.top + NODE_H;
+          if (anchor === "left") x = person.left;
+          if (anchor === "right") x = person.left + NODE_W;
+          const dx = x - matchX;
+          const dy = y - matchY;
+          const score = Math.abs(dx) + Math.abs(dy) * 1.5;
+          if (score < bestScore) {
+            bestScore = score;
+            best = person;
+          }
+        }
+        return best;
+      }
+
+      const links = Array.from(document.querySelectorAll(".tree-link")).map((path) => {
+        const nums = (path.getAttribute("d") || "").match(/-?\\d+(?:\\.\\d+)?/g)?.map(Number) || [];
+        const type = path.classList.contains("spouse")
+          ? "spouse"
+          : path.classList.contains("sibling")
+          ? "sibling"
+          : "parent";
+        let from = null;
+        let to = null;
+
+        if (type === "parent" && nums.length >= 8) {
+          from = nearestPerson(nums[0], nums[1], "bottom");
+          to = nearestPerson(nums[6], nums[7], "top");
+        } else if (type === "spouse" && nums.length >= 8) {
+          from = nearestPerson(nums[0], nums[1], "right");
+          to = nearestPerson(nums[6], nums[7], "left");
+        } else if (type === "sibling" && nums.length >= 8) {
+          from = nearestPerson(nums[0], nums[1] - 16, "bottom");
+          to = nearestPerson(nums[6], nums[7] - 16, "bottom");
+        }
+
+        if (from) path.dataset.from = from.id;
+        if (to) path.dataset.to = to.id;
+        path.dataset.type = type;
+
+        return { path, type, from: from?.id || null, to: to?.id || null };
+      });
+
+      function clearSelectionState() {
+        canvas.classList.remove("selection-mode");
+        for (const person of people) {
+          person.node.classList.remove("selected", "connected");
+        }
+        for (const link of links) {
+          link.path.classList.remove("incoming", "outgoing", "related");
+        }
+      }
+
+      function applySelection(personId) {
+        selectedId = personId;
+        clearSelectionState();
+        if (!personId) return;
+
+        canvas.classList.add("selection-mode");
+        const connectedIds = new Set([personId]);
+
+        for (const link of links) {
+          const isFrom = link.from === personId;
+          const isTo = link.to === personId;
+          const isRelated = isFrom || isTo;
+          if (!isRelated) continue;
+
+          if (link.from) connectedIds.add(link.from);
+          if (link.to) connectedIds.add(link.to);
+
+          if (link.type === "parent") {
+            link.path.classList.add(isFrom ? "outgoing" : "incoming");
+          } else {
+            link.path.classList.add("related");
+          }
+        }
+
+        for (const person of people) {
+          if (person.id === personId) {
+            person.node.classList.add("selected");
+          } else if (connectedIds.has(person.id)) {
+            person.node.classList.add("connected");
+          }
+        }
+      }
+
+      function toggleSelection(personId) {
+        applySelection(selectedId === personId ? null : personId);
+      }
 
       function renderZoom() {
         stage.style.transform = `scale(${scale})`;
@@ -850,6 +1021,25 @@
 
       zoomReset.addEventListener("click", function () {
         setZoom(1);
+      });
+
+      for (const person of people) {
+        person.node.addEventListener("click", function (event) {
+          event.stopPropagation();
+          toggleSelection(person.id);
+        });
+        person.node.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleSelection(person.id);
+          }
+        });
+      }
+
+      shell.addEventListener("click", function (event) {
+        if (!event.target.closest(".person")) {
+          applySelection(null);
+        }
       });
 
       renderZoom();
