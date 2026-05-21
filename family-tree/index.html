@@ -13,8 +13,6 @@
       --line: #b7a68c;
       --spouse: #8a7459;
       --sibling: #6f8b76;
-      --spouse-active: #b45f3c;
-      --sibling-active: #3f8a7e;
       --accent: #2d2a26;
     }
     * { box-sizing: border-box; }
@@ -55,38 +53,6 @@
       align-items: center;
       gap: 0.35rem;
     }
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.6rem;
-      margin-top: 0.9rem;
-    }
-    .zoom-label {
-      color: var(--muted);
-      font-size: 0.84rem;
-      min-width: 3.5rem;
-      text-align: center;
-    }
-    .zoom-btn {
-      appearance: none;
-      border: 1px solid #d8cdbd;
-      background: #fffdf8;
-      color: var(--ink);
-      border-radius: 999px;
-      padding: 0.45rem 0.8rem;
-      font: inherit;
-      font-size: 0.88rem;
-      cursor: pointer;
-      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
-    }
-    .zoom-btn:hover {
-      background: #f4ede2;
-      border-color: #cdbca4;
-    }
-    .zoom-btn:active {
-      transform: translateY(1px);
-    }
     .sample-line {
       display: inline-block;
       width: 2rem;
@@ -103,11 +69,6 @@
     .tree-shell {
       overflow: auto;
       padding: 1.25rem;
-    }
-    .tree-stage {
-      display: inline-block;
-      transform-origin: top left;
-      transition: transform 0.12s ease;
     }
     .tree-canvas {
       position: relative;
@@ -160,13 +121,6 @@
       border-radius: 8px;
       padding: 0.7rem 0.75rem;
       box-shadow: 0 3px 12px rgba(36, 31, 24, 0.08);
-      cursor: pointer;
-      transition: opacity 0.15s ease, transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-    }
-    .person:hover {
-      transform: translateY(-1px);
-      border-color: #cdbca4;
-      box-shadow: 0 6px 18px rgba(36, 31, 24, 0.12);
     }
     .person .name {
       font-weight: 700;
@@ -183,89 +137,6 @@
       color: #a19380;
       margin-top: 0.35rem;
     }
-    .tree-canvas.selection-mode .person,
-    .tree-canvas.selection-mode .tree-link {
-      opacity: 0.2;
-    }
-    .tree-canvas.selection-mode .generation-label {
-      opacity: 0.35;
-    }
-    .person.selected,
-    .person.is-child,
-    .person.is-sibling,
-    .person.is-parent,
-    .person.is-ancestor,
-    .person.is-spouse {
-      opacity: 1 !important;
-    }
-    .person.selected {
-      border-color: var(--accent);
-      background: #f4ede2;
-      box-shadow: 0 0 0 3px rgba(45, 42, 38, 0.12), 0 10px 26px rgba(36, 31, 24, 0.18);
-    }
-    .person.is-child {
-      border-color: #8b5e34;
-      background: #fff4e9;
-      box-shadow: 0 0 0 2px rgba(139, 94, 52, 0.12);
-    }
-    .person.is-sibling {
-      border-color: var(--sibling-active);
-      background: #edf8f5;
-      box-shadow: 0 0 0 2px rgba(63, 138, 126, 0.12);
-    }
-    .person.is-parent {
-      border-color: #4c6b88;
-      background: #eef5fb;
-      box-shadow: 0 0 0 2px rgba(76, 107, 136, 0.12);
-    }
-    .person.is-ancestor {
-      border-color: #7f88a6;
-      background: #f3f4fb;
-      box-shadow: 0 0 0 2px rgba(127, 136, 166, 0.1);
-    }
-    .person.is-spouse {
-      border-color: var(--spouse-active);
-      background: #fbf0eb;
-      box-shadow: 0 0 0 2px rgba(180, 95, 60, 0.1);
-    }
-    .tree-link {
-      transition: opacity 0.15s ease, stroke 0.15s ease, stroke-width 0.15s ease, filter 0.15s ease;
-    }
-    .tree-link.edge-child,
-    .tree-link.edge-sibling,
-    .tree-link.edge-parent,
-    .tree-link.edge-ancestor,
-    .tree-link.edge-spouse {
-      opacity: 1 !important;
-    }
-    .tree-link.edge-spouse {
-      stroke: var(--spouse-active);
-      stroke-width: 4;
-      filter: drop-shadow(0 2px 4px rgba(180, 95, 60, 0.2));
-    }
-    .tree-link.edge-sibling {
-      stroke: var(--sibling-active);
-      stroke-width: 4;
-      filter: drop-shadow(0 2px 4px rgba(63, 138, 126, 0.2));
-    }
-    .tree-link.edge-parent {
-      opacity: 1 !important;
-      stroke: #4c6b88;
-      stroke-width: 4;
-      filter: drop-shadow(0 2px 4px rgba(76, 107, 136, 0.18));
-    }
-    .tree-link.edge-child {
-      opacity: 1 !important;
-      stroke: #8b5e34;
-      stroke-width: 4;
-      filter: drop-shadow(0 2px 4px rgba(139, 94, 52, 0.18));
-    }
-    .tree-link.edge-ancestor {
-      opacity: 1 !important;
-      stroke: #7f88a6;
-      stroke-width: 3.5;
-      filter: drop-shadow(0 1px 3px rgba(127, 136, 166, 0.16));
-    }
     .empty {
       text-align: center;
       color: var(--muted);
@@ -280,8 +151,6 @@
       @page { size: landscape; margin: 0.25in; }
       header { position: static; }
       .tree-shell { padding: 0; overflow: visible; }
-      .toolbar { display: none; }
-      .tree-stage { transform: none !important; }
       .tree-canvas { box-shadow: none; }
     }
   </style>
@@ -295,15 +164,8 @@
       <span><i class="sample-line spouse"></i>Spouse</span>
       <span><i class="sample-line sibling"></i>Sibling</span>
     </div>
-    <div class="toolbar">
-      <button class="zoom-btn" id="zoom-out" type="button">Zoom out</button>
-      <div class="zoom-label" id="zoom-label">100%</div>
-      <button class="zoom-btn" id="zoom-in" type="button">Zoom in</button>
-      <button class="zoom-btn" id="zoom-reset" type="button">Reset</button>
-    </div>
   </header>
   <main class="tree-shell">
-<div class="tree-stage" id="tree-stage">
 <div class="tree-canvas">
   <svg class="tree-links" viewBox="0 0 6714 1356" aria-hidden="true">
     <path class="tree-link" d="M 249.0 1110.0 C 249.0 1179.3, 2025.0 1179.3, 2025.0 1236.0" />
@@ -901,270 +763,7 @@
     <div class="id">id: 7c2fdcbc</div>
   </article>
 </div>
-</div>
   </main>
   <footer>Standalone share file generated from your local family tree data.</footer>
-  <script>
-    (function () {
-      const stage = document.getElementById("tree-stage");
-      const label = document.getElementById("zoom-label");
-      const zoomIn = document.getElementById("zoom-in");
-      const zoomOut = document.getElementById("zoom-out");
-      const zoomReset = document.getElementById("zoom-reset");
-      const shell = document.querySelector(".tree-shell");
-      const canvas = document.querySelector(".tree-canvas");
-      let scale = 0.35;
-      let selectedId = null;
-
-      const NODE_W = 180;
-      const NODE_H = 72;
-      const CENTER_X = NODE_W / 2;
-      const CENTER_Y = NODE_H / 2;
-
-      const people = Array.from(document.querySelectorAll(".person")).map((node) => {
-        const style = node.getAttribute("style") || "";
-        const leftMatch = style.match(/left:(\d+(?:\.\d+)?)px/);
-        const topMatch = style.match(/top:(\d+(?:\.\d+)?)px/);
-        const idText = node.querySelector(".id")?.textContent || "";
-        const personId = idText.replace(/^id:\s*/, "").trim();
-        node.dataset.personId = personId;
-        node.setAttribute("tabindex", "0");
-        node.setAttribute("role", "button");
-        return {
-          id: personId,
-          node,
-          left: leftMatch ? Number(leftMatch[1]) : 0,
-          top: topMatch ? Number(topMatch[1]) : 0,
-        };
-      });
-
-      function nearestPerson(matchX, matchY, anchor) {
-        let best = null;
-        let bestScore = Infinity;
-        for (const person of people) {
-          let x = person.left + CENTER_X;
-          let y = person.top + CENTER_Y;
-          if (anchor === "top") y = person.top;
-          if (anchor === "bottom") y = person.top + NODE_H;
-          if (anchor === "left") x = person.left;
-          if (anchor === "right") x = person.left + NODE_W;
-          const dx = x - matchX;
-          const dy = y - matchY;
-          const score = Math.abs(dx) + Math.abs(dy) * 1.5;
-          if (score < bestScore) {
-            bestScore = score;
-            best = person;
-          }
-        }
-        return best;
-      }
-
-      const links = Array.from(document.querySelectorAll(".tree-link")).map((path) => {
-        const nums = (path.getAttribute("d") || "").match(/-?\d+(?:\.\d+)?/g)?.map(Number) || [];
-        const type = path.classList.contains("spouse")
-          ? "spouse"
-          : path.classList.contains("sibling")
-          ? "sibling"
-          : "parent";
-        let from = null;
-        let to = null;
-
-        if (type === "parent" && nums.length >= 8) {
-          from = nearestPerson(nums[0], nums[1], "bottom");
-          to = nearestPerson(nums[6], nums[7], "top");
-        } else if (type === "spouse" && nums.length >= 8) {
-          from = nearestPerson(nums[0], nums[1], "right");
-          to = nearestPerson(nums[6], nums[7], "left");
-        } else if (type === "sibling" && nums.length >= 8) {
-          from = nearestPerson(nums[0], nums[1] - 16, "bottom");
-          to = nearestPerson(nums[6], nums[7] - 16, "bottom");
-        }
-
-        if (from) path.dataset.from = from.id;
-        if (to) path.dataset.to = to.id;
-        path.dataset.type = type;
-
-        return { path, type, from: from?.id || null, to: to?.id || null };
-      });
-
-      const parentsByChild = new Map();
-      const childrenByParent = new Map();
-      const siblingsByPerson = new Map();
-      const spousesByPerson = new Map();
-
-      function addToMapSet(map, key, value) {
-        if (!key || !value) return;
-        if (!map.has(key)) map.set(key, new Set());
-        map.get(key).add(value);
-      }
-
-      for (const link of links) {
-        if (link.type === "parent") {
-          addToMapSet(parentsByChild, link.to, link.from);
-          addToMapSet(childrenByParent, link.from, link.to);
-        } else if (link.type === "sibling") {
-          addToMapSet(siblingsByPerson, link.from, link.to);
-          addToMapSet(siblingsByPerson, link.to, link.from);
-        } else if (link.type === "spouse") {
-          addToMapSet(spousesByPerson, link.from, link.to);
-          addToMapSet(spousesByPerson, link.to, link.from);
-        }
-      }
-
-      for (const [childId, parentSet] of parentsByChild.entries()) {
-        const parents = Array.from(parentSet);
-        for (const parentId of parents) {
-          const siblings = childrenByParent.get(parentId) || new Set();
-          for (const siblingId of siblings) {
-            if (siblingId !== childId) {
-              addToMapSet(siblingsByPerson, childId, siblingId);
-            }
-          }
-        }
-      }
-
-      function clearSelectionState() {
-        canvas.classList.remove("selection-mode");
-        for (const person of people) {
-          person.node.classList.remove(
-            "selected",
-            "is-child",
-            "is-sibling",
-            "is-parent",
-            "is-ancestor",
-            "is-spouse"
-          );
-        }
-        for (const link of links) {
-          link.path.classList.remove(
-            "edge-child",
-            "edge-sibling",
-            "edge-parent",
-            "edge-ancestor",
-            "edge-spouse"
-          );
-        }
-      }
-
-      function collectAncestors(personId) {
-        const ancestors = new Set();
-        const stack = [...(parentsByChild.get(personId) || [])];
-        while (stack.length) {
-          const nextId = stack.pop();
-          if (!nextId || ancestors.has(nextId)) continue;
-          ancestors.add(nextId);
-          for (const parentId of parentsByChild.get(nextId) || []) {
-            if (!ancestors.has(parentId)) stack.push(parentId);
-          }
-        }
-        return ancestors;
-      }
-
-      function applySelection(personId) {
-        selectedId = personId;
-        clearSelectionState();
-        if (!personId) return;
-
-        canvas.classList.add("selection-mode");
-        const childIds = new Set(childrenByParent.get(personId) || []);
-        const parentIds = new Set(parentsByChild.get(personId) || []);
-        const siblingIds = new Set(siblingsByPerson.get(personId) || []);
-        const spouseIds = new Set(spousesByPerson.get(personId) || []);
-        const ancestorIds = collectAncestors(personId);
-        for (const parentId of parentIds) ancestorIds.delete(parentId);
-
-        for (const link of links) {
-          if (link.type === "parent") {
-            if (link.from === personId && childIds.has(link.to)) {
-              link.path.classList.add("edge-child");
-            } else if (link.to === personId && parentIds.has(link.from)) {
-              link.path.classList.add("edge-parent");
-            } else if (ancestorIds.has(link.from) && (ancestorIds.has(link.to) || parentIds.has(link.to))) {
-              link.path.classList.add("edge-ancestor");
-            }
-          } else if (link.type === "sibling") {
-            if (link.from === personId || link.to === personId) {
-              link.path.classList.add("edge-sibling");
-            }
-          } else if (link.type === "spouse") {
-            if (link.from === personId || link.to === personId) {
-              link.path.classList.add("edge-spouse");
-            }
-          }
-        }
-
-        for (const person of people) {
-          if (person.id === personId) {
-            person.node.classList.add("selected");
-          } else if (childIds.has(person.id)) {
-            person.node.classList.add("is-child");
-          } else if (siblingIds.has(person.id)) {
-            person.node.classList.add("is-sibling");
-          } else if (parentIds.has(person.id)) {
-            person.node.classList.add("is-parent");
-          } else if (ancestorIds.has(person.id)) {
-            person.node.classList.add("is-ancestor");
-          } else if (spouseIds.has(person.id)) {
-            person.node.classList.add("is-spouse");
-          }
-        }
-      }
-
-      function toggleSelection(personId) {
-        applySelection(selectedId === personId ? null : personId);
-      }
-
-      function renderZoom() {
-        stage.style.transform = `scale(${scale})`;
-        label.textContent = `${Math.round(scale * 100)}%`;
-      }
-
-      function setZoom(nextScale) {
-        const clamped = Math.max(0.35, Math.min(2, nextScale));
-        if (clamped === scale) return;
-        const rect = shell.getBoundingClientRect();
-        const centerX = shell.scrollLeft + rect.width / 2;
-        const centerY = shell.scrollTop + rect.height / 2;
-        const ratio = clamped / scale;
-        scale = clamped;
-        renderZoom();
-        shell.scrollLeft = centerX * ratio - rect.width / 2;
-        shell.scrollTop = centerY * ratio - rect.height / 2;
-      }
-
-      zoomIn.addEventListener("click", function () {
-        setZoom(Number((scale + 0.1).toFixed(2)));
-      });
-
-      zoomOut.addEventListener("click", function () {
-        setZoom(Number((scale - 0.1).toFixed(2)));
-      });
-
-      zoomReset.addEventListener("click", function () {
-        setZoom(1);
-      });
-
-      for (const person of people) {
-        person.node.addEventListener("click", function (event) {
-          event.stopPropagation();
-          toggleSelection(person.id);
-        });
-        person.node.addEventListener("keydown", function (event) {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            toggleSelection(person.id);
-          }
-        });
-      }
-
-      shell.addEventListener("click", function (event) {
-        if (!event.target.closest(".person")) {
-          applySelection(null);
-        }
-      });
-
-      renderZoom();
-    })();
-  </script>
 </body>
 </html>
