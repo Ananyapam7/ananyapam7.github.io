@@ -483,7 +483,7 @@
       "notes": ""
     },
     {
-      "name": "Poly",
+      "name": "Deepti",
       "id": "90d7d991",
       "birth": null,
       "death": null,
@@ -1042,7 +1042,7 @@
       "notes": ""
     },
     {
-      "name": "Unknown De",
+      "name": "Sushil De",
       "id": "4eef54f8",
       "birth": null,
       "death": null,
@@ -1053,6 +1053,123 @@
       "photo": null,
       "sources": "",
       "notes": "Name not yet known"
+    },
+    {
+      "name": "Pradeep De",
+      "id": "fb7c7c98",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Priyanka De",
+      "id": "4c355634",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "female",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Hirak De",
+      "id": "488b9360",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Rupak De",
+      "id": "e9bc093c",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Manju De",
+      "id": "2c75b35b",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "female",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Anil Kumar Dutta",
+      "id": "6f86d83f",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Rakesh Dutta",
+      "id": "6bca09ff",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
+    },
+    {
+      "name": "Rajesh Dutta",
+      "id": "a3de2453",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "male",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": "Younger"
+    },
+    {
+      "name": "Vijeta De",
+      "id": "739788cc",
+      "birth": null,
+      "death": null,
+      "birth_place": null,
+      "death_place": null,
+      "gender": "female",
+      "occupation": null,
+      "photo": null,
+      "sources": "",
+      "notes": ""
     },
     {
       "name": "Tulsi Charan Goswami",
@@ -2016,6 +2133,72 @@
       "person_a": "cb80c9d6",
       "person_b": "776616bc",
       "id": "3b9a6b42"
+    },
+    {
+      "type": "parent",
+      "person_a": "b5e75e37",
+      "person_b": "fb7c7c98",
+      "id": "efc7eff3"
+    },
+    {
+      "type": "parent",
+      "person_a": "fb7c7c98",
+      "person_b": "4c355634",
+      "id": "d4e64c50"
+    },
+    {
+      "type": "parent",
+      "person_a": "61adc2e1",
+      "person_b": "488b9360",
+      "id": "0c2aa835"
+    },
+    {
+      "type": "parent",
+      "person_a": "61adc2e1",
+      "person_b": "e9bc093c",
+      "id": "a98f8ec4"
+    },
+    {
+      "type": "parent",
+      "person_a": "61adc2e1",
+      "person_b": "2c75b35b",
+      "id": "eccabc41"
+    },
+    {
+      "type": "spouse",
+      "person_a": "2c75b35b",
+      "person_b": "6f86d83f",
+      "id": "c312bc69"
+    },
+    {
+      "type": "parent",
+      "person_a": "2c75b35b",
+      "person_b": "6bca09ff",
+      "id": "799dc477"
+    },
+    {
+      "type": "parent",
+      "person_a": "6f86d83f",
+      "person_b": "6bca09ff",
+      "id": "cf5bbe19"
+    },
+    {
+      "type": "parent",
+      "person_a": "2c75b35b",
+      "person_b": "a3de2453",
+      "id": "5bec3108"
+    },
+    {
+      "type": "parent",
+      "person_a": "6f86d83f",
+      "person_b": "a3de2453",
+      "id": "1e08a8a7"
+    },
+    {
+      "type": "parent",
+      "person_a": "488b9360",
+      "person_b": "739788cc",
+      "id": "e8bf03ed"
     }
   ],
   "sibling_groups": [
@@ -2115,6 +2298,21 @@
       "order": [
         "ac3979b3",
         "42461a2e"
+      ]
+    },
+    {
+      "id": "4ff3fe64",
+      "order": [
+        "488b9360",
+        "e9bc093c",
+        "2c75b35b"
+      ]
+    },
+    {
+      "id": "9ff0a639",
+      "order": [
+        "6bca09ff",
+        "a3de2453"
       ]
     }
   ]
