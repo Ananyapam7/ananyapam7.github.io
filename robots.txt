@@ -1,4 +1,19 @@
+# Ananyapam De — https://ananyapam7.github.io/
+# Research assistant in mathematics at TU Clausthal.
+# Public pages: about, blog, projects, publications, CV, talks, and news.
+
 User-agent: *
-Disallow:
+Allow: /
+Allow: /blog/
+Allow: /projects/
+Allow: /publications/
+Allow: /cv/
+Allow: /talks/
+Allow: /news/
+Allow: /repositories/
+
+# The family tree is private and is not part of the public site.
+Disallow: /family-tree/
+Disallow: /family_tree_src/
 
 Sitemap: https://ananyapam7.github.io/sitemap.xml

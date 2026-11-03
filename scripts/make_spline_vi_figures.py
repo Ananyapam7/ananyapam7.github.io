@@ -964,6 +964,42 @@ def figure_penalty() -> dict:
     return summary
 
 
+def figure_thumbnail() -> None:
+    """Square card of the three example mixtures.
+
+    The blog list shows this at the column width with a 1:1 aspect ratio,
+    so the file is exactly 1200 by 1200.
+    """
+    model = family(1)
+    x = grid()
+    xn = x.numpy()
+    weights = (
+        ("#1f77b4", torch.tensor([0.46, 0.28, 0.14, 0.08, 0.04], dtype=torch.float64)),
+        ("#222222", torch.tensor([0.1, 0.2, 0.4, 0.2, 0.1], dtype=torch.float64)),
+        ("#d62728", torch.tensor([0.05, 0.10, 0.15, 0.30, 0.40], dtype=torch.float64)),
+    )
+    paper = "#f7f6f4"
+    figure = plt.figure(figsize=(6.0, 6.0), dpi=200, facecolor=paper)
+    axis = figure.add_axes((0.0, 0.0, 1.0, 1.0))
+    axis.set_facecolor(paper)
+    drawn = []
+    for color, gamma in weights:
+        density = model.density(x, gamma).numpy()
+        drawn.append(density)
+        axis.fill_between(xn, density, 0.0, color=color, alpha=0.13, linewidth=0)
+        axis.plot(xn, density, color=color, lw=3.6, solid_capstyle="butt", solid_joinstyle="round")
+    peak = float(max(curve.max() for curve in drawn))
+    axis.set_xlim(0.0, 1.0)
+    axis.set_ylim(0.0, peak * 1.04)
+    axis.set_xticks([])
+    axis.set_yticks([])
+    for spine in axis.spines.values():
+        spine.set_visible(False)
+    figure.savefig(OUT / "thumbnail.png", dpi=200, facecolor=paper, pad_inches=0)
+    plt.close(figure)
+    print("wrote thumbnail.png")
+
+
 def main() -> None:
     report = {
         "mixture": figure_mixture(),
@@ -986,4 +1022,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "thumbnail":
+        figure_thumbnail()
+    else:
+        main()
