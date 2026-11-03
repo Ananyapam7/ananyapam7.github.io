@@ -60,6 +60,192 @@ img {
   max-width: 90vw;
 }
 
+.post-content {
+  figure,
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  p.reference {
+    scroll-margin-top: 66px;
+  }
+
+  p.table-caption {
+    margin: 1.5rem 0 0.55rem;
+    color: var(--global-text-color);
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.45;
+  }
+
+  .paper-wrap {
+    overflow-x: auto;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto 0.3rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table.paper {
+    width: max-content;
+    min-width: 0;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-size: 0.95rem;
+
+    th,
+    td {
+      border: none;
+      padding: 0.4rem 0.75rem;
+      background: transparent;
+      vertical-align: baseline;
+    }
+
+    thead th {
+      border-top: 1.6px solid var(--global-text-color);
+      border-bottom: 0.7px solid var(--global-text-color);
+      font-weight: 600;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 1.6px solid var(--global-text-color);
+    }
+
+    .num {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    &.compact {
+      width: max-content;
+      min-width: 0;
+      max-width: 100%;
+
+      th,
+      td {
+        padding: 0.22rem 0.6rem 0.22rem 0;
+      }
+
+      th:first-child,
+      td:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+
+  p.table-note {
+    margin: 0.2rem 0 1.35rem;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .spline-figure {
+    margin: 1.35rem auto 0.2rem;
+
+    .spline-fallback,
+    .spline-plot {
+      width: 100%;
+      max-width: 100%;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+    }
+
+    .spline-plot .modebar {
+      opacity: 0;
+      transition: opacity 0.18s ease;
+    }
+
+    .spline-plot:hover .modebar,
+    .spline-plot:focus-within .modebar {
+      opacity: 1;
+    }
+  }
+
+  details.technical-note {
+    margin: 1.5rem 0 1.75rem;
+    border: 1px solid var(--global-divider-color);
+    border-left: 3px solid var(--global-theme-color);
+    border-radius: 8px;
+    background: var(--global-card-bg-color);
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 0.95rem 2rem 0.95rem 1.05rem;
+      position: relative;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 1.05rem;
+        top: 1.35rem;
+        width: 0.45rem;
+        height: 0.45rem;
+        border-right: 2px solid var(--global-text-color);
+        border-bottom: 2px solid var(--global-text-color);
+        transform: rotate(45deg);
+        opacity: 0.7;
+      }
+    }
+
+    &[open] summary {
+      border-bottom: 1px solid var(--global-divider-color);
+
+      &::after {
+        top: 1.5rem;
+        transform: rotate(-135deg);
+      }
+    }
+
+    .note-kicker {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--global-theme-color);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .note-title {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .note-lead {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.45;
+    }
+
+    .note-body {
+      padding: 0.35rem 1.05rem 0.4rem;
+
+      h3 {
+        margin-top: 1.35rem;
+        font-size: 1.08rem;
+      }
+    }
+  }
+}
+
 blockquote {
   background: var(--global-bg-color);
   border-left: 5px solid var(--global-theme-color);
@@ -597,6 +783,14 @@ footer.sticky-bottom {
   mjx-container[jax="CHTML"][display="true"] {
     display: unset;
   }
+}
+
+.post-subtitle {
+  margin-top: -0.15rem;
+  margin-bottom: 0.35rem;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: var(--global-text-color-light);
 }
 
 .post-list {

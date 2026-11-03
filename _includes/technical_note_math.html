@@ -1,0 +1,9 @@
+<script>
+  document.querySelectorAll("details.technical-note").forEach(function (note) {
+    note.addEventListener("toggle", function () {
+      if (note.open && window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([note]);
+      }
+    });
+  });
+</script>

@@ -1,0 +1,144 @@
+<details class="technical-note" markdown="1">
+<summary>
+<span class="note-kicker">Technical note</span>
+<span class="note-title">Why the CDF of a B-spline mixture has cumulative-sum coefficients</span>
+<span class="note-lead">Degree elevation turns the mixture CDF into a higher-degree spline. The normalization constants cancel, so the coefficients are cumulative sums of the mixture weights and the integral does not have to be computed numerically.</span>
+</summary>
+<div class="note-body" markdown="1">
+
+Consider a B-spline basis of degree <span markdown="0">\(\rho\)</span> on a clamped knot vector
+
+
+
+<div markdown="0">
+\[t_1\leq\cdots\leq t_{K+\rho+1}.\]
+</div>
+
+
+
+We normalize each basis function <span markdown="0">\(B_{k,\rho}\)</span> to obtain a probability density:
+
+
+
+<div markdown="0">
+\[b_k(e)=\frac{B_{k,\rho}(e)}{a_k}, \qquad a_k=\frac{t_{k+\rho+1}-t_k}{\rho+1}.\]
+</div>
+
+
+
+For weights <span markdown="0">\(\gamma\)</span> on the probability simplex, the mixture is
+
+
+
+<div markdown="0">
+\[q_\gamma(e)=\sum_{k=1}^K\gamma_k b_k(e).\]
+</div>
+
+
+
+The objective is to represent
+
+
+
+<div markdown="0">
+\[F_\gamma(e)=\int_0^e q_\gamma(s)\,ds\]
+</div>
+
+
+
+as another spline, without performing numerical integration.
+
+### The derivative identity
+
+A standard B-spline derivative identity is
+
+
+
+<div markdown="0">
+\[\frac{d}{de}B_{k,\rho+1}(e) = \frac{\rho+1}{t_{k+\rho+1}-t_k} B_{k,\rho}(e) - \frac{\rho+1}{t_{k+\rho+2}-t_{k+1}} B_{k+1,\rho}(e),\]
+</div>
+
+
+
+with indices interpreted on the degree-raised, boundary-extended knot vector.
+
+Suppose we express the CDF as
+
+
+
+<div markdown="0">
+\[F_\gamma(e)= \sum_{m=0}^K c_m\bar B_{m,\rho+1}(e).\]
+</div>
+
+
+
+Differentiating the expansion and collecting the coefficients of the degree-<span markdown="0">\(\rho\)</span> basis gives
+
+
+
+<div markdown="0">
+\[F_\gamma'(e) = \sum_{k=1}^K \frac{c_k-c_{k-1}}{a_k} B_{k,\rho}(e).\]
+</div>
+
+
+
+But the derivative of the CDF must equal the original density:
+
+
+
+<div markdown="0">
+\[F_\gamma'(e) = q_\gamma(e) = \sum_{k=1}^K \frac{\gamma_k}{a_k}B_{k,\rho}(e).\]
+</div>
+
+
+
+Matching coefficients therefore gives
+
+
+
+<div markdown="0">
+\[c_k-c_{k-1}=\gamma_k.\]
+</div>
+
+
+
+Since <span markdown="0">\(F_\gamma(0)=0\)</span>, the initial coefficient is <span markdown="0">\(c_0=0\)</span>, and hence
+
+
+
+<div markdown="0">
+\[c_m=\sum_{k=1}^m\gamma_k.\]
+</div>
+
+
+
+Thus
+
+
+
+<div markdown="0">
+\[\boxed{ F_\gamma(e)= \sum_{m=0}^K \left(\sum_{k=1}^m\gamma_k\right) \bar B_{m,\rho+1}(e) }\]
+</div>
+
+
+
+with the coefficient at <span markdown="0">\(m=0\)</span> equal to zero.
+
+The final coefficient is
+
+
+
+<div markdown="0">
+\[c_K=\sum_{k=1}^K\gamma_k=1,\]
+</div>
+
+
+
+which also ensures <span markdown="0">\(F_\gamma(1)=1\)</span>.
+
+The cancellation of the normalization constants <span markdown="0">\(a_k\)</span> is the crucial feature. For an ordinary spline expansion, antiderivative coefficients require knot-dependent scaling. For a mixture of normalized B-splines, the coefficients are simply cumulative probabilities.
+
+This is what makes inverse-CDF sampling especially convenient for this family.
+
+</div>
+</details>

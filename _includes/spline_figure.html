@@ -1,0 +1,11 @@
+<figure class="spline-figure">
+  <img
+    class="spline-fallback"
+    src="{{ include.path | relative_url }}"
+    alt="{{ include.alt }}"
+  />
+  <div class="spline-plot" data-spline-plot="{{ include.id }}" hidden></div>
+  {%- if include.caption -%}
+  <figcaption class="caption">{{ include.caption | markdownify | replace: '<p>', '' | replace: '</p>', '' | strip }}</figcaption>
+  {%- endif %}
+</figure>

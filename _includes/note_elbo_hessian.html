@@ -1,0 +1,276 @@
+<details class="technical-note" markdown="1">
+<summary>
+<span class="note-kicker">Technical note</span>
+<span class="note-title">Why the ELBO Hessian is not estimator precision</span>
+<span class="note-lead">The ELBO Hessian is the mixture Fisher information and comes only from entropy. Estimator uncertainty is a sandwich covariance, and a penalty that grows in proportion to the sample size changes the population objective.</span>
+</summary>
+<div class="note-body" markdown="1">
+
+In likelihood-based inference, Fisher information is closely associated with the precision of parameter estimates. This makes it natural to use information matrices when selecting smoothing parameters. Variational inference is different in an important respect: the objective being optimized is not generally the log-likelihood of the observations under a correctly specified statistical model.
+
+To see the distinction, consider a fixed-support spline mixture
+
+
+
+<div markdown="0">
+\[q_\gamma(e)=\sum_{k=1}^K\gamma_k b_k(e)\]
+</div>
+
+
+
+and write the ELBO as
+
+
+
+<div markdown="0">
+\[\mathcal L(\gamma) = \int q_\gamma(e)\log\widetilde p(e)\,de - \int q_\gamma(e)\log q_\gamma(e)\,de.\]
+</div>
+
+
+
+### Why the Hessian depends only on entropy
+
+Differentiating with respect to a mixture weight gives
+
+
+
+<div markdown="0">
+\[\frac{\partial\mathcal L}{\partial\gamma_k} = \int b_k(e)\log\widetilde p(e)\,de - \int b_k(e)\log q_\gamma(e)\,de-1.\]
+</div>
+
+
+
+The target-dependent term is linear in the weights, so its second derivative is zero.
+
+Consequently,
+
+
+
+<div markdown="0">
+\[\frac{\partial^2\mathcal L} {\partial\gamma_k\partial\gamma_\ell} = -\int_0^1 \frac{b_k(e)b_\ell(e)}{q_\gamma(e)}\,de.\]
+</div>
+
+
+
+Defining
+
+
+
+<div markdown="0">
+\[\mathcal I(\gamma) = \int_0^1 \frac{b(e)b(e)^\top}{q_\gamma(e)}\,de,\]
+</div>
+
+
+
+we obtain
+
+
+
+<div markdown="0">
+\[\boxed{ \nabla_\gamma^2\mathcal L(\gamma) = -\mathcal I(\gamma). }\]
+</div>
+
+
+
+This identity is exact in the weight coordinates. It establishes concavity of the ELBO, but the matrix represents the local geometry of the mixture rather than directly measuring how precisely its parameters are estimated from observations.
+
+### The responsibility-covariance interpretation
+
+The distinction becomes particularly clear in logit coordinates.
+
+Let
+
+
+
+<div markdown="0">
+\[\gamma=\operatorname{softmax}(\eta), \qquad J=\operatorname{diag}(\gamma)-\gamma\gamma^\top.\]
+</div>
+
+
+
+Define the component-responsibility vector
+
+
+
+<div markdown="0">
+\[\pi_k(e)= \frac{\gamma_k b_k(e)}{q_\gamma(e)}.\]
+</div>
+
+
+
+Since
+
+
+
+<div markdown="0">
+\[\mathbb E_{q_\gamma}[\pi_k(e)]=\gamma_k,\]
+</div>
+
+
+
+we can calculate
+
+
+
+<div markdown="0">
+\[\operatorname{Cov}_{q_\gamma}(\pi) = J\mathcal I(\gamma)J.\]
+</div>
+
+
+
+At a stationary point, the extra terms arising from the second derivative of the softmax transformation vanish, giving
+
+
+
+<div markdown="0">
+\[-\nabla_\eta^2\mathcal L = \operatorname{Cov}_{q_\gamma}(\pi).\]
+</div>
+
+
+
+Because the responsibility vector is a probability vector,
+
+
+
+<div markdown="0">
+\[\operatorname{tr} \operatorname{Cov}_{q_\gamma}(\pi) \leq 1-\sum_k\gamma_k^2<1.\]
+</div>
+
+
+
+This is a property of the mixture's geometry. It does not represent a count of informative observations or justify treating the ELBO Hessian as an observation-based precision matrix.
+
+### What actually determines estimator uncertainty?
+
+Suppose an estimator maximizes
+
+
+
+<div markdown="0">
+\[\widehat{\mathcal L}_S(\eta) = \frac{1}{S}\sum_{s=1}^S\ell(\eta;u_s).\]
+</div>
+
+
+
+Let <span markdown="0">\(\eta_0\)</span> denote the population optimum and define
+
+
+
+<div markdown="0">
+\[A=-\mathbb E[\nabla_\eta^2\ell(\eta_0;u)], \qquad B=\operatorname{Cov} [\nabla_\eta\ell(\eta_0;u)].\]
+</div>
+
+
+
+Under standard [M-estimation](#ref-white-1982) regularity conditions,
+
+
+
+<div markdown="0">
+\[\sqrt{S}(\widehat\eta_S-\eta_0) \Rightarrow N(0,A^{-1}BA^{-1}).\]
+</div>
+
+
+
+Thus, the asymptotic covariance is governed by both the expected curvature <span markdown="0">\(A\)</span> and the gradient covariance <span markdown="0">\(B\)</span>.
+
+The corresponding precision matrix is
+
+
+
+<div markdown="0">
+\[\boxed{ M_\eta=SAB^+A }\]
+</div>
+
+
+
+on the identifiable subspace.
+
+In a correctly specified likelihood model, the [Fisher information identity](#ref-white-1982) can give <span markdown="0">\(A=B\)</span>. In a variational optimization problem, particularly one involving Monte Carlo gradients or model misspecification, that equality cannot simply be assumed.
+
+### Why this matters for smoothing
+
+A roughness penalty has the form
+
+
+
+<div markdown="0">
+\[R(w)=w^\top Pw\]
+</div>
+
+
+
+in a simple quadratic parameterization, or a corresponding nonlinear expression when the spline weights are produced by an encoder.
+
+A typical effective-degrees-of-freedom calculation uses
+
+
+
+<div markdown="0">
+\[\operatorname{edf}(\lambda) = \operatorname{tr} \left[ (M+\lambda P)^{-1}M \right].\]
+</div>
+
+
+
+If <span markdown="0">\(M\)</span> is meant to represent parameter precision, using the ELBO Hessian alone can be misleading. The Hessian captures objective curvature but not the full variability of the fitted estimator.
+
+A particularly revealing failure occurs when the mixture Fisher matrix is used directly in a [Fellner–Schall](#ref-wood-2017) update. In the quadratic approximation analyzed above, the identity
+
+
+
+<div markdown="0">
+\[\gamma^\top\mathcal I(\gamma)\gamma=1\]
+</div>
+
+
+
+implies that the update continues increasing the penalty at every finite value. The resulting tendency toward extreme smoothing follows from the geometry of the mixture, not from evidence that the observed data support an affine density.
+
+The appropriate uncertainty calculation instead requires a sandwich precision matrix that accounts for the stochastic estimation process.
+
+### Variance reduction is not the same as changing the population target
+
+There is a final distinction worth making.
+
+Consider a penalized estimator
+
+
+
+<div markdown="0">
+\[\widehat w_{n,\lambda} = \arg\max_w \left\{ \frac{1}{n}\sum_{i=1}^n\ell_i(w) - \frac{\lambda}{2n}R(w) \right\}.\]
+</div>
+
+
+
+If <span markdown="0">\(\lambda=O(1)\)</span>, the penalty disappears from the limiting population objective because <span markdown="0">\(\lambda/n\to 0\)</span>.
+
+If instead
+
+
+
+<div markdown="0">
+\[\frac{\lambda_n}{n}\to c>0,\]
+</div>
+
+
+
+the limiting objective becomes
+
+
+
+<div markdown="0">
+\[\mathbb E[\ell_i(w)]-\frac{c}{2}R(w).\]
+</div>
+
+
+
+The penalty remains present even with unlimited data. It is changing the population optimization problem rather than merely stabilizing a noisy estimator.
+
+In the exact <span markdown="0">\(T=2\)</span> [IWAE](#ref-burda-2016) experiment, the RISE-optimal penalties at sample sizes 100, 200, and 400 were approximately 17.0, 34.6, and 70.2. Their ratios to sample size remained close to 0.17.
+
+This behaviour is consistent with a population-correction effect. It also explains why a variance-based smoothing selector should not necessarily recover an oracle chosen using an external metric such as integrated squared error.
+
+The distinction is therefore not simply between one smoothing algorithm and another. It is between two different statistical tasks: estimating an existing objective accurately and deliberately changing that objective to obtain a better approximation under a different criterion.
+
+</div>
+</details>

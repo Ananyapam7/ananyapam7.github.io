@@ -77,7 +77,7 @@
 
     <!-- Schema.org -->
     {%- comment -%} Social links generator for "sameAs schema" {%- endcomment %}
-    {% assign sameaslinks = "" | split: "," %}
+    {% assign sameaslinks = "" | split: "" %}
     {%- if site.orcid_id -%}
         {%- capture link -%}https://orcid.org/{{ site.orcid_id }}{%- endcapture -%}
         {%- assign sameaslinks = sameaslinks | push: link -%}
@@ -214,26 +214,101 @@
         {%- capture link -%}https://www.zotero.org/{{ site.zotero_username }}{%- endcapture -%}
         {%- assign sameaslinks = sameaslinks | push: link -%}
     {%- endif -%}
-    {%- if sameaslinks != blank -%}
-        {%- assign sameaslinks = sameaslinks | split: "" -%}
+    {%- capture author_name -%}{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}{%- endcapture -%}
+    {%- assign author_name = author_name | replace: "  ", " " | strip -%}
+    {%- assign author_url = "/" | absolute_url -%}
+    {%- assign canonical = page.url | replace: "index.html", "" | absolute_url -%}
+    {%- if page.description -%}
+        {%- assign schema_description = page.description -%}
+    {%- else -%}
+        {%- assign schema_description = site.description | strip_html | strip -%}
+    {%- endif -%}
+    {%- if page.title and page.title != "" and page.title != "blank" -%}
+        {%- assign schema_name = page.title -%}
+    {%- else -%}
+        {%- assign schema_name = author_name -%}
+    {%- endif -%}
+    {%- if page.date -%}
+        {%- assign published_on = page.date | date: "%Y-%m-%d" -%}
+        {%- if page.last_modified_at -%}
+            {%- assign modified_on = page.last_modified_at | date: "%Y-%m-%d" -%}
+        {%- else -%}
+            {%- assign modified_on = published_on -%}
+        {%- endif -%}
+    {%- endif -%}
+    {%- assign schema_image = "" -%}
+    {%- if page.thumbnail -%}
+        {%- assign schema_image = page.thumbnail -%}
+    {%- elsif page.og_image -%}
+        {%- assign schema_image = page.og_image -%}
+    {%- elsif site.og_image -%}
+        {%- assign schema_image = site.og_image -%}
     {%- endif -%}
 
     <script type="application/ld+json">
+    {%- if is_blog_post -%}
     {
-        "author":
-        {
-            "@type": "Person",
-            "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}"
-        },
-        "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-        "@type": "{%- if is_blog_post -%}BlogPosting{%- else -%}WebSite{%- endif -%}",
-        "description": "{%- if page.description -%}{{ page.description }}{%- else if site.description -%}{{ site.description }}{%- endif -%}",
-        "headline": "{%- if page.title -%}{{ page.title }}{%- else -%}{{ site.title }}{%- endif -%}",
-        {% if sameaslinks != blank -%}
-        "sameAs": {{ sameaslinks }},
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": {{ schema_name | jsonify }},
+        "description": {{ schema_description | jsonify }},
+        {%- if schema_image != blank %}
+        "image": [{{ schema_image | absolute_url | jsonify }}],
         {%- endif %}
-        "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}",
-        "@context": "https://schema.org"
+        "author": {
+            "@type": "Person",
+            "name": {{ author_name | jsonify }},
+            "url": {{ author_url | jsonify }}{% if sameaslinks.size > 0 %},
+            "sameAs": {{ sameaslinks | jsonify }}{% endif %}
+        },
+        {%- if published_on %}
+        "datePublished": {{ published_on | jsonify }},
+        "dateModified": {{ modified_on | jsonify }},
+        {%- endif %}
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": {{ canonical | jsonify }}
+        },
+        "url": {{ canonical | jsonify }},
+        "inLanguage": {{ site.lang | jsonify }}
     }
+    {%- else -%}
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": {{ schema_name | jsonify }},
+        "description": {{ schema_description | jsonify }},
+        "url": {{ canonical | jsonify }},
+        "author": {
+            "@type": "Person",
+            "name": {{ author_name | jsonify }},
+            "url": {{ author_url | jsonify }}{% if sameaslinks.size > 0 %},
+            "sameAs": {{ sameaslinks | jsonify }}{% endif %}
+        }
+    }
+    {%- endif -%}
     </script>
+    {%- if page.report_pdf -%}
+        {%- if page.report_pdf contains "://" -%}
+            {%- assign citation_pdf = page.report_pdf -%}
+        {%- else -%}
+            {%- assign citation_pdf = page.report_pdf | absolute_url -%}
+        {%- endif -%}
+        {%- if page.report_url -%}
+            {%- if page.report_url contains "://" -%}
+                {%- assign citation_html = page.report_url -%}
+            {%- else -%}
+                {%- assign citation_html = page.report_url | absolute_url -%}
+            {%- endif -%}
+        {%- else -%}
+            {%- assign citation_html = canonical -%}
+        {%- endif -%}
+    <meta name="citation_title" content="{{ page.report_title | default: schema_name | escape }}" />
+    <meta name="citation_author" content="{{ site.last_name | escape }}, {{ site.first_name | escape }}" />
+    {%- if published_on -%}
+    <meta name="citation_publication_date" content="{{ page.date | date: "%Y/%m/%d" }}" />
+    {%- endif -%}
+    <meta name="citation_pdf_url" content="{{ citation_pdf | escape }}" />
+    <meta name="citation_fulltext_html_url" content="{{ citation_html | escape }}" />
+    {%- endif -%}
 {%- endif %}

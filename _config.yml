@@ -58,7 +58,7 @@ max_width: 1000px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 serve_og_meta: false # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
+serve_schema_org: true # Include Schema.org in the HTML head
 og_image: # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
@@ -67,11 +67,11 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 
 github_username: Ananyapam7 # your GitHub user name
 gitlab_username: # your GitLab user name
-twitter_username: AnanyapamD # your Twitter handle
+twitter_username: # your Twitter handle
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 linkedin_username: ananyapam-de-523757166 # your LinkedIn user name
 telegram_username: # your Telegram user name
-scholar_userid: # your Google Scholar ID
+scholar_userid: whwjbnAAAAAJ # your Google Scholar ID
 semanticscholar_id: # your Semantic Scholar ID
 whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)
 orcid_id: # your ORCID ID
@@ -152,9 +152,10 @@ disqus_shortname: al-folio # put your disqus shortname
 # External sources.
 # If you have blog posts published on medium.com or other external sources,
 # you can display them in your blog by adding a link to the RSS feed.
-external_sources:
-  - name: medium.com
-    rss_url: https://medium.com/@al-folio/feed
+# Left unset: the default al-folio Medium feed is a theme placeholder, not this site.
+# external_sources:
+#   - name: medium.com
+#     rss_url: https://medium.com/feed/@your_medium_username
 
 # -----------------------------------------------------------------------------
 # Collections
@@ -173,7 +174,7 @@ collections:
 announcements:
   enabled: true
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  limit: 11 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
   enabled: true

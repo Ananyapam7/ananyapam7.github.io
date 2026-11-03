@@ -1,0 +1,6 @@
+<script>
+  window.SPLINE_VI_PLOT_URL = "{{ '/assets/js/spline-vi-plots.json' | relative_url }}";
+</script>
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@3.2.0/plotly.min.js"></script>
+<script src="{{ '/assets/js/spline-vi-plots-data.js' | relative_url | bust_file_cache }}"></script>
+<script src="{{ '/assets/js/spline-vi-plots.js' | relative_url | bust_file_cache }}"></script>
