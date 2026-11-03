@@ -107,9 +107,13 @@ pagination:
     {% assign categories = post.categories | join: "" %}
 
     <li>
+{%- assign spline_thumb = false -%}
+{%- if post.thumbnail contains 'spline-vi' -%}
+  {%- assign spline_thumb = true -%}
+{%- endif -%}
 {%- if post.thumbnail -%}
 <div class="row">
-          <div class="col-sm-9">
+          <div class="{% if spline_thumb %}col-sm-8{% else %}col-sm-9{% endif %}">
 {%- endif -%}
         <h3>
         {% if post.redirect == blank %}
@@ -153,8 +157,8 @@ pagination:
     </p>
 {%- if post.thumbnail -%}
     </div>
-  <div class="col-sm-3">
-    <img class="card-img" src="{{post.thumbnail | relative_url}}" style="object-fit: cover; height: 90%" alt="image">
+  <div class="{% if spline_thumb %}col-sm-4{% else %}col-sm-3{% endif %} post-thumb">
+    <img class="card-img{% if spline_thumb %} spline-thumb{% endif %}" src="{{ post.thumbnail | relative_url }}" alt="{{ post.title | escape }}">
   </div>
 </div>
 {%- endif -%}
