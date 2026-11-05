@@ -1,0 +1,42 @@
+---
+---
+<article class="paper-entry" id="{{ entry.key | escape }}">
+  <div class="paper-thumbnail">
+    <img src="{{ entry.preview | prepend: '/assets/img/publication_preview/' | relative_url }}"
+         alt="{{ entry.title | strip_html | escape }} — preview" width="360" height="240" loading="lazy" decoding="async">
+    <span class="paper-label">{{ entry.abbr }} {{ entry.year }}</span>
+  </div>
+  <div class="paper-body">
+  <h2 class="paper-title">
+    {% if entry.html %}<a href="{{ entry.html | escape }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}
+  </h2>
+  <p class="paper-authors">
+    {%- for author in entry.author_array -%}
+      {%- unless forloop.first -%}, {% endunless -%}
+      {%- if site.scholar.last_name contains author.last and site.scholar.first_name contains author.first -%}
+        <em>{{ author.first }} {{ author.last }}</em>
+      {%- else -%}
+        {{ author.first }} {{ author.last }}
+      {%- endif -%}
+    {%- endfor -%}
+  </p>
+  <p class="paper-venue">
+    <em>{{ entry.booktitle | default: entry.journal | default: entry.venue }}</em>, {{ entry.year }}{% if entry.note %} <span class="paper-note">&middot; {{ entry.note }}</span>{% endif %}
+  </p>
+  <div class="paper-links">
+    {% if entry.pdf %}<a href="{{ entry.pdf | escape }}">PDF</a>{% endif %}
+    {% if entry.html and entry.html != entry.openreview %}<a href="{{ entry.html | escape }}">Paper</a>{% endif %}
+    {% if entry.openreview %}<a href="{{ entry.openreview | escape }}">OpenReview</a>{% endif %}
+    {% if entry.code %}<a href="{{ entry.code | escape }}"{% if entry.code contains '.zip' %} download title="Download code (ZIP)"{% endif %}>Code</a>{% endif %}
+    {% if entry.poster %}<a href="{{ entry.poster | escape }}">Poster</a>{% endif %}
+    {% if entry.video %}<a href="{{ entry.video | escape }}">Video</a>{% endif %}
+    {% if entry.website %}<a href="{{ entry.website | escape }}">Workshop</a>{% endif %}
+    {% if entry.bibtex_show %}
+    <details class="paper-citation">
+      <summary>BibTeX<span class="sr-only"> for {{ entry.title | strip_html | escape }}</span></summary>
+      <div class="paper-bibtex">{% highlight bibtex %}{{ entry.bibtex | hideCustomBibtex }}{% endhighlight %}</div>
+    </details>
+    {% endif %}
+  </div>
+  </div>
+</article>

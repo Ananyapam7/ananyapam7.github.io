@@ -1,20 +1,7 @@
-- title: General Information
-  type: map
-  contents:
-    - name: Full Name
-      value: Ananyapam De
-    - name: Languages
-      value: German, Bengali, Hindi, English, Sanskrit
-
 - title: Research Interests
   type: list
   contents:
     - Probabilistic ML, Approximate Inference, Regression Models, Optimization, Deep Learning
-
-- title: Skills
-  type: list
-  contents:
-    - C/C++, Python (Pytorch, Tensorflow), R, SQL
 
 - title: Education
   type: time_table

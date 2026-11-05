@@ -1,107 +1,244 @@
 ---
 layout: page
 title: Score Correction
-description: Improving the match scores of sequence matches.
-img:
+description: Making protein profile searches more reliable by accounting for gaps and learning from false-positive matches.
+img: assets/img/score-correction/thumbnail.png
 importance: 4
 category: Major
 ---
 
-## Gappiness Match Score Correction
+A protein search should give a high score to a biologically meaningful match. But some regions of a sequence profile can produce convincing scores for the wrong reasons: an alignment may be repeatedly interrupted by gaps, or a few profile columns may match unrelated sequences unusually well.
 
-We wanted to give lower match scores to profile columns in gappy, less conserved regions than to columns in well-conserved regions with few gaps. Gappy referred not to the fraction of gaps overall but to the density of gap openings and endings. For example, an N-terminal region of 50 residues with only one sequence in a MSA with 100 sequences was not considered gappy despite a 99% gap fraction because no gaps opened or ended within these 50 residues. The contribution of amino acid conservation was taken care of by the standard log-odds scores of sequence profiles: Less conserved columns had lower top scores than well-conserved columns. But the information of gap open and gap end density was not used. It would have been particularly valuable to use in the prefilter to generate more k-mers in ungapped and fewer in gappy regions.
+In this project, we explored two ways to adjust the scores used by **MMseqs2**. Both act on individual profile columns, so the existing search machinery can use the corrected scores.
 
-We measured the gappiness of blocks of $$W = 2D+1$$ columns (e.g., 15) around residue $$i$$ in the MSA by the fraction of sequences containing nogap in the block out of all sequences with at least one residue in the block,
+| Problem | Information used | Correction |
+| --- | --- | --- |
+| Repeatedly interrupted alignment regions | Local patterns of residues and gaps | Reduce scores in persistently gappy regions |
+| Unrelated sequences receive unexpectedly high scores | Matches to reversed or scrambled sequences | Adjust the columns responsible for those matches |
 
-$$
-f_i = \frac{\sum_{n} w_n I(x_n, i-D : i+D \text{ contains no gap})}{\sum_{n} w_n I(x_n, i-D : i+D \text{ contains at least one residue})}
-$$
+## First, what is a sequence profile?
 
-where $$I(.)$$ was the indicator function and $$w_n$$ were the sequence weights. We defined a penalty function 
+Proteins are written as strings of amino-acid letters. When several related proteins are aligned, comparable positions line up in columns. A dash, `-`, marks a gap: a position without an aligned residue in that sequence. This is a **multiple sequence alignment**, or **MSA**.
 
-$$
-\delta_i = - \log_2 \left[ \frac{(\beta + f_i)}{(\beta + 1)} \right] .
-$$
+A **profile** summarizes the amino-acid preferences at each column. It gives a residue a favorable score when that residue is more common in the profile than it would be by background chance. An alignment score combines these column scores with gap costs.
 
-When every sequence that had a residue in the block contained a gap in the block ($$f_i=0$$), the penalty was strongest, $$- \log_2[\beta/(\beta+1)] > 0$$. When the block contained no gaps at all ($$f_i=1$$), the penalty $$\delta_i$$ was zero. The constant $$\beta$$ prevented the logarithm from becoming too negative for small $$f_i$$. For example, if $$\beta=1/3$$ and if 50% of the W-mers around column $$i$$ were gappy in the sense that they contained both a residue and a gap, $$\delta_i$$ would have been $$\log_2[(5/6)/(4/3)] = -0.68$$ bits, if 75% were gappy, the penalty would have been -1.19 bits and if 99.9% were gappy it would have been -1.996 bits.
+MMseqs2 uses profile scores both to find promising short-word matches in its **k-mer prefilter** and to evaluate candidates with **Smith–Waterman alignment**. This is why changing the profile itself can affect both search stages. See the [MMseqs2 user guide](https://github.com/soedinglab/MMseqs2/wiki#overview-of-important-mmseqs2-modules) for the search pipeline.
 
-We could directly use $$\delta_i$$ as a score correction. But imagine the previous MSA with 100 sequences, 99 of which only started at column 51. In this example, $$\delta_i$$ would have been zero for $$i \leq 50-D$$ and $$i \geq 51+D$$. Between those positions, $$\delta_i$$ would have dropped from 0 to almost -2 bits. That would mean to align a sequence across that region would have incurred a hefty penalty of $$-W \times 2$$ bits, even though the MSA was not gappy at all. We remedied this situation by using as score correction $$\Delta S_i$$ for column $$i$$ the maximum of $$\delta_j$$ over all blocks that contained column $$i$$,
+## 1. Use gap structure to identify unreliable regions
 
-$$
-\Delta S_i = \max\{\delta_j : j = i-D, \ldots, i+D\} .
-$$
+### Missing coverage and repeated interruptions are different
 
-This penalty would have been zero at all positions in the example MSA. It would, however, still have penalized disordered regions with gaps every, say, 10 residues or so, if we chose $$D = 15$$. A good guess for $$\beta$$ was between 0.3 and 2.
+A high fraction of gap characters does not necessarily mean an alignment is unreliable. Imagine 100 sequences, of which 99 start only at column 51. The first 50 columns contain 99% gaps, but the one sequence observed there is uninterrupted.
 
-This penalty $$\Delta S_i$$ could simply have been added directly to each of the scores in the query sequence profile. Therefore, no change in the sequence profile format was necessary. The score correction would then automatically have been used both in the prefilter to compute the list of similar k-mers and for the Smith-Waterman alignment stage.
+That situation is different from a region where sequences repeatedly switch between residues and gaps. We wanted to reduce the influence of the second pattern without automatically penalizing the first.
 
-To compensate for the negative average shift of the scores, we had to add a slight offset to every score:
+{% include figure.html path="assets/img/score-correction/alignment-windows.png" class="img-fluid" alt="Two toy multiple sequence alignments with identical gap counts. On the left, five sequences have a missing prefix; on the right, those gaps interrupt the sequences repeatedly. Blue rectangles mark five-column windows." caption="Toy alignments with the same overall gap fraction. In the highlighted window, rows containing only gaps are excluded from the local calculation. The observed fragment on the left is continuous; most observed rows on the right are interrupted." zoomable=true %}
 
-$$
-\Delta S_i = \max\{\delta_j : j = i-D, \ldots, i+D\} + A + B \times N_{\text{eff}},
-$$
+### Measure continuity within a short window
 
-where $$N_{\text{eff}}$$ was the effective number of sequences in the block. Benchmarking had to include optimization of $$\beta$$, $$D$$, $$A$$, and $$B$$ on a validation set independent of the test set. (The score offset $$A$$ was already implemented in MMseqs2.) Finally, we benchmarked the effect of the gappiness penalty on the k-mer prefiltering and the effect on the SW alignments separately and found a significant increase in the AUC.
+For each column, take a window around it—for example, **15 columns**, with seven on either side. Among the sequences that have **at least one residue** in that window, ask:
 
-## Score correction for sequence profiles
+> What fraction pass through the entire window without a gap?
 
-Motivation: It had been observed by many that profile searches generally generated many more high-scoring false positive matches than sequence-sequence searches. In other words: the E-values computed based on the Karlin-Altschul statistic developed for sequence-sequence searches seemed to be much less reliable for profile searches. In particular, while most sequence profiles behaved well, a small fraction of profiles (<5%) behaved badly and generated many high-scoring false positive matches. In a sequence-to-profile search this could completely destroy the sensitivity at the first false positive (AUC1). 
+Call this fraction **f**. A value of 1 means all observed sequences are uninterrupted; a value near 0 means almost all observed sequences contain a gap. Sequence weights prevent a large number of nearly identical sequences from dominating the calculation.
 
-We proposed a scheme to suppress these high-scoring false positives by targeted reduction of the scores in the problematic regions of these profiles. This score reduction was just strong enough to avoid the high-scoring false positives while being weak enough to still allow the corrected regions to match homologous regions.
+We turn this into a **negative score adjustment**. With a smoothing constant of β = 1/3:
 
-To avoid including non-homologous stretches of sequence during the iterative searches to build the profile, we also applied the score correction to the evolving query profile before each search iteration. 
+| Uninterrupted fraction, f | Score adjustment |
+| --- | --- |
+| 100% | 0 bits |
+| 50% | −0.68 bits |
+| 25% | −1.19 bits |
+| 0.1% | approximately −2.00 bits |
 
-Correction: In order to keep track of false positives during iterative profile searching, we added to the normal target database a database of reverted or scrambled sequences (xm). Suppose we had performed the t'th search iteration with our query profile, and we obtained match scores of the scrambled sequences $$S_m$$, for $$m \in \{1,..,M\}$$. We denoted with $$S_0$$ the score corresponding to an E-value of 1 (with respect to the normal target db). 
+A more negative adjustment means a larger reduction in the match score. The parameter β controls its strength and keeps the adjustment finite when f is zero.
 
-The sequence profile to be constructed from the MSA of matched sequences after the t'th search iteration had scores
+### Avoid penalizing the start of a fragment
 
-$$
-s(x_{mi}, i) = \log\left[\frac{p(i,a)}{p_{bg}(a)}\right] - s_t(i), 
-$$
+A window that straddles the start of many sequences looks interrupted, even if each sequence is continuous once it begins. Applying the raw window adjustment would create an artificial dip in scores around that boundary.
 
-where $$p(i,a)$$ was the weighted fraction of amino acid a at
+We therefore examine **all windows containing a column** and use the **least severe adjustment** among them. A clean overlapping window can explain an isolated fragment boundary. In a persistently interrupted region, all nearby windows remain gappy, so a reduction remains.
 
- position i in the MSA, $$p_{bg}(a)$$ was the background frequency of amino acid a taken from the substitution matrix that was used for the pseudocounts, and $$s_t(i)$$ was the score correction. This correction was the sum of the score correction from the previous iteration, $$s_{t-1}(i)$$, and the contribution from the current iteration, $$\delta s_t(i)$$,
+{% include figure.html path="assets/img/score-correction/boundary-correction.png" class="img-fluid" alt="Toy score-adjustment curves. At a single fragment boundary, the local negative dip disappears after selecting the least severe overlapping window. With repeated internal gaps, the negative adjustment remains." caption="The same toy alignments, with five-column windows and β = 1/3. The correction removes a boundary artifact while retaining a penalty for repeated interruptions. These curves illustrate the rule, rather than benchmark performance." zoomable=true %}
 
-$$
-s_t(i) = s_{t-1}(i) + \delta s_t(i).
-$$
+<details class="technical-note" markdown="1">
+<summary>The window formula and the sign of the correction</summary>
 
-The contribution from the current iteration was 
+Let the window centered at column i contain W = 2D + 1 columns, and let wₙ be the weight of sequence n. Then
 
-$$
-\delta s_t(i) = \max_m \left\{ \frac{(S_m - S_0)}{S_m} \times s(x_{mj}, i) : S_m > S_0, x_{mj} \text{ is residue in } x_m \text{ aligned to column } i\right\}.
-$$
+<div markdown="0">
+\[
+f_i =
+\frac{\sum_n w_n\,\mathbf{1}\{x_n[i-D:i+D]\text{ has no gaps}\}}
+{\sum_n w_n\,\mathbf{1}\{x_n[i-D:i+D]\text{ has at least one residue}\}}.
+\]
+</div>
 
-The condition $$S_m > S_0$$ was equivalent to $$E < 1$$, so only FP sequences with E-values < 1 could contribute to the score correction. The more the score of the FP match surpassed $$S_0$$, the more its weight $$(S_m - S_0)/S_m$$ tended to 1. The score correction $$\delta s(i)$$ was now simply the maximum of the weighted scores of profile column i with the high-scoring FP matches. The functional form of the weight could be motivated by assuming a single high-scoring FP sequence with score $$S_m$$. After the score correction, its score would have been 
+Write the adjustment added to the profile as
 
-$$
-S_m - \sum_i \delta t_s(i) = S_m - \frac{(S_m - S_0)}{S_m} \times S_m = S_0,
-$$
+<div markdown="0">
+\[
+g_i = \log_2\!\left(\frac{\beta+f_i}{\beta+1}\right) \leq 0,
+\qquad
+\Delta S_i = \max_{j:\,|j-i|\leq D} g_j.
+\]
+</div>
 
-so the E-value of this sequence would have been $$E=1$$ after the correction.
+The maximum is intentional: **among negative numbers, the maximum is the least severe reduction**. Equivalently, if a penalty magnitude is defined as Pᵢ = −gᵢ ≥ 0, the adjustment is the negative of the minimum overlapping penalty magnitude. Mixing these two sign conventions would reverse the boundary correction.
 
-This correction scheme could of course also have been applied to profiles post hoc, by searching only the database of scrambled sequences (but setting $$S_0$$ such that it corresponded to E=1 in the target db), in which case the correction was simply $$s_t(i) = \delta s_t(i)$$.
+The original formulation also included an empirical offset:
 
-Implementation: The implementation in mmseqs2 was easy and did not require any change in the mmseqs profile format! We noted that the corrected scores were obtained by multiplying each probability by $$\exp[-s_t(i)]$$:
+<div markdown="0">
+\[
+\Delta S_i = \max_{j:\,|j-i|\leq D} g_j + A + B N_{\mathrm{eff}}.
+\]
+</div>
 
-$$
-s(x_{mi},i) = \log \left[ \frac{p_t(a,i)}{p_{bg}(a)} \right]  
-s(x_{mi},i) - s_t(i) = \log \left[ \frac{p_t(a,i) \exp[-s_t(i)]}{p_{bg}(a)} \right] 
-s(x_{mi},i) - s_t(i) = \log \left[ \frac{p'_t(a,i)}{p_{bg}(a)} \right], \text{ with } 
-p'_t(a,i) = p_t(a,i) \exp[-s_t(i)] 
-$$
+Here Nₑff summarizes the effective number of sequences in the relevant region. The constants β, D, A, and B should be tuned on validation data separate from the final test set. For example, D = 7 gives W = 15; D = 15 gives W = 31.
 
-Therefore, the score correction could be entirely encoded in the probabilities. We extracted the score correction included in the query profile used for the t'th iteration using
+</details>
 
-$$
-s_{t-1}(i) = - \log \sum_a p_{t-1}(i,a).
-$$
+## 2. Learn which profile columns produce false positives
 
-We then added the contribution from the last search iteration, $$\delta s_t(i)$$, to this correction to obtain the correction $$s_t(i)$$ for the new query profile. This correction was encoded in the new query profile using $$p'_t(i,a) = p_t(a,i) \exp(- s_t(i))$$.
+Gap structure is only one source of misleading scores. Some profiles also give unusually high scores to unrelated sequences. During an iterative search, a false positive can be incorporated into the next profile and influence later searches.
 
-Tests: We tested the effectiveness of the score correction by searching with a set of uncorrected and corrected sequence profiles through a database of reverted or scrambled sequences (using a different scrambling than the one used to derive the score correction) and plotting the number of FP matches with an E-value better than the one on the x-axis. On a log-log plot, the numbers ideally were close to the diagonal line after the correction, whereas before the correction, strong deviations for small E-values could be expected for some profiles.
+The second approach uses **decoy sequences as negative controls**. Reversing or scrambling sequences disrupts their biological order while retaining properties such as amino-acid composition. A decoy that scores unusually well identifies a region of the profile worth correcting.
 
-Profile-profile comparison: We simply used the same correction of the profile probabilities.
+An **E-value** is the expected number of chance matches at least as strong as a reported match, under the search's statistical model. It is not the probability that a particular match is false. We use the score corresponding to **E = 1** as a diagnostic cutoff for decoys.
 
-Codebase: [https://github.com/soedinglab/MMseqs2](https://github.com/soedinglab/MMseqs2)
+### The correction loop
+
+<div class="row my-4" role="list" aria-label="Decoy-based score correction workflow">
+  <div class="col-md-6 mb-3" role="listitem">
+    <div class="border rounded p-3 h-100">
+      <p class="mb-1"><strong>1. Search real sequences and decoys</strong></p>
+      <p class="mb-0">Use the current query profile against the target database and its decoy counterpart.</p>
+    </div>
+  </div>
+  <div class="col-md-6 mb-3" role="listitem">
+    <div class="border rounded p-3 h-100">
+      <p class="mb-1"><strong>2. Inspect high-scoring decoys</strong></p>
+      <p class="mb-0">Find decoy matches with E-values below 1 and trace their scores back to profile columns.</p>
+    </div>
+  </div>
+  <div class="col-md-6 mb-3" role="listitem">
+    <div class="border rounded p-3 h-100">
+      <p class="mb-1"><strong>3. Adjust the responsible columns</strong></p>
+      <p class="mb-0">Give more weight to decoys that exceed the cutoff by a larger margin.</p>
+    </div>
+  </div>
+  <div class="col-md-6 mb-3" role="listitem">
+    <div class="border rounded p-3 h-100">
+      <p class="mb-1"><strong>4. Carry the correction forward</strong></p>
+      <p class="mb-0">Build the next profile from real-sequence matches, retaining the accumulated score correction before searching again.</p>
+    </div>
+  </div>
+</div>
+
+This targets columns that contribute strongly favorable scores to spurious matches. It aims to reduce those matches while retaining the profile's ability to recognize homologous sequences.
+
+### A small numerical example
+
+Suppose a decoy receives **40 bits**, but the cutoff corresponding to E = 1 is **24 bits**. The excess is 16 bits, or **40% of the decoy's score**. In a simple additive example, removing 40% of each column's contribution brings the total to 24 bits.
+
+{% include figure.html path="assets/img/score-correction/decoy-example.png" class="img-fluid" alt="An illustrative six-column decoy alignment. Contributions of 4, 7, 10, 9, 6, and 4 bits total 40. Reducing each by 40 percent gives 24 bits in total." caption="Illustrative arithmetic for one fixed alignment with no gap costs. The cutoff motivates the weighting rule; this is not a measured benchmark result. Real gapped alignments need not land exactly at the cutoff after correction." zoomable=true %}
+
+With multiple decoys, a column receives the largest weighted contribution among the eligible decoy matches covering it. Corrections accumulate over successive iterations. The same approach can also be applied after a profile has already been constructed, using a separate decoy search.
+
+<details class="technical-note" markdown="1">
+<summary>The decoy update and its assumptions</summary>
+
+Let Sₘ be a decoy's alignment score and S₀ the score corresponding to E = 1 for the real target database. For positive scores with Sₘ > S₀, define
+
+<div markdown="0">
+\[
+\alpha_m = \frac{S_m-S_0}{S_m}.
+\]
+</div>
+
+This weight is small for a decoy just above the cutoff and approaches 1 for a much stronger decoy. Let ℓₜ₋₁(a, i) be the current query profile's score for amino acid a at column i, and let aₘᵢ denote the decoy residue aligned to that column. The proposed update is
+
+<div markdown="0">
+\[
+\delta c_t(i) =
+\max_{\substack{m:\,S_m>S_0\\i\text{ covered by decoy }m}}
+\left\{\alpha_m\,\ell_{t-1}(a_{mi},i)\right\},
+\qquad
+c_t(i)=c_{t-1}(i)+\delta c_t(i).
+\]
+</div>
+
+If no eligible decoy covers a column, its increment is zero. This is a **signed contribution rule**: a negative column contribution can produce a negative increment. It should not be interpreted as a guarantee that every individual column score decreases.
+
+For a single fixed alignment whose score is entirely the sum of its column contributions, the motivation for the weight is
+
+<div markdown="0">
+\[
+S_m-\sum_i\alpha_m\ell_{t-1}(a_{mi},i)
+=S_m-\alpha_m S_m=S_0.
+\]
+</div>
+
+This exact identity assumes no separate gap-cost contribution. In a gapped search, gap costs and changes in the best alignment mean that the identity motivates the rule rather than guarantees the final reported score. All scores and the cutoff must use consistent units.
+
+</details>
+
+## How the correction fits into a profile
+
+An amino-acid profile normally contains a normalized distribution at each column. The corrected log-odds score is
+
+<div markdown="0">
+\[
+\ell_t(a,i)=\log_2\!\left(\frac{p_t(a,i)}{p_{\mathrm{bg}}(a)}\right)-c_t(i).
+\]
+</div>
+
+Here pₜ(a, i) is the weighted amino-acid frequency estimated from the current MSA, and pbg(a) is its background frequency. Subtracting the same correction from every amino-acid score in a column changes how much that column contributes to a match, while preserving its relative amino-acid preferences.
+
+The correction can be encoded by scaling the column's stored weights:
+
+<div markdown="0">
+\[
+p'_t(a,i)=p_t(a,i)\,2^{-c_t(i)},
+\qquad
+\log_2\!\left(\frac{p'_t(a,i)}{p_{\mathrm{bg}}(a)}\right)
+=\ell_t(a,i).
+\]
+</div>
+
+**These corrected weights are not normalized probabilities.** Renormalizing them to sum to 1 would remove the correction. This representation lets the existing scoring machinery consume the adjustment without introducing a new profile field.
+
+<details class="technical-note" markdown="1">
+<summary>Recovering the correction in the next iteration</summary>
+
+Because the uncorrected column probabilities sum to 1, the stored column sum records the accumulated correction:
+
+<div markdown="0">
+\[
+\sum_a p'_t(a,i)=2^{-c_t(i)},
+\qquad
+c_t(i)=-\log_2\sum_a p'_t(a,i).
+\]
+</div>
+
+The next iteration can recover this value, add its new decoy-based increment, and encode the result in the newly estimated profile. These expressions use bits. With natural-log scores, the equivalent scaling factor is exp(−c) and the recovery uses the natural logarithm.
+
+</details>
+
+## How we evaluate whether it helps
+
+The corrections address two related but different questions:
+
+- **Does the search rank real homologs more reliably?** Benchmark the k-mer prefilter and alignment stage separately, tune parameters on held-out validation data, and evaluate search sensitivity. The original gappiness benchmarks reported an increase in AUC; numerical effect sizes are not reproduced here.
+- **Are the reported E-values better calibrated?** Test on a separately scrambled decoy database, rather than the decoys used to derive the correction. Compare observed false-positive counts with the counts implied by the reported E-values.
+
+For a log–log calibration plot, counts should be put on the appropriate scale before comparing them with a diagonal. With Q query profiles and a decoy database the same size as the real target database, the ideal aggregate count below an E-value threshold E is approximately Q × E. Counts per query can therefore be compared with E; different database sizes require a corresponding adjustment.
+
+The figures on this page are explanatory examples. They show the mechanism and its boundary cases, rather than substitute for an empirical benchmark.
+
+## Codebase and further reading
+
+- [MMseqs2 source code](https://github.com/soedinglab/MMseqs2)
+- [MMseqs2 user guide](https://github.com/soedinglab/MMseqs2/wiki), including profile construction, prefiltering, and alignment.
+
+{% include technical_note_math.html %}

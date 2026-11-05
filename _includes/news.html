@@ -1,16 +1,14 @@
           <div class="news">
             {% if site.news != blank -%}
             {%- assign news_size = site.news | size -%}
-            <div class="table-responsive" {% if include.limit and site.announcements.scrollable and news_size > 3 %}style="max-height: 60vw"{% endif %}>
+            {% if include.limit and site.announcements.scrollable and news_size > 3 %}
+            <p class="small text-muted mb-2">Scroll within the news panel for earlier announcements.</p>
+            {% endif %}
+            <div class="table-responsive" {% if include.limit and site.announcements.scrollable and news_size > 3 %}style="max-height: 22rem; overflow-y: auto;" tabindex="0" role="region" aria-label="News announcements"{% endif %}>
               <table class="table table-sm table-borderless">
               {%- assign news = site.news | reverse -%}
-              {% if include.limit and site.announcements.limit %}
-              {% assign news_limit = site.announcements.limit %}
-              {% else %}
-              {% assign news_limit = news_size %}
-              {% endif %}
-              {% for item in news limit: news_limit %}
-                <tr>
+              {% for item in news %}
+                <tr id="news-{{ item.slug }}">
                   <th scope="row">{{ item.date | date: "%b %-d, %Y" }}</th>
                   <td>
                     {% if item.inline -%}

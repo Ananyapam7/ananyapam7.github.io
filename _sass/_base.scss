@@ -829,16 +829,16 @@ footer.sticky-bottom {
       height: 90%;
       object-fit: cover;
       object-position: center;
-      border-radius: 8px;
+      border-radius: 12px;
+      overflow: hidden;
     }
 
     img.card-img.spline-thumb {
-      width: 100%;
       height: auto;
-      aspect-ratio: 1672 / 941;
+      max-height: 90%;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
       background: transparent;
-      border: 0;
     }
 
     a {
@@ -1368,4 +1368,14 @@ nav[data-toggle="toc"] {
     margin-bottom: 0;
     padding-top: 0.5rem;
   }
+}
+
+.post-header .post-title .name-native {
+  display: inline-block;
+  margin-left: 0.35em;
+  font-family: "Nirmala UI", "Noto Sans Bengali", sans-serif;
+  font-size: 0.75em;
+  font-weight: 400;
+  vertical-align: middle;
+  color: var(--global-text-color-light);
 }

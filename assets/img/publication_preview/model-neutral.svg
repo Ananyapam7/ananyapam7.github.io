@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="360" viewBox="0 0 540 360" role="img" aria-labelledby="title desc">
+<title id="title">Your Model Is Not Neutral</title><desc id="desc">Conceptual illustration of different data groups influencing a learned model.</desc>
+<!-- Original conceptual illustration inspired by the paper title, not an experimental result or a paper figure. -->
+<rect width="540" height="360" fill="white"/>
+<g font-family="Arial, sans-serif" fill="#34465d" text-anchor="middle">
+<text x="270" y="48" font-size="23" font-weight="700">Your model is not neutral</text>
+<g stroke="#b8c5d5" stroke-width="2" fill="none"><path d="M143 131L230 157M143 231L230 197M310 177L405 177"/><path d="M395 167L405 177L395 187"/></g>
+<g fill="#758fba"><circle cx="80" cy="100" r="12"/><circle cx="112" cy="115" r="12"/><circle cx="74" cy="137" r="12"/><circle cx="108" cy="152" r="12"/><circle cx="142" cy="133" r="12"/></g>
+<g fill="#ba8cba"><circle cx="80" cy="204" r="12"/><circle cx="112" cy="219" r="12"/><circle cx="74" cy="241" r="12"/><circle cx="108" cy="256" r="12"/><circle cx="142" cy="237" r="12"/></g>
+<rect x="221" y="120" width="100" height="118" rx="13" fill="#f0edf6" stroke="#8a68aa" stroke-width="2"/>
+<g fill="#8a68aa"><circle cx="244" cy="150" r="5"/><circle cx="244" cy="179" r="5"/><circle cx="244" cy="208" r="5"/><circle cx="295" cy="164" r="5"/><circle cx="295" cy="194" r="5"/></g>
+<path d="M244 150L295 164L244 179L295 194L244 208M244 150L295 194M244 208L295 164" stroke="#8a68aa" fill="none"/>
+<rect x="414" y="116" width="15" height="123" rx="4" fill="#e8ecf3"/><rect x="438" y="145" width="15" height="94" rx="4" fill="#758fba"/><rect x="462" y="175" width="15" height="64" rx="4" fill="#ba8cba"/>
+<g font-size="16"><text x="109" y="310">Data &amp; context</text><text x="270" y="310">Model</text><text x="449" y="310">Predictions</text></g>
+</g></svg>

@@ -113,7 +113,7 @@ pagination:
 {%- endif -%}
 {%- if post.thumbnail -%}
 <div class="row">
-          <div class="{% if spline_thumb %}col-sm-8{% else %}col-sm-9{% endif %}">
+          <div class="col-sm-9">
 {%- endif -%}
         <h3>
         {% if post.redirect == blank %}
@@ -157,7 +157,7 @@ pagination:
     </p>
 {%- if post.thumbnail -%}
     </div>
-  <div class="{% if spline_thumb %}col-sm-4{% else %}col-sm-3{% endif %} post-thumb">
+  <div class="col-sm-3 post-thumb">
     <img class="card-img{% if spline_thumb %} spline-thumb{% endif %}" src="{{ post.thumbnail | relative_url }}" alt="{{ post.title | escape }}">
   </div>
 </div>

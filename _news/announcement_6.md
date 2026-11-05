@@ -8,6 +8,12 @@ related_posts: false
 
 Today marks a significant milestone in my academic journey – the successful defense of my Master's thesis. This feat, while a personal achievement, is a testament to the collective support and guidance of many incredible individuals who have been part of this journey.
 
+My thesis, *Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference*, studies how to model correlated count data, where the variance can exceed the mean. It uses Poisson lognormal models and amortized variational inference for regression and latent factor analysis, exploring Laplace approximations and neural networks for inference.
+
+The work was supervised by Dr. Johannes Söding at the Max Planck Institute for Multidisciplinary Sciences and co-supervised by Dr. Satyaki Mazumder at IISER Kolkata.
+
+[Read my MS thesis](/assets/pdf/ms-thesis/thesis.pdf).
+
 Firstly, immense gratitude to my supervisor, Dr. Johannes Soeding whose unwavering support and astute guidance have been the cornerstone of my research.
 
 I extend my heartfelt thanks to Amelie, my mentor who inspired me to refine my presentation skills, transforming my work into its final, polished form.
@@ -25,8 +31,8 @@ My deepest gratitude to my parents and family, whose love and encouragement have
 To Srushti, my partner in every sense. Your motivation, companionship, and help, especially with the aesthetic aspects of my thesis, have been indispensable. You’ve been with me through every high and low, making this achievement as much yours as it is mine.
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/ms_page.jpg" class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm mt-3 mt-md-0 mx-auto" style="max-width: 420px;">
+        {% include figure.html path="assets/img/ms-thesis/title-page.png" class="img-fluid rounded z-depth-1" alt="First page of my MS thesis: Latent Factor Analysis and Regression of Multivariate Poisson Lognormal Counts using Amortized Variational Inference" zoomable=true %}
     </div>
 </div>
 
