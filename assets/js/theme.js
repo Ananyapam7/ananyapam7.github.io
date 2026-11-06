@@ -10,7 +10,6 @@ let toggleTheme = (theme) => {
 
 let setTheme = (theme) => {
   transTheme();
-  setHighlight(theme);
   setGiscusTheme(theme);
 
   if (theme) {
@@ -29,7 +28,8 @@ let setTheme = (theme) => {
     // Set jupyter notebooks themes.
     let jupyterNotebooks = document.getElementsByClassName("jupyter-notebook-iframe-container");
     for (let i = 0; i < jupyterNotebooks.length; i++) {
-      let bodyElement = jupyterNotebooks[i].getElementsByTagName("iframe")[0].contentWindow.document.body;
+      const bodyElement = jupyterNotebooks[i].getElementsByTagName("iframe")[0].contentDocument?.body;
+      if (!bodyElement) continue;
       if (theme == "dark") {
         bodyElement.setAttribute("data-jp-theme-light", "false");
         bodyElement.setAttribute("data-jp-theme-name", "JupyterLab Dark");
@@ -53,16 +53,6 @@ let setTheme = (theme) => {
           "--global-bg-color"
         ) + "ee", // + 'ee' for trasparency.
     });
-  }
-};
-
-let setHighlight = (theme) => {
-  if (theme == "dark") {
-    document.getElementById("highlight_theme_light").media = "none";
-    document.getElementById("highlight_theme_dark").media = "";
-  } else {
-    document.getElementById("highlight_theme_dark").media = "none";
-    document.getElementById("highlight_theme_light").media = "";
   }
 };
 

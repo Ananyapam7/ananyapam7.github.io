@@ -20,29 +20,34 @@ $(document).ready(function() {
     });
   }
 
-  // add css to jupyter notebooks
-  const cssLink = document.createElement("link");
-  cssLink.href  = "../css/jupyter.css";
-  cssLink.rel   = "stylesheet";
-  cssLink.type  = "text/css";
+  // Give same-origin notebook code the same palette as the surrounding page.
+  function styleNotebook(iframe) {
+    const notebook = iframe.contentDocument;
+    const codeTheme = document.getElementById("code-theme");
+    if (!notebook || !notebook.head || !notebook.body || !codeTheme) return;
 
-  let theme = localStorage.getItem("theme");
-  if (theme == null || theme == "null") {
-    const userPref = window.matchMedia;
-    if (userPref && userPref("(prefers-color-scheme: dark)").matches) {
-      theme = "dark";
+    const styles = [
+      ["notebook-layout", new URL("jupyter.css", codeTheme.href).href],
+      ["code-theme", codeTheme.href]
+    ];
+    for (const [id, href] of styles) {
+      if (!notebook.getElementById(id)) {
+        const link = notebook.createElement("link");
+        link.id = id;
+        link.rel = "stylesheet";
+        link.href = href;
+        notebook.head.appendChild(link);
+      }
     }
+    const dark = document.documentElement.getAttribute("data-theme") === "dark";
+    notebook.body.setAttribute("data-jp-theme-light", dark ? "false" : "true");
+    notebook.body.setAttribute("data-jp-theme-name", dark ? "JupyterLab Dark" : "JupyterLab Light");
   }
 
   $('.jupyter-notebook-iframe-container iframe').each(function() {
-    $(this).contents().find("head").append(cssLink);
-
-    if (theme == "dark") {
-      $(this).bind("load",function(){
-        $(this).contents().find("body").attr({
-          "data-jp-theme-light": "false",
-          "data-jp-theme-name": "JupyterLab Dark"});
-      });
+    this.addEventListener("load", () => styleNotebook(this));
+    if (this.contentDocument && this.contentDocument.readyState === "complete") {
+      styleNotebook(this);
     }
   });
 });

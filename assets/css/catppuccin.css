@@ -1,0 +1,102 @@
+/* Catppuccin Latte / Mocha palette: https://github.com/catppuccin/palette
+   Shared by Rouge, inline code, BibTeX, and embedded Jupyter notebooks. */
+:root {
+  --ctp-base: #eff1f5;
+  --ctp-mantle: #e6e9ef;
+  --ctp-surface0: #ccd0da;
+  --ctp-surface1: #bcc0cc;
+  --ctp-text: #4c4f69;
+  --ctp-subtext0: #6c6f85;
+  --ctp-subtext1: #5c5f77;
+  --ctp-mauve: #8839ef;
+  --ctp-red: #d20f39;
+  --ctp-peach: #fe640b;
+  --ctp-yellow: #df8e1d;
+  --ctp-green: #40a02b;
+  --ctp-teal: #179299;
+  --ctp-sky: #04a5e5;
+  --ctp-blue: #1e66f5;
+  --ctp-lavender: #7287fd;
+  --ctp-pink: #ea76cb;
+}
+
+html[data-theme="dark"], body[data-jp-theme-light="false"] {
+  --ctp-base: #1e1e2e;
+  --ctp-mantle: #181825;
+  --ctp-surface0: #313244;
+  --ctp-surface1: #45475a;
+  --ctp-text: #cdd6f4;
+  --ctp-subtext0: #a6adc8;
+  --ctp-subtext1: #bac2de;
+  --ctp-mauve: #cba6f7;
+  --ctp-red: #f38ba8;
+  --ctp-peach: #fab387;
+  --ctp-yellow: #f9e2af;
+  --ctp-green: #a6e3a1;
+  --ctp-teal: #94e2d5;
+  --ctp-sky: #89dceb;
+  --ctp-blue: #89b4fa;
+  --ctp-lavender: #b4befe;
+  --ctp-pink: #f5c2e7;
+}
+
+body pre,
+body code,
+body .highlight,
+body .jp-InputArea-editor,
+body .jp-OutputArea-output pre {
+  color: var(--ctp-text);
+  background-color: var(--ctp-base);
+}
+
+body code {
+  color: var(--ctp-mauve);
+}
+
+body pre code,
+body .highlight code {
+  color: var(--ctp-text);
+  background: transparent;
+}
+
+.highlight pre { margin-bottom: 0; }
+.highlight .lineno, .highlight .gl { color: var(--ctp-subtext0); }
+.highlight .hll { background-color: var(--ctp-surface0); }
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs { color: var(--ctp-subtext0); }
+.highlight .cp, .highlight .cpf { color: var(--ctp-pink); }
+.highlight .k, .highlight .kc, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv { color: var(--ctp-mauve); }
+.highlight .kt, .highlight .nc { color: var(--ctp-yellow); }
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 { color: var(--ctp-green); }
+.highlight .sd { color: var(--ctp-subtext1); }
+.highlight .se { color: var(--ctp-pink); }
+.highlight .si, .highlight .sr, .highlight .ss { color: var(--ctp-teal); }
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo { color: var(--ctp-peach); }
+.highlight .na, .highlight .nf, .highlight .fm { color: var(--ctp-blue); }
+.highlight .nb, .highlight .bp { color: var(--ctp-red); }
+.highlight .no { color: var(--ctp-peach); }
+.highlight .nn, .highlight .ne { color: var(--ctp-yellow); }
+.highlight .nd { color: var(--ctp-pink); }
+.highlight .nt { color: var(--ctp-mauve); }
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi, .highlight .vm { color: var(--ctp-text); }
+.highlight .o, .highlight .ow { color: var(--ctp-sky); }
+.highlight .p, .highlight .pi { color: var(--ctp-text); }
+.highlight .n, .highlight .nx, .highlight .nl { color: var(--ctp-text); }
+.highlight .w { color: var(--ctp-text); }
+.highlight .ge { color: var(--ctp-text); }
+.highlight .gs { color: var(--ctp-text); }
+.highlight .gh, .highlight .gu { color: var(--ctp-blue); }
+.highlight .gp { color: var(--ctp-teal); }
+.highlight .go { color: var(--ctp-subtext1); }
+.highlight .gd, .highlight .gr, .highlight .gt, .highlight .err { color: var(--ctp-red); }
+.highlight .gi { color: var(--ctp-green); }
+
+.highlight .c, .highlight .ch, .highlight .cm, .highlight .c1,
+.highlight .cs, .highlight .sd, .highlight .ge { font-style: italic; }
+.highlight .gs, .highlight .gh, .highlight .gu { font-weight: 600; }
+.highlight .err { background: transparent; text-decoration: underline wavy var(--ctp-red); }
+.highlight .gd { background-color: var(--ctp-mantle); }
+.highlight .gi { background-color: var(--ctp-mantle); }
+.highlight ::selection, pre::selection, code::selection {
+  color: var(--ctp-text);
+  background-color: var(--ctp-surface1);
+}

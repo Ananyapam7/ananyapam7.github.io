@@ -11,7 +11,7 @@ import numpy as np
 from scipy.interpolate import BSpline
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "assets/img/spline-vi/thumbnail-pastel.png"
+OUT = ROOT / "assets/img/spline-vi/thumbnail-pastel-transparent.png"
 
 
 def main() -> None:
@@ -44,7 +44,7 @@ def main() -> None:
             solid_capstyle="round", solid_joinstyle="round")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(OUT, dpi=200, facecolor=paper, pad_inches=0)
+    fig.savefig(OUT, dpi=200, transparent=True, pad_inches=0)
     plt.close(fig)
     print(OUT)
 
