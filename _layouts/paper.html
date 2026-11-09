@@ -29,6 +29,7 @@
     {% if entry.openreview %}<a href="{{ entry.openreview | escape }}">OpenReview</a>{% endif %}
     {% if entry.code %}<a href="{{ entry.code | escape }}"{% if entry.code contains '.zip' %} download title="Download code (ZIP)"{% endif %}>Code</a>{% endif %}
     {% if entry.poster %}<a href="{{ entry.poster | escape }}">Poster</a>{% endif %}
+    {% if entry.slides %}<a href="{% if entry.slides contains '://' %}{{ entry.slides | escape }}{% else %}{{ entry.slides | prepend: '/assets/pdf/' | relative_url | escape }}{% endif %}">Slides</a>{% endif %}
     {% if entry.video %}<a href="{{ entry.video | escape }}">Video</a>{% endif %}
     {% if entry.website %}<a href="{{ entry.website | escape }}">Workshop</a>{% endif %}
     {% if entry.bibtex_show %}
