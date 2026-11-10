@@ -43,12 +43,13 @@
   var graphDot = element("graph-dot");
   var extra = element("extra");
   var play = element("play");
+  var more = element("more");
   var phaseInput = element("phase");
   var rimInput = element("rim");
   var phaseValue = element("phase-value");
   var rimValue = element("rim-value");
 
-  var otherPoints = [90, 180, 270].map(function (offset) {
+  var otherPoints = [45, 90, 135, 180, 225, 270, 315].map(function (offset) {
     var line = svgElement("line", "rolling-circle__extra-line");
     var marker = svgElement("circle", "rolling-circle__extra-dot");
     marker.setAttribute("r", 4.5);
@@ -106,7 +107,8 @@
     attributes(dotLabel, { x: point.x + 11, y: point.y - 7 });
     diameter(track, rim);
 
-    if (element("more").checked) {
+    extra.style.display = more.checked ? "" : "none";
+    if (more.checked) {
       otherPoints.forEach(function (entry) {
         var angle = rim + entry.offset;
         diameter(entry.line, angle);
@@ -150,8 +152,7 @@
     phase = defaultAngle;
     rim = defaultAngle;
     rimInput.value = rim;
-    element("more").checked = false;
-    extra.style.display = "none";
+    more.checked = more.defaultChecked;
     drawWave();
     draw();
   });
@@ -168,16 +169,12 @@
     draw();
   });
 
-  element("more").addEventListener("change", function (event) {
-    extra.style.display = event.target.checked ? "" : "none";
-    draw();
-  });
+  more.addEventListener("change", draw);
 
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) pause();
   });
 
-  extra.style.display = "none";
   drawWave();
   draw();
   element("controls").hidden = false;

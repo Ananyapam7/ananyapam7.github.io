@@ -6,6 +6,7 @@
   --rolling-grid: #9db7b1;
   --rolling-teal: #127a70;
   --rolling-wheel: #d7ede6;
+  --rolling-center: #315caa;
   --rolling-orange: #ad492c;
   margin: 1.8rem 0 2.4rem;
   padding: clamp(.85rem, 3vw, 1.5rem);
@@ -23,6 +24,7 @@ html[data-theme="dark"] .rolling-circle {
   --rolling-grid: #55746d;
   --rolling-teal: #85cfbb;
   --rolling-wheel: #28463e;
+  --rolling-center: #a9c4ff;
   --rolling-orange: #f9a98b;
 }
 
@@ -71,12 +73,15 @@ html[data-theme="dark"] .rolling-circle {
 .rolling-circle__orbit { fill: none; stroke: var(--rolling-grid); stroke-dasharray: 3 5; }
 .rolling-circle__wheel { fill: var(--rolling-wheel); stroke: var(--rolling-teal); stroke-width: 1.8; }
 .rolling-circle__arm { stroke: var(--rolling-teal); stroke-width: 1.5; }
-.rolling-circle__center, .rolling-circle__contact { fill: var(--rolling-teal); }
+.rolling-circle__center { fill: var(--rolling-ink); }
+.rolling-circle__orbiting-center { fill: var(--rolling-center); stroke: var(--rolling-paper); stroke-width: 1.5; }
+.rolling-circle svg .rolling-circle__center-label { fill: var(--rolling-center); font-weight: 700; }
+.rolling-circle__contact { fill: var(--rolling-paper); stroke: var(--rolling-ink); stroke-width: 1.5; }
 .rolling-circle__track, .rolling-circle__wave { fill: none; stroke: var(--rolling-orange); stroke-width: 2; }
 .rolling-circle__dot { fill: var(--rolling-orange); stroke: var(--rolling-paper); stroke-width: 2; }
 .rolling-circle__axis, .rolling-circle__cursor { fill: none; stroke: var(--rolling-grid); }
 .rolling-circle__cursor { stroke-dasharray: 2 4; }
-.rolling-circle__extra-line { stroke: var(--rolling-teal); stroke-dasharray: 4 5; opacity: .5; }
+.rolling-circle__extra-line { stroke: var(--rolling-teal); stroke-dasharray: 4 5; opacity: .32; }
 .rolling-circle__extra-dot { fill: var(--rolling-teal); stroke: var(--rolling-paper); stroke-width: 1.5; }
 
 .rolling-circle__controls { margin: 1rem 0 .75rem; }

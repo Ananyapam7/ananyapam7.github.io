@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How a Rolling Circle Draws a Straight Line"
-date: 2026-11-11 00:00:00 +0100
+date: 2026-08-23 12:00:00 +0200
 description: "Roll a circle inside one twice its size and every point on its rim traces a diameter. An interactive look at the geometry and the simple harmonic motion behind it."
 tags: math
 thumbnail: /assets/img/rolling-circles/geometry.svg
@@ -55,5 +55,3 @@ $$
 This is simple harmonic motion. The amplitude is $$2r$$, the **radius** of the fixed circle, and the full trip from one endpoint to the other spans $$4r$$. The point slows to a stop at each end, then passes through the center at its highest speed. The graph above shows that rhythm over one revolution.
 
 The ratio of radii does two jobs at once. It makes the orbit of $$A$$ and the radius $$AP$$ the same length, and it makes their angles turn at equal rates in opposite directions. A point at $$\theta=0$$ traces the horizontal diameter. One on the opposite side of the small circle, at $$\theta=\pi$$, traces the vertical diameter. Everything in between follows the same rule.
-
-[Watch the original animation on YouTube](https://www.youtube.com/watch?v=ZEk7CepAQxI)

@@ -12,11 +12,11 @@
         <line class="rolling-circle__arm" data-orbit-arm x1="200" y1="175" x2="236" y2="112.65"/>
         <line class="rolling-circle__arm" data-point-arm x1="236" y1="112.65" x2="308" y2="112.65"/>
         <circle class="rolling-circle__center" cx="200" cy="175" r="3.5"/>
-        <circle class="rolling-circle__center" data-center cx="236" cy="112.65" r="3.5"/>
+        <circle class="rolling-circle__orbiting-center" data-center cx="236" cy="112.65" r="5"/>
         <circle class="rolling-circle__contact" data-contact cx="272" cy="50.29" r="4"/>
         <circle class="rolling-circle__dot" data-dot cx="308" cy="112.65" r="7"/>
         <text x="187" y="190">C</text>
-        <text data-center-label x="223" y="104">A</text>
+        <text class="rolling-circle__center-label" data-center-label x="223" y="104">A</text>
         <text class="rolling-circle__highlight" data-dot-label x="320" y="107">P</text>
       </svg>
     </div>
@@ -42,7 +42,7 @@
     <div class="rolling-circle__buttons">
       <button type="button" data-play>Play</button>
       <button type="button" data-reset>Reset</button>
-      <label class="rolling-circle__option"><input type="checkbox" data-more> Show other rim points</label>
+      <label class="rolling-circle__option"><input type="checkbox" data-more checked> Show other rim points</label>
     </div>
     <div class="rolling-circle__sliders">
       <label>Orbit angle <span data-phase-value aria-hidden="true">60°</span>
@@ -53,6 +53,6 @@
       </label>
     </div>
   </div>
-  <figcaption>Press Play or drag the orbit slider. The orange dot and the graph show the same point. Change the initial rim angle to choose which point to follow.</figcaption>
+  <figcaption>The blue dot A is the center of the rolling circle, and the hollow marker shows where the circles touch. The orange rim point P is the one shown on the graph. Press Play or drag the sliders to explore.</figcaption>
 </figure>
 <script defer src="{{ '/assets/js/rolling-circle.js' | relative_url | bust_file_cache }}"></script>
