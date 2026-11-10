@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">A circle rolling inside a circle twice its radius</title>
+  <desc id="desc">The large circle has center C. The small circle has center A and touches it at T. P lies on the orange diameter through C.</desc>
+  <rect width="640" height="360" rx="20" fill="#f0f7f5"/>
+  <g fill="none">
+    <circle cx="320" cy="180" r="142" fill="#fbfdfc" stroke="#527270" stroke-width="2"/>
+    <circle cx="320" cy="180" r="71" stroke="#9cb9b4" stroke-dasharray="4 6"/>
+    <circle cx="332.33" cy="110.08" r="71" fill="#e0f0eb" fill-opacity=".8" stroke="#167a70" stroke-width="2.5"/>
+    <path d="M197.02 251 L442.98 109" stroke="#b85937" stroke-width="2"/>
+    <path d="M320 180 L344.66 40.16 M332.33 110.08 L399.05 134.36" stroke="#167a70" stroke-width="1.7"/>
+  </g>
+  <g fill="#167a70">
+    <circle cx="332.33" cy="110.08" r="4"/>
+    <circle cx="344.66" cy="40.16" r="4"/>
+  </g>
+  <circle cx="320" cy="180" r="4" fill="#365651"/>
+  <circle cx="399.05" cy="134.36" r="6" fill="#bd5737" stroke="#fbfdfc" stroke-width="2"/>
+  <g fill="#284a46" font-family="Georgia, serif" font-size="18" font-style="italic">
+    <text x="303" y="173">C</text>
+    <text x="314" y="101">A</text>
+    <text x="352" y="35">T</text>
+    <text x="405" y="153" fill="#a2452b">P</text>
+    <text x="307" y="147">r</text>
+    <text x="317" y="76">r</text>
+  </g>
+</svg>

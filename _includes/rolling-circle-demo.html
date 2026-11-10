@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="{{ '/assets/css/rolling-circle.css' | relative_url | bust_file_cache }}">
+<figure class="rolling-circle" data-rolling-circle aria-label="Interactive rolling-circle diagram">
+  <div class="rolling-circle__panels">
+    <div class="rolling-circle__panel">
+      <h2>Inside the circle</h2>
+      <svg viewBox="0 0 400 350" role="img" aria-label="A rolling circle and the diameter traced by its marked point">
+        <circle class="rolling-circle__outer" cx="200" cy="175" r="144"/>
+        <circle class="rolling-circle__orbit" cx="200" cy="175" r="72"/>
+        <circle class="rolling-circle__wheel" data-wheel cx="236" cy="112.65" r="72"/>
+        <g data-extra></g>
+        <line class="rolling-circle__track" data-track x1="75.29" y1="247" x2="324.71" y2="103"/>
+        <line class="rolling-circle__arm" data-orbit-arm x1="200" y1="175" x2="236" y2="112.65"/>
+        <line class="rolling-circle__arm" data-point-arm x1="236" y1="112.65" x2="308" y2="112.65"/>
+        <circle class="rolling-circle__center" cx="200" cy="175" r="3.5"/>
+        <circle class="rolling-circle__center" data-center cx="236" cy="112.65" r="3.5"/>
+        <circle class="rolling-circle__contact" data-contact cx="272" cy="50.29" r="4"/>
+        <circle class="rolling-circle__dot" data-dot cx="308" cy="112.65" r="7"/>
+        <text x="187" y="190">C</text>
+        <text data-center-label x="223" y="104">A</text>
+        <text class="rolling-circle__highlight" data-dot-label x="320" y="107">P</text>
+      </svg>
+    </div>
+    <div class="rolling-circle__panel rolling-circle__panel--graph">
+      <h2>Along the diameter</h2>
+      <svg viewBox="0 0 360 216" role="img" aria-label="Signed displacement from the center over one revolution">
+        <path class="rolling-circle__orbit" d="M48 37H329 M48 157H329"/>
+        <path class="rolling-circle__axis" d="M48 30V165 M48 97H329"/>
+        <text x="38" y="42" text-anchor="end">+2r</text>
+        <text x="38" y="102" text-anchor="end">0</text>
+        <text x="38" y="162" text-anchor="end">−2r</text>
+        <text x="48" y="184" text-anchor="middle">0°</text>
+        <text x="188.5" y="184" text-anchor="middle">180°</text>
+        <text x="329" y="184" text-anchor="middle">360°</text>
+        <text x="188.5" y="208" text-anchor="middle">Orbit angle</text>
+        <path class="rolling-circle__wave" data-wave d="M48 45.04 C72 27 97 38 118.25 67 C143 102 165 139 188.5 148.96 C213 163 238 148 258.75 127 C284 93 306 57 329 45.04"/>
+        <line class="rolling-circle__cursor" data-cursor x1="94.83" y1="30" x2="94.83" y2="165"/>
+        <circle class="rolling-circle__dot" data-graph-dot cx="94.83" cy="45.04" r="5.5"/>
+      </svg>
+    </div>
+  </div>
+  <div class="rolling-circle__controls" data-controls hidden>
+    <div class="rolling-circle__buttons">
+      <button type="button" data-play>Play</button>
+      <button type="button" data-reset>Reset</button>
+      <label class="rolling-circle__option"><input type="checkbox" data-more> Show other rim points</label>
+    </div>
+    <div class="rolling-circle__sliders">
+      <label>Orbit angle <span data-phase-value aria-hidden="true">60°</span>
+        <input type="range" min="0" max="360" step="1" value="60" data-phase>
+      </label>
+      <label>Initial rim angle <span data-rim-value aria-hidden="true">60°</span>
+        <input type="range" min="0" max="360" step="1" value="60" data-rim>
+      </label>
+    </div>
+  </div>
+  <figcaption>Press Play or drag the orbit slider. The orange dot and the graph show the same point. Change the initial rim angle to choose which point to follow.</figcaption>
+</figure>
+<script defer src="{{ '/assets/js/rolling-circle.js' | relative_url | bust_file_cache }}"></script>

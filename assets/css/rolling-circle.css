@@ -1,0 +1,111 @@
+.rolling-circle {
+  --rolling-surface: #edf6f3;
+  --rolling-paper: #fbfdfc;
+  --rolling-ink: #234742;
+  --rolling-muted: #59716d;
+  --rolling-grid: #9db7b1;
+  --rolling-teal: #127a70;
+  --rolling-wheel: #d7ede6;
+  --rolling-orange: #ad492c;
+  margin: 1.8rem 0 2.4rem;
+  padding: clamp(.85rem, 3vw, 1.5rem);
+  border: 1px solid var(--rolling-grid);
+  border-radius: 1.15rem;
+  background: var(--rolling-surface);
+  color: var(--rolling-ink);
+}
+
+html[data-theme="dark"] .rolling-circle {
+  --rolling-surface: #222f2d;
+  --rolling-paper: #182624;
+  --rolling-ink: #e1f2ec;
+  --rolling-muted: #b0c8c2;
+  --rolling-grid: #55746d;
+  --rolling-teal: #85cfbb;
+  --rolling-wheel: #28463e;
+  --rolling-orange: #f9a98b;
+}
+
+.rolling-circle__panels {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  gap: 1rem;
+}
+
+.rolling-circle__panel {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: .75rem;
+  border-radius: .7rem;
+  background: var(--rolling-paper);
+}
+
+.rolling-circle__panel h2 {
+  margin: .2rem .45rem 0;
+  color: var(--rolling-ink);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.rolling-circle svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rolling-circle__panel--graph svg { margin-block: auto; }
+
+.rolling-circle svg text {
+  fill: var(--rolling-muted);
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.rolling-circle svg .rolling-circle__highlight {
+  fill: var(--rolling-orange);
+  font-weight: 700;
+}
+
+.rolling-circle__outer { fill: none; stroke: var(--rolling-ink); stroke-width: 1.4; }
+.rolling-circle__orbit { fill: none; stroke: var(--rolling-grid); stroke-dasharray: 3 5; }
+.rolling-circle__wheel { fill: var(--rolling-wheel); stroke: var(--rolling-teal); stroke-width: 1.8; }
+.rolling-circle__arm { stroke: var(--rolling-teal); stroke-width: 1.5; }
+.rolling-circle__center, .rolling-circle__contact { fill: var(--rolling-teal); }
+.rolling-circle__track, .rolling-circle__wave { fill: none; stroke: var(--rolling-orange); stroke-width: 2; }
+.rolling-circle__dot { fill: var(--rolling-orange); stroke: var(--rolling-paper); stroke-width: 2; }
+.rolling-circle__axis, .rolling-circle__cursor { fill: none; stroke: var(--rolling-grid); }
+.rolling-circle__cursor { stroke-dasharray: 2 4; }
+.rolling-circle__extra-line { stroke: var(--rolling-teal); stroke-dasharray: 4 5; opacity: .5; }
+.rolling-circle__extra-dot { fill: var(--rolling-teal); stroke: var(--rolling-paper); stroke-width: 1.5; }
+
+.rolling-circle__controls { margin: 1rem 0 .75rem; }
+.rolling-circle__buttons { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; }
+.rolling-circle__buttons button {
+  padding: .4rem .9rem;
+  border: 1px solid var(--rolling-grid);
+  border-radius: .5rem;
+  color: var(--rolling-ink);
+  background: var(--rolling-paper);
+  cursor: pointer;
+}
+.rolling-circle__buttons button[data-play] {
+  min-width: 4.7rem;
+  color: var(--rolling-paper);
+  background: var(--rolling-ink);
+  border-color: var(--rolling-ink);
+}
+.rolling-circle__buttons button:hover { box-shadow: inset 0 0 0 1px var(--rolling-teal); }
+.rolling-circle__controls :focus-visible { outline: 2px solid var(--rolling-teal); outline-offset: 3px; }
+.rolling-circle__option { display: inline-flex; align-items: center; gap: .35rem; margin: 0 .2rem; }
+.rolling-circle input { accent-color: var(--rolling-teal); }
+.rolling-circle__sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: .85rem; }
+.rolling-circle__sliders label { display: grid; grid-template-columns: 1fr auto; gap: .15rem .5rem; margin: 0; }
+.rolling-circle__sliders input { grid-column: 1 / -1; width: 100%; min-height: 24px; cursor: pointer; }
+.rolling-circle__sliders label span { font-variant-numeric: tabular-nums; font-weight: 600; }
+.rolling-circle figcaption { margin-top: .6rem; color: var(--rolling-muted); font-size: .88rem; }
+
+@media (max-width: 575px) {
+  .rolling-circle__panels { grid-template-columns: 1fr; gap: .7rem; }
+  .rolling-circle__sliders { grid-template-columns: 1fr; gap: .55rem; }
+}
