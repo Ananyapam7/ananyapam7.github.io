@@ -38,6 +38,12 @@
   var dot = element("dot");
   var centerLabel = element("center-label");
   var dotLabel = element("dot-label");
+  var phiArc = element("phi-arc");
+  var phiLabel = element("phi-label");
+  var thetaArc = element("theta-arc");
+  var thetaLabel = element("theta-label");
+  var thetaBaseline = element("theta-baseline");
+  var thetaRay = element("theta-ray");
   var wave = element("wave");
   var cursor = element("cursor");
   var graphDot = element("graph-dot");
@@ -78,6 +84,23 @@
       offset(origin, 2 * radius, initialAngle / 2));
   }
 
+  function drawAngle(arc, label, center, angle, arcRadius) {
+    var end = offset(center, arcRadius, angle);
+    var path = "M" + (center.x + arcRadius) + " " + center.y;
+    var arcCommand = " A" + arcRadius + " " + arcRadius + " 0 ";
+    if (angle === 360) {
+      // A single SVG arc cannot start and end at the same point.
+      path += arcCommand + "0 0 " + (center.x - arcRadius) + " " + center.y;
+      path += arcCommand + "0 0 " + (center.x + arcRadius) + " " + center.y;
+    } else if (angle > 0) {
+      path += arcCommand + (angle > 180 ? 1 : 0) + " 0 " + end.x + " " + end.y;
+    }
+    arc.setAttribute("d", path);
+
+    var labelPosition = offset(center, arcRadius + 12, Math.max(12, angle / 2));
+    attributes(label, { x: labelPosition.x, y: labelPosition.y });
+  }
+
   function graphPosition(angle) {
     return {
       x: 48 + 281 * angle / 360,
@@ -103,6 +126,10 @@
     place(dot, point);
     segment(orbitArm, origin, center);
     segment(pointArm, center, point);
+    segment(thetaBaseline, center, offset(center, 48, 0));
+    segment(thetaRay, center, offset(center, 48, rim));
+    drawAngle(phiArc, phiLabel, origin, phase, 29);
+    drawAngle(thetaArc, thetaLabel, center, rim, 24);
     attributes(centerLabel, { x: center.x - 14, y: center.y - 8 });
     attributes(dotLabel, { x: point.x + 11, y: point.y - 7 });
     diameter(track, rim);

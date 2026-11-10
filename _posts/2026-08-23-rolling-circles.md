@@ -17,7 +17,7 @@ Fix a circle of radius $$2r$$ with center $$C$$. Inside it, roll a circle of rad
 
 <figure>
   <img class="img-fluid rounded d-block mx-auto" src="{{ '/assets/img/rolling-circles/geometry.svg' | relative_url }}" width="640" height="360" alt="A smaller circle touches the inside of a circle twice its radius at T. C is the fixed center, A is the rolling center, and P lies on a diameter through C.">
-  <figcaption class="caption">The center A is halfway from C to the contact point T. The orange line is the diameter traced by P.</figcaption>
+  <figcaption class="caption">The blue arc φ measures the angle of CA. The orange arc θ uses the dashed reference ray for the initial direction of AP.</figcaption>
 </figure>
 
 At the contact point $$T$$, the moving circle touches a stationary wall. With no slipping, the velocity of the bit of rim at $$T$$ must be zero. The center carries it forward at speed $$r\Omega$$, while the circle's spin carries it backward at speed $$r\lvert\omega\rvert$$. The two cancel, so the **signed** angular velocity of the small circle is $$\omega=-\Omega$$. Its center goes counterclockwise while the circle itself turns clockwise at the same rate.

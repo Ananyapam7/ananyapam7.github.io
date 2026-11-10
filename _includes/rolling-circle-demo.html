@@ -3,7 +3,7 @@
   <div class="rolling-circle__panels">
     <div class="rolling-circle__panel">
       <h2>Inside the circle</h2>
-      <svg viewBox="0 0 400 350" role="img" aria-label="A rolling circle and the diameter traced by its marked point">
+      <svg viewBox="0 0 400 350" role="img" aria-label="Rolling circle with orbit angle φ at C, initial rim angle θ at A, and the diameter traced by P">
         <circle class="rolling-circle__outer" cx="200" cy="175" r="144"/>
         <circle class="rolling-circle__orbit" cx="200" cy="175" r="72"/>
         <circle class="rolling-circle__wheel" data-wheel cx="236" cy="112.65" r="72"/>
@@ -11,6 +11,13 @@
         <line class="rolling-circle__track" data-track x1="75.29" y1="247" x2="324.71" y2="103"/>
         <line class="rolling-circle__arm" data-orbit-arm x1="200" y1="175" x2="236" y2="112.65"/>
         <line class="rolling-circle__arm" data-point-arm x1="236" y1="112.65" x2="308" y2="112.65"/>
+        <path class="rolling-circle__angle-reference" d="M200 175H251"/>
+        <line class="rolling-circle__angle-reference" data-theta-baseline x1="236" y1="112.65" x2="284" y2="112.65"/>
+        <line class="rolling-circle__theta-ray" data-theta-ray x1="236" y1="112.65" x2="260" y2="71.08"/>
+        <path class="rolling-circle__angle-arc rolling-circle__phi" data-phi-arc d="M229 175 A29 29 0 0 0 214.5 149.89"/>
+        <path class="rolling-circle__angle-arc rolling-circle__theta" data-theta-arc d="M260 112.65 A24 24 0 0 0 248 91.87"/>
+        <text class="rolling-circle__angle-label rolling-circle__phi" data-phi-label x="236.37" y="154">φ</text>
+        <text class="rolling-circle__angle-label rolling-circle__theta" data-theta-label x="267.18" y="94.65">θ</text>
         <circle class="rolling-circle__center" cx="200" cy="175" r="3.5"/>
         <circle class="rolling-circle__orbiting-center" data-center cx="236" cy="112.65" r="5"/>
         <circle class="rolling-circle__contact" data-contact cx="272" cy="50.29" r="4"/>
@@ -45,14 +52,14 @@
       <label class="rolling-circle__option"><input type="checkbox" data-more checked> Show other rim points</label>
     </div>
     <div class="rolling-circle__sliders">
-      <label>Orbit angle <span data-phase-value aria-hidden="true">60°</span>
+      <label>Orbit angle φ <span data-phase-value aria-hidden="true">60°</span>
         <input type="range" min="0" max="360" step="1" value="60" data-phase>
       </label>
-      <label>Initial rim angle <span data-rim-value aria-hidden="true">60°</span>
+      <label>Initial rim angle θ <span data-rim-value aria-hidden="true">60°</span>
         <input type="range" min="0" max="360" step="1" value="60" data-rim>
       </label>
     </div>
   </div>
-  <figcaption>The blue dot A is the center of the rolling circle, and the hollow marker shows where the circles touch. The orange rim point P is the one shown on the graph. Press Play or drag the sliders to explore.</figcaption>
+  <figcaption>The blue arc φ measures the orbit angle at C. The orange arc θ measures the initial rim angle at A, with a dashed ray showing where AP points at the start. The graph follows the orange rim point P.</figcaption>
 </figure>
 <script defer src="{{ '/assets/js/rolling-circle.js' | relative_url | bust_file_cache }}"></script>
