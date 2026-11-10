@@ -9,15 +9,13 @@
     <path d="M197.02 251 L442.98 109" stroke="#b85937" stroke-width="2"/>
     <path d="M320 180 L344.66 40.16 M332.33 110.08 L399.05 134.36" stroke="#167a70" stroke-width="1.7"/>
   </g>
-  <g fill="#167a70">
-    <circle cx="332.33" cy="110.08" r="4"/>
-    <circle cx="344.66" cy="40.16" r="4"/>
-  </g>
+  <circle cx="332.33" cy="110.08" r="4.5" fill="#315caa" stroke="#fbfdfc" stroke-width="1.5"/>
+  <circle cx="344.66" cy="40.16" r="4" fill="#fbfdfc" stroke="#365651" stroke-width="1.5"/>
   <circle cx="320" cy="180" r="4" fill="#365651"/>
   <circle cx="399.05" cy="134.36" r="6" fill="#bd5737" stroke="#fbfdfc" stroke-width="2"/>
   <g fill="#284a46" font-family="Georgia, serif" font-size="18" font-style="italic">
     <text x="303" y="173">C</text>
-    <text x="314" y="101">A</text>
+    <text x="314" y="101" fill="#315caa">A</text>
     <text x="352" y="35">T</text>
     <text x="405" y="153" fill="#a2452b">P</text>
     <text x="307" y="147">r</text>
