@@ -233,10 +233,6 @@ resources:
 
   - subject: "- Recreational"
     items:
-      - title: "Coffee Can Investing by Saurabh Mukherjea"
-      - title: "Bernoulli's Fallacy by Aubrey Clayton"
       - title: "Mathematical Mechanic by Mark Levi"
       - title: "My Life as a Quant by Emanuel Derman"
-      - title: "Fooled by Randomness by Nassim Nicholas Taleb"
-      - title: "The Black Swan by Nassim Nicholas Taleb"
 ---
