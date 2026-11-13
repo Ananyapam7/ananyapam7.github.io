@@ -1373,9 +1373,15 @@ nav[data-toggle="toc"] {
 .post-header .post-title .name-native {
   display: inline-block;
   margin-left: 0.35em;
-  font-family: "Nirmala UI", "Noto Sans Bengali", sans-serif;
+  font-family: "Noto Sans Bengali", "Nirmala UI", sans-serif;
   font-size: 0.75em;
   font-weight: 400;
+  line-height: 1.4;
   vertical-align: middle;
   color: var(--global-text-color-light);
+
+  @media (max-width: 575.98px) {
+    display: block;
+    margin-left: 0;
+  }
 }

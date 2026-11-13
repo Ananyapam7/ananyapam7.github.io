@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About
-name_bengali: অনন্যপম দে
+name_bengali: অনন্যোপম দে
 permalink: /
 subtitle: Researcher @ <a href='https://www.mathematik.tu-clausthal.de/en/ueber-uns/mitarbeiter/'> TU-Clausthal </a>• <b>Previously:</b> <b>Pre-Doc Fellow</b> @ <a href='https://www.iitb.ac.in/'>IIT Bombay</a> | <a href='https://www.mpinat.mpg.de/soeding'> Soeding Lab @ MPI-NAT Goettingen</a> | <a href='https://www.iiserkol.ac.in/'>IISER Kolkata</a>
 

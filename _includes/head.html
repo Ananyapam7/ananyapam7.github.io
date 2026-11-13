@@ -14,6 +14,10 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
 
 
+    {% if page.name_bengali %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400&amp;display=swap">
+    {% endif %}
+
     {% if page.toc and page.toc.sidebar %}
     <!-- Sidebar Table of Contents -->
     <link href="{{ '/assets/css/bootstrap-toc.min.css' | relative_url | bust_file_cache }}" rel="stylesheet" />
