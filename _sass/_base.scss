@@ -1373,12 +1373,21 @@ nav[data-toggle="toc"] {
 .post-header .post-title .name-native {
   display: inline-block;
   margin-left: 0.35em;
-  font-family: "Noto Sans Bengali", "Nirmala UI", sans-serif;
   font-size: 0.75em;
-  font-weight: 400;
   line-height: 1.4;
   vertical-align: middle;
-  color: var(--global-text-color-light);
+
+  img {
+    width: 6.3em;
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+    filter: invert(51%);
+  }
+
+  html[data-theme='dark'] & img {
+    filter: invert(91%);
+  }
 
   @media (max-width: 575.98px) {
     display: block;
