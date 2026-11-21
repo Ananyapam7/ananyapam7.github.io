@@ -1,0 +1,10 @@
+<figure class="vi-explorer vi-kl-comparison" data-kl-comparison>
+<h3>Same starting point, different destinations</h3>
+<p>Blue contours show the fixed two-mode target. Dashed red contours show the Gaussian moving and changing shape as its KL decreases. The red dot marks its center.</p>
+<div class="vi-kl-grid">
+<div><picture><source media="(prefers-reduced-motion: reduce)" srcset="{{ '/assets/vi/forward-kl-final.png' | relative_url }}"><img loading="lazy" width="680" height="650" src="{{ '/assets/vi/forward-kl.gif' | relative_url }}" data-animation="{{ '/assets/vi/forward-kl.gif' | relative_url }}" data-poster="{{ '/assets/vi/forward-kl-final.png' | relative_url }}" alt="Forward KL: red elliptical Gaussian contours expand to cover both blue target modes in two dimensions."></picture></div>
+<div><picture><source media="(prefers-reduced-motion: reduce)" srcset="{{ '/assets/vi/reverse-kl-final.png' | relative_url }}"><img loading="lazy" width="680" height="650" src="{{ '/assets/vi/reverse-kl.gif' | relative_url }}" data-animation="{{ '/assets/vi/reverse-kl.gif' | relative_url }}" data-poster="{{ '/assets/vi/reverse-kl-final.png' | relative_url }}" alt="Reverse KL: red Gaussian contours move toward and tighten around the upper-right blue mode in two dimensions."></picture></div>
+</div>
+<div class="vi-controls vi-kl-actions" hidden><button type="button" data-kl-pause>Show final fits</button><button type="button" data-kl-replay>Replay animations</button></div>
+<figcaption>Both runs optimize from the same starting Gaussian. Contours show each distribution’s shape; the trace tracks its KL during optimization. <a href="{{ '/scripts/generate_kl_animations.py' | relative_url }}">Reproduce these animations</a>.</figcaption>
+</figure>

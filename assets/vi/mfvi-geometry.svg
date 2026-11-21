@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" role="img" aria-labelledby="title desc"><title id="title">What mean field loses</title><desc id="desc">At correlation 0.8 the Gaussian target has tilted elliptical contours, while the best independent approximation has smaller circular contours.</desc><rect width="800" height="300" rx="14" fill="#f7fafc"/>
+<text x="200" y="30" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#243449">Target: the unknowns move together</text>
+<path d="M 50 160 H 350 M 200 45 V 270" stroke="#b8c5d1" fill="none"/>
+<ellipse cx="200" cy="160" rx="48.299068313995456" ry="16.099689437998485" transform="rotate(-45 200 160)" fill="#409bd5" fill-opacity=".025" stroke="#2981b8" stroke-opacity="0.9" stroke-width="2"/>
+<ellipse cx="200" cy="160" rx="96.59813662799091" ry="32.19937887599697" transform="rotate(-45 200 160)" fill="#409bd5" fill-opacity=".025" stroke="#2981b8" stroke-opacity="0.9" stroke-width="2"/>
+<ellipse cx="200" cy="160" rx="144.89720494198636" ry="48.299068313995456" transform="rotate(-45 200 160)" fill="#409bd5" fill-opacity=".025" stroke="#2981b8" stroke-opacity="0.9" stroke-width="2"/>
+<text x="200" y="291" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#243449">Marginal variance = 1 · ρ = 0.8</text>
+<text x="600" y="30" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#243449">Mean field: the dependence is lost</text>
+<path d="M 450 160 H 750 M 600 45 V 270" stroke="#b8c5d1" fill="none"/>
+<ellipse cx="600" cy="160" rx="48.299068313995456" ry="16.099689437998485" transform="rotate(-45 600 160)" fill="#409bd5" fill-opacity=".025" stroke="#2981b8" stroke-opacity="0.3" stroke-width="2"/>
+<circle cx="600" cy="160" r="21.599999999999998" fill="#e58a4b" fill-opacity=".035" stroke="#cc7134" stroke-width="2"/>
+<ellipse cx="600" cy="160" rx="96.59813662799091" ry="32.19937887599697" transform="rotate(-45 600 160)" fill="#409bd5" fill-opacity=".025" stroke="#2981b8" stroke-opacity="0.3" stroke-width="2"/>
+<circle cx="600" cy="160" r="43.199999999999996" fill="#e58a4b" fill-opacity=".035" stroke="#cc7134" stroke-width="2"/>
+<ellipse cx="600" cy="160" rx="144.89720494198636" ry="48.299068313995456" transform="rotate(-45 600 160)" fill="#409bd5" fill-opacity=".025" stroke="#2981b8" stroke-opacity="0.3" stroke-width="2"/>
+<circle cx="600" cy="160" r="64.8" fill="#e58a4b" fill-opacity=".035" stroke="#cc7134" stroke-width="2"/>
+<text x="600" y="291" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#243449">Marginal variance = 0.36 · ρ = 0.8</text>
+</svg>

@@ -1,0 +1,50 @@
+<figure class="vi-explorer" data-vi="{{ include.kind }}">
+  {% case include.kind %}
+  {% when 'update' %}
+  <h3>Let the data move your belief</h3>
+  <p>A standard normal prior meets one observation with noise standard deviation 0.8.</p>
+  <p>The prior favors values near zero; the observation favors values near the measured reading. The posterior balances the two, giving more influence to the more precise source. A more precise measurement would pull the posterior mean closer to the observation and reduce its uncertainty. This slider changes only the reading, while keeping its precision fixed.</p>
+  <p>In \(\mathcal N(m,s^2)\), the second argument is the variance; \(s\) is the standard deviation. Here the prior variance is \(1\) and the observation-noise variance is \(0.8^2=0.64\), so the observation receives slightly more weight.</p>
+  {% when 'scale' %}
+  <h3>Different heights. The same distribution.</h3>
+  <p>Multiply a two-peaked density by a constant. Its normalized shape stays put.</p>
+  {% when 'fit' %}
+  <h3>Close the gap</h3>
+  <p>Fit a Gaussian to a Gaussian target. Every unit gained in ELBO removes one unit of KL.</p>
+  {% endcase %}
+  <img class="vi-fallback" src="{{ '/assets/vi/' | append: include.kind | append: '.svg' | relative_url }}" alt="{% if include.kind == 'update' %}A Gaussian prior centered at zero and likelihood centered at two give a posterior centered between them.{% elsif include.kind == 'scale' %}A scaled two-peaked curve and its normalized density share the same shape.{% else %}A wide Gaussian approximation centered left of a narrower target centered at one.{% endif %}">
+  <div class="vi-live" hidden>
+    <svg viewBox="0 0 720 290" role="img" aria-label="Interactive density plot"></svg>
+    <div class="vi-legend"></div>
+    {% if include.kind == 'fit' %}
+    <svg class="vi-gap" data-gap viewBox="0 0 720 230" role="img" aria-label="The ELBO lies below log Z by exactly the KL divergence"></svg>
+    <p class="vi-gap-note">Dashed line: fixed \(\log Z\). Violet line: ELBO. Shaded gap: reverse KL. Both lines use the same fixed vertical scale.</p>
+    {% endif %}
+    <div class="vi-controls">
+      {% if include.kind == 'update' %}
+      <label>Observed x <input type="range" min="-3" max="3" step="0.05" value="2" data-param="a"><output></output></label>
+      {% elsif include.kind == 'scale' %}
+      <label>Scale c <input type="range" min="0.5" max="5" step="0.05" value="2" data-param="a"><output></output></label>
+      {% else %}
+      <label>Mean m <input type="range" min="-3" max="3" step="0.02" value="-1.5" data-param="a"><output></output></label>
+      <label>Spread s <input type="range" min="0.3" max="2" step="0.02" value="1.7" data-param="b"><output></output></label>
+      {% endif %}
+      <button type="button" data-play>Play {% if include.kind == 'fit' %}fit{% else %}animation{% endif %}</button>
+      <button type="button" data-reset>Reset</button>
+    </div>
+    <p class="vi-readout" aria-live="off"></p>
+  </div>
+  <figcaption>{% if include.kind == 'update' %}Teal: prior. Dashed violet: likelihood as a function of z. Coral: normalized posterior.{% elsif include.kind == 'scale' %}Dashed violet: unnormalized density cπ. Teal: normalized density π. The vertical axis is fixed as c changes.{% else %}Dashed teal: target \(\pi=\mathcal N(1,1)\). Violet: approximation \(q_{m,s}\). The animation follows a path to the known optimum.{% endif %} Controls support arrow keys. Animation starts only when requested.</figcaption>
+  {% if include.kind == 'fit' %}
+  <div class="vi-fit-explanation" markdown="0">
+<p>In this illustration, the target is <span markdown="0">\(\pi=\mathcal N(1,1)\)</span>, the approximation is <span markdown="0">\(q_{m,s}=\mathcal N(m,s^2)\)</span>, and we deliberately choose <span markdown="0">\(\gamma=e^2\pi\)</span>, so <span markdown="0">\(\log Z=2\)</span>. The Gaussian KL has the closed form</p>
+<div markdown="0">
+\[
+\mathrm{KL}(q_{m,s}\|\pi)
+=\frac12\left[(m-1)^2+s^2-1-\log s^2\right].
+\]
+</div>
+<p>Move the mean or spread and watch both views: the approximation changes shape above, while the ELBO and its gap to <span markdown="0">\(\log Z\)</span> change below. At <span markdown="0">\(m=1,s=1\)</span>, the densities agree and the gap closes. The play button smoothly moves to this known solution; it illustrates the identity rather than running a general-purpose optimizer. The fixed value of <span markdown="0">\(\log Z\)</span> is shown because this example is solvable, not because VI normally knows it.</p>
+  </div>
+  {% endif %}
+</figure>

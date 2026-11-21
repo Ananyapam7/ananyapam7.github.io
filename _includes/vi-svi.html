@@ -1,0 +1,27 @@
+<figure class="vi-svi" id="svi-explorer" data-svi>
+<h5>A few local fits move one global belief</h5>
+<p>Follow four stages: select three observations, fit their local factors, send scaled statistics, then blend the global natural parameters. Teal is the current global approximation; dashed blue is the best global factor in this mean-field family.</p>
+<div data-svi-live hidden>
+<div class="vi-svi-controls"><button type="button" data-svi-step>Next stage</button><button type="button" data-svi-play>Play</button><button type="button" data-svi-reset>Reset</button></div>
+<ol class="vi-svi-stages"><li>Select batch</li><li>Fit locals</li><li>Scale messages</li><li>Update global</li></ol>
+<p data-svi-status role="status" aria-live="polite"></p>
+<svg data-svi-network viewBox="0 0 680 350" role="img" aria-label="A shared global factor connects to twelve local factors; three selected local factors send statistics back"></svg>
+<div class="vi-svi-plots"><svg data-svi-density viewBox="0 0 340 200" role="img" aria-label="Current and optimal mean-field global Gaussian densities"></svg><svg data-svi-elbo viewBox="0 0 340 200" role="img" aria-label="Profiled ELBO gap after each global update; noisy steps need not improve it"></svg></div>
+<p data-svi-values></p>
+</div>
+<noscript><p>Enable JavaScript to play or step through the minibatches.</p></noscript>
+<details><summary>The small model behind this animation</summary>
+<p>We use twelve fixed observations and a conjugate Gaussian model:</p>
+\[
+z_g\sim\mathcal N(0,1),\quad z_i\mid z_g\sim\mathcal N(z_g,1),
+\quad x_i\mid z_i\sim\mathcal N(z_i,1).
+\]
+<p>With the global mean held fixed, each selected local fit is exactly</p>
+\[
+q_i^\star=\mathcal N((x_i+m_g)/2,\,1/2).
+\]
+<p>Its message is \(\bar T_i=(m_i,-1/2)\). For a batch of three, multiply the sum by \(12/3=4\), add the prior parameter \((0,-1/2)\), and blend with \(\phi_g=(m_g/v_g,-1/(2v_g))\). The step size is \(\eta_t=(t+2)^{-0.7}\), starting at \(t=0\). Batches are sampled uniformly without replacement within each batch, with a fixed random seed for replay.</p>
+<p>The dashed density has \(m_g^\star=\sum_i x_i/14\) and \(v_g^\star=1/13\). The ELBO plot evaluates \(\mathcal L_{\mathrm{prof}}(\phi_g)-\mathcal L_{\mathrm{prof}}(\phi_g^\star)\): it analytically refits all local factors for this diagnostic only. The algorithm itself fits just the selected three. This lets us compare global fits on the same full-data objective.</p>
+</details>
+<figcaption>A real stochastic update, not a scripted monotone path. Individual minibatches can lower the ELBO; the overall fit improves across updates. The reference is the mean-field optimum, not the exact posterior.</figcaption>
+</figure>

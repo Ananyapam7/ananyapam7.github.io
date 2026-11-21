@@ -1,0 +1,25 @@
+<figure class="vi-cavi" id="cavi-explorer" data-cavi>
+<h5>One factor moves. The ELBO climbs.</h5>
+<p>Blue contours are the target. Orange contours are the current product approximation. The marginal plots show each factor in orange and its true target marginal in dashed blue. Each button press performs one exact factor update.</p>
+<div class="vi-cavi-live" hidden>
+<div class="vi-cavi-controls">
+<label>Target correlation ρ <output data-rho-label>0.80</output><input data-cavi-rho type="range" min="0" max="0.95" step="0.05" value="0.8"></label>
+<button type="button" data-cavi-step>Update q₁</button>
+<button type="button" data-cavi-play>Play updates</button>
+<button type="button" data-cavi-reset>Reset</button>
+</div>
+<p class="vi-cavi-status" data-cavi-status role="status" aria-live="polite">Start with q₁; q₂ stays fixed.</p>
+<div class="vi-cavi-panels">
+<svg data-cavi-joint viewBox="0 0 420 320" role="img" aria-label="Target and mean-field approximation contours, with a path marking the changing mean"></svg>
+<div class="vi-cavi-marginals">
+<svg data-cavi-factor="0" viewBox="0 0 360 160" role="img" aria-label="First variational factor"></svg>
+<svg data-cavi-factor="1" viewBox="0 0 360 160" role="img" aria-label="Second variational factor"></svg>
+</div>
+</div>
+<svg data-cavi-elbo viewBox="0 0 760 210" role="img" aria-label="ELBO at each completed factor update, with the best mean-field ELBO and log Z marked"></svg>
+<p class="vi-cavi-values" data-cavi-values></p>
+</div>
+<div data-cavi-fallback><img src="/assets/vi/mfvi-geometry.svg" alt="Correlated Gaussian target and best mean-field fit"><p>Enable JavaScript to step through the factor updates.</p></div>
+<figcaption>Here \(\gamma=\pi\), so \(\log Z=0\) and the ELBO is exactly minus KL. The dashed orange level is the best ELBO in this mean-field family: \(\tfrac12\log(1-\rho^2)\). A remaining gap to zero is approximation error, not unfinished optimization. Contours mark equal Mahalanobis radii; their colors distinguish the two distributions.</figcaption>
+
+</figure>
