@@ -1,0 +1,20 @@
+\documentclass[tikz,border=14pt]{standalone}
+\usepackage{amsmath}
+\usetikzlibrary{arrows.meta,positioning}
+\definecolor{ink}{HTML}{243449}
+\definecolor{teal}{HTML}{087F8C}
+\definecolor{violet}{HTML}{7354B5}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily,node distance=9mm and 9mm,
+box/.style={draw=ink!25,rounded corners=4pt,fill=ink!3,text=ink,align=center,text width=43mm,minimum height=14mm,inner sep=7pt},
+edge/.style={-{Stealth[length=2.5mm]},thick,draw=ink!55}]
+\node[box,text width=60mm] (a) {Target given up to scale\\$\pi(z)=\gamma(z)/Z$};
+\node[box,below left=of a] (b) {Compare two states};
+\node[box,below right=of a] (c) {Compare approximating\\distributions};
+\node[box,below=of b,draw=teal,fill=teal!6] (d) {Metropolis--Hastings\\uses a density ratio};
+\node[box,below=of c,draw=violet,fill=violet!6] (e) {Variational inference\\uses log-density differences};
+\node[box,below=of d] (f) {Posterior draws\\from a chain};
+\node[box,below=of e] (g) {A fitted approximation};
+\foreach \s/\t in {a/b,a/c,b/d,c/e,d/f,e/g}\draw[edge] (\s)--(\t);
+\end{tikzpicture}
+\end{document}
