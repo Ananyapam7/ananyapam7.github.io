@@ -180,7 +180,7 @@
       "title": "A Mean Field Theory Learning Algorithm for Neural Networks",
       "short": "MFVI",
       "changes": "Mean-field approximation",
-      "move": "Replace sampled Boltzmann-machine correlations with deterministic mean-field equations for learning.",
+      "move": "Approximate a joint distribution with independent factors, trading dependence for simpler inference.",
       "note": "mfvi.md",
       "authors": [
         "Carsten Peterson",
@@ -199,7 +199,7 @@
     },
     {
       "id": "paper-1",
-      "title": "Mean Field Theory for Sigmoid Belief Networks",
+      "title": "CAVI",
       "short": "CAVI",
       "authors": [
         "Lawrence K. Saul",
@@ -225,7 +225,8 @@
       "source": "https://arxiv.org/abs/cs/9603102",
       "pdf": "https://www.cs.columbia.edu/~blei/fogm/2019F/readings/SaulJaakkolaJordan1996.pdf",
       "image": "/assets/vi/papers/cavi-origin.png",
-      "visual": "_includes/vi-cavi.html"
+      "visual": "_includes/vi-cavi.html",
+      "source_title": "Mean Field Theory for Sigmoid Belief Networks"
     },
     {
       "id": "paper-2",

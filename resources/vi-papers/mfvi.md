@@ -1,15 +1,4 @@
-Learning a Boltzmann machine requires correlations between its binary units. Estimating those correlations by repeated stochastic simulation is expensive. Peterson and Anderson replace this sampling step with deterministic mean-field equations.
-
-**Replace fluctuating neighbors by their averages.** In our notation, let the binary units be \(z_j\in\{-1,1\}\), with means \(m_j=\mathbb E_q[z_j]\). For symmetric couplings \(W_{jk}\), biases \(b_j\), and temperature \(T>0\), the mean-field equations take the form
-
-\[
-m_j=\tanh\!\left(\frac{b_j+\sum_{k\ne j}W_{jk}m_k}{T}\right),
-\qquad \mathbb E_q[z_jz_k]=m_jm_k\quad(j\ne k).
-\]
-
-Each unit responds to the average field produced by the others. The resulting products of means approximate the correlations used in the learning rule, in both the clamped and free phases. This is the paper's computational change: deterministic approximate correlations replace expensive stochastic measurements.
-
-The transferable variational idea is to fit independent factors:
+Mean-field variational inference simplifies a complicated joint distribution by approximating it with independent factors:
 
 \[
 q_\phi(z)=\prod_{j=1}^Jq_{\phi_j}(z_j).
@@ -37,7 +26,5 @@ q^\star=\mathcal N\!\left(0,(1-\rho^2)I\right).
 The true marginal variances are \(1\), but at \(\rho=0.8\) the fitted variances are \(0.36\). Widening independent factors would put mass outside the narrow tilted region, so reverse KL favors a narrower approximation.
 
 **When it helps.** Mean field offers inexpensive inference when dependencies are weak or speed matters. Strong correlations can make uncertainty too narrow, and separated modes can lead to a fit around just one mode. Larger blocks, [flows](#paper-34), or [hierarchical approximations](#paper-37) can retain more structure.
-
-**What carries forward.** The paper applies mean field to Boltzmann-machine learning. The Gaussian illustration above isolates the same independence tradeoff in a different model. More generally, choosing larger independent blocks preserves dependence inside them. The model's variables need not be independent just because the approximation is.
 
 [Read the source paper](https://wpmedia.wolfram.com/sites/13/2018/02/01-5-6.pdf).

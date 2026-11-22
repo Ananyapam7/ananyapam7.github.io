@@ -259,7 +259,7 @@
 <g class="vi-network-hub" data-hub="8" data-x="1300" data-y="245" transform="translate(1300,245)" style="--node-color:#7ac9ef"><text text-anchor="middle">Gaussian processes</text><text class="vi-network-hub-count" text-anchor="middle" y="19">7 papers</text></g>
 <g class="vi-network-hub" data-hub="9" data-x="1300" data-y="630" transform="translate(1300,630)" style="--node-color:#e4b8d8"><text text-anchor="middle">Neural weights</text><text class="vi-network-hub-count" text-anchor="middle" y="19">3 papers</text></g>
 <a class="vi-network-node" href="#method-mfvi" data-paper="method-mfvi" data-group="0" data-x="375.00" data-y="148.24" transform="translate(375.00,148.24)" style="--node-color:#71d6cf" aria-label="A Mean Field Theory Learning Algorithm for Neural Networks (1987): preview paper"><title>A Mean Field Theory Learning Algorithm for Neural Networks — 1987</title><circle class="vi-network-hit" r="19"/><circle class="vi-network-ring" r="11.3"/><circle class="vi-network-dot" r="6.3"/><text text-anchor="middle" y="-18"><tspan x="0.0" dy="0">MFVI</tspan></text></a>
-<a class="vi-network-node featured" href="#paper-1" data-paper="paper-1" data-group="0" data-x="423.88" data-y="145.19" transform="translate(423.88,145.19)" style="--node-color:#71d6cf" aria-label="Mean Field Theory for Sigmoid Belief Networks (1996): preview paper"><title>Mean Field Theory for Sigmoid Belief Networks — 1996</title><circle class="vi-network-hit" r="19"/><circle class="vi-network-ring" r="12.8"/><circle class="vi-network-dot" r="7.8"/><text text-anchor="middle" y="-18"><tspan x="12.8" dy="0">CAVI</tspan></text></a>
+<a class="vi-network-node featured" href="#paper-1" data-paper="paper-1" data-group="0" data-x="423.88" data-y="145.19" transform="translate(423.88,145.19)" style="--node-color:#71d6cf" aria-label="CAVI (1996): preview paper"><title>CAVI — 1996</title><circle class="vi-network-hit" r="19"/><circle class="vi-network-ring" r="12.8"/><circle class="vi-network-dot" r="7.8"/><text text-anchor="middle" y="-18"><tspan x="12.8" dy="0">CAVI</tspan></text></a>
 <a class="vi-network-node featured" href="#paper-2" data-paper="paper-2" data-group="0" data-x="524.27" data-y="225.80" transform="translate(524.27,225.80)" style="--node-color:#71d6cf" aria-label="Stochastic Variational Inference (2013): preview paper"><title>Stochastic Variational Inference — 2013</title><circle class="vi-network-hit" r="19"/><circle class="vi-network-ring" r="12.8"/><circle class="vi-network-dot" r="7.8"/><text text-anchor="middle" y="-18"><tspan x="36.7" dy="0">SVI</tspan></text></a>
 <a class="vi-network-node" href="#paper-3" data-paper="paper-3" data-group="0" data-x="523.08" data-y="333.68" transform="translate(523.08,333.68)" style="--node-color:#71d6cf" aria-label="Black Box Variational Inference (2014): preview paper"><title>Black Box Variational Inference — 2014</title><circle class="vi-network-hit" r="19"/><circle class="vi-network-ring" r="12.8"/><circle class="vi-network-dot" r="7.8"/><text text-anchor="middle" y="4"><tspan x="38.4" dy="0">BBVI</tspan></text></a>
 <a class="vi-network-node featured" href="#paper-4" data-paper="paper-4" data-group="0" data-x="518.85" data-y="374.28" transform="translate(518.85,374.28)" style="--node-color:#71d6cf" aria-label="Auto-Encoding Variational Bayes (2014 · ICLR): preview paper"><title>Auto-Encoding Variational Bayes — 2014 · ICLR</title><circle class="vi-network-hit" r="19"/><circle class="vi-network-ring" r="14.0"/><circle class="vi-network-dot" r="9.0"/><text text-anchor="middle" y="25"><tspan x="34.5" dy="0">AEVB</tspan></text></a>
@@ -381,18 +381,11 @@
 </figcaption></figure><div class="vi-paper-content">
 <div class="vi-paper-meta"><span>1987</span><span>Mean-field approximation</span></div>
 <h4 id="method-mfvi-title"><a href="#method-mfvi">A Mean Field Theory Learning Algorithm for Neural Networks</a></h4>
-<p class="vi-paper-change"><strong>The move.</strong> Replace sampled Boltzmann-machine correlations with deterministic mean-field equations for learning.</p>
+<p class="vi-paper-change"><strong>The move.</strong> Approximate a joint distribution with independent factors, trading dependence for simpler inference.</p>
 <p class="vi-paper-connections"><span>Read with</span>
 <a href="#paper-1">CAVI</a> · <a href="#paper-34">Normalizing flows</a> · <a href="#paper-37">Hierarchical VI</a>
 </p>
-<details class="vi-paper-theory"><summary>The idea and the mathematics</summary><div class="vi-paper-prose"><p>Learning a Boltzmann machine requires correlations between its binary units. Estimating those correlations by repeated stochastic simulation is expensive. Peterson and Anderson replace this sampling step with deterministic mean-field equations.</p>
-<p><strong>Replace fluctuating neighbors by their averages.</strong> In our notation, let the binary units be <span class="vi-math">\(z_j\in\{-1,1\}\)</span>, with means <span class="vi-math">\(m_j=\mathbb E_q[z_j]\)</span>. For symmetric couplings <span class="vi-math">\(W_{jk}\)</span>, biases <span class="vi-math">\(b_j\)</span>, and temperature <span class="vi-math">\(T\gt 0\)</span>, the mean-field equations take the form</p>
-<div class="vi-math">\[
-m_j=\tanh\!\left(\frac{b_j+\sum_{k\ne j}W_{jk}m_k}{T}\right),
-\qquad \mathbb E_q[z_jz_k]=m_jm_k\quad(j\ne k).
-\]</div>
-<p>Each unit responds to the average field produced by the others. The resulting products of means approximate the correlations used in the learning rule, in both the clamped and free phases. This is the paper's computational change: deterministic approximate correlations replace expensive stochastic measurements.</p>
-<p>The transferable variational idea is to fit independent factors:</p>
+<details class="vi-paper-theory"><summary>The idea and the mathematics</summary><div class="vi-paper-prose"><p>Mean-field variational inference simplifies a complicated joint distribution by approximating it with independent factors:</p>
 <div class="vi-math">\[
 q_\phi(z)=\prod_{j=1}^Jq_{\phi_j}(z_j).
 \]</div>
@@ -412,7 +405,6 @@ q^\star=\mathcal N\!\left(0,(1-\rho^2)I\right).
 \]</div>
 <p>The true marginal variances are <span class="vi-math">\(1\)</span>, but at <span class="vi-math">\(\rho=0.8\)</span> the fitted variances are <span class="vi-math">\(0.36\)</span>. Widening independent factors would put mass outside the narrow tilted region, so reverse KL favors a narrower approximation.</p>
 <p><strong>When it helps.</strong> Mean field offers inexpensive inference when dependencies are weak or speed matters. Strong correlations can make uncertainty too narrow, and separated modes can lead to a fit around just one mode. Larger blocks, <a href="#paper-34">flows</a>, or <a href="#paper-37">hierarchical approximations</a> can retain more structure.</p>
-<p><strong>What carries forward.</strong> The paper applies mean field to Boltzmann-machine learning. The Gaussian illustration above isolates the same independence tradeoff in a different model. More generally, choosing larger independent blocks preserves dependence inside them. The model's variables need not be independent just because the approximation is.</p>
 <p><a href="https://wpmedia.wolfram.com/sites/13/2018/02/01-5-6.pdf">Read the source paper</a>.</p></div></details>
 </div></article>
 <article class="vi-paper" data-kind="paper" id="paper-1" aria-labelledby="paper-1-title">
@@ -423,7 +415,8 @@ q^\star=\mathcal N\!\left(0,(1-\rho^2)I\right).
 <a href="https://arxiv.org/abs/cs/9603102" target="_blank" rel="noopener">Paper &amp; source</a>
 </figcaption></figure><div class="vi-paper-content">
 <div class="vi-paper-meta"><span>1996</span><span>Mean field and bound optimization</span></div>
-<h4 id="paper-1-title"><a href="#paper-1">Mean Field Theory for Sigmoid Belief Networks</a></h4>
+<h4 id="paper-1-title"><a href="#paper-1">CAVI</a></h4>
+<p class="vi-paper-connections">Source paper: <a href="https://arxiv.org/abs/cs/9603102" target="_blank" rel="noopener">Mean Field Theory for Sigmoid Belief Networks</a></p>
 <p class="vi-paper-change"><strong>The move.</strong> Construct a tractable mean-field likelihood bound for sigmoid belief networks and optimize it over factor means and auxiliary parameters.</p>
 <p class="vi-paper-connections"><span>Read with</span>
 <a href="#paper-2">SVI</a> · <a href="#paper-3">BBVI</a> · <a href="#paper-43">Linear-response covariance</a> · <a href="#paper-51">VMP</a> · <a href="#paper-53">Nonconjugate VI</a> · <a href="#paper-63">Graphical VI foundations</a> · <a href="#paper-64">Geometry of VI</a> · <a href="#paper-68">Quadratic logistic bounds</a> · <a href="#paper-70">Collapsed LDA</a> · <a href="#paper-71">Collapsed optimization</a>
