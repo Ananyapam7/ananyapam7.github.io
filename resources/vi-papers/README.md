@@ -52,16 +52,16 @@ sources. Publication years are shown for published works; preprints are labeled.
 Paper 50 intentionally
 summarizes arXiv:2602.01412v1 (February 2026); its note links the later revision.
 
-## Method chapters and richer notes
+## Paper entries and richer notes
 
-MFVI lives in mfvi.md. CAVI lives in 01.md; its original paper-1 anchor is retained for existing links. Both are marked as methods in papers.json, with the same image/authors/theory layout as research entries. Their featured source papers are Peterson and Anderson (1987) for MFVI and Saul, Jaakkola, and Jordan (1996) for CAVI. The source_title field distinguishes the actual paper title from the method heading. The notes distinguish the general methods from each featured paper's model-specific contribution; neither card claims a uniquely established invention date.
+The Peterson–Anderson (1987) paper lives in mfvi.md; the Saul–Jaakkola–Jordan (1996) paper lives in 01.md. Both are regular paper entries, using their actual publication titles, authors, first pages, contribution statements, and expandable explanations. MFVI and CAVI remain their short network labels. The method-mfvi and paper-1 anchors remain stable for existing links. Their notes explain the papers' model-specific contributions and distinguish those from the general methods illustrated by the accompanying Gaussian visuals.
 
 For future expanded notes, develop the problem, intuition, core mathematics, useful settings, and concrete failure modes. Choose a plot or animation that reveals the specific mathematical change. CAVI uses _includes/vi-cavi.html and assets/js/vi-cavi.js; its Gaussian updates are checked with node scripts/test_vi_cavi.cjs. A visual field in metadata inserts the local HTML file at the VISUAL comment in a note.
 
 The research entries 02–50 now include worked intuition and practical limitations,
 checked against the linked papers' method and analysis sections. Toy examples in
 the explanations are pedagogical calculations, not reproductions of the papers'
-experiments. Paper 14 remains a survey entry; MFVI and CAVI remain method chapters.
+experiments. Paper 14 remains a survey entry.
 
 Concrete (13) and Sticking the Landing (22) include interactive illustrations in
 _includes/vi-concrete-demo.html and _includes/vi-stl-demo.html. Their numerical
@@ -108,3 +108,36 @@ using them in equations, and explain why each new equation is needed.
 The interactive network is generated from the same metadata: groups position the
 nodes, short supplies their labels, and connections supplies the edges. New entries
 appear in the network when you rebuild the include.
+
+## Extended reading collection
+
+Entries 51–67 add the 17 complementary readings: message passing, structured SVI,
+nonconjugate VI, diagnostics, operator objectives, boosting, black-box alpha,
+overdispersed BBVI, adversarial VI, sparse GPs, posterior error bounds, Pathfinder,
+two foundational graphical-model treatments, EP, stochastic search, and doubly
+stochastic VI. This expansion brought the collection to 68 paper entries, including the MFVI/CAVI source papers.
+The two foundational treatments are identified as a tutorial and a monograph,
+rather than presented as single new algorithms.
+
+Each note links the primary PDF and the relevant sections. First-page PNGs
+are rendered from the exact PDFs in the metadata. Entry 52 records the title
+ordering difference between the proceedings page and PDF; entry 65 uses the
+author's corrected UAI paper. Existing paper IDs remain unchanged.
+
+The constellation layout and accessible counts are calculated from the collection
+by scripts/vi_network.py. The generator checks that each entry appears in exactly
+one group. Keep short labels concise so they fit in two lines. Search, idea focus,
+pan, zoom, dragging, and preview selection are implemented in assets/js/vi-papers.js.
+The full paper links remain ordinary anchors when JavaScript is unavailable.
+
+## Downloads addendum
+
+Entries 68–92 incorporate the new readings from `vi_missing_papers_addendum.md`.
+Seventeen listed papers were already present; 24 main entries and the verified
+AISTATS 2026 kernelized-path-gradient paper are new. The collection now contains
+93 papers in ten idea groups, including dedicated Gaussian-process and neural-weight
+branches. First-page images come from the linked primary PDFs. Existing IDs stay stable.
+
+The notes distinguish Kernel SIVI’s KSD objective from KL path-gradient methods,
+residual-ELBO component fitting from generic boosting, and deterministic VBLL
+training from merely placing uncertainty over a last layer.
