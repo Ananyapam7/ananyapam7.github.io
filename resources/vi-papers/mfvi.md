@@ -1,4 +1,15 @@
-Before asking how to maximize the ELBO, we have to decide what sort of distribution we are willing to fit. An unrestricted joint density is usually no easier to manipulate than the target itself. Mean field makes the first compromise: preserve uncertainty within chosen blocks, but omit dependence between blocks. This is a restriction on *our approximation*, not a declaration that the model's unknowns are independent.
+Learning a Boltzmann machine requires correlations between its binary units. Estimating those correlations by repeated stochastic simulation is expensive. Peterson and Anderson replace this sampling step with deterministic mean-field equations.
+
+**Replace fluctuating neighbors by their averages.** In our notation, let the binary units be \(z_j\in\{-1,1\}\), with means \(m_j=\mathbb E_q[z_j]\). For symmetric couplings \(W_{jk}\), biases \(b_j\), and temperature \(T>0\), the mean-field equations take the form
+
+\[
+m_j=\tanh\!\left(\frac{b_j+\sum_{k\ne j}W_{jk}m_k}{T}\right),
+\qquad \mathbb E_q[z_jz_k]=m_jm_k\quad(j\ne k).
+\]
+
+Each unit responds to the average field produced by the others. The resulting products of means approximate the correlations used in the learning rule, in both the clamped and free phases. This is the paper's computational change: deterministic approximate correlations replace expensive stochastic measurements.
+
+The transferable variational idea is to fit independent factors:
 
 \[
 q_\phi(z)=\prod_{j=1}^Jq_{\phi_j}(z_j).
@@ -27,8 +38,6 @@ The true marginal variances are \(1\), but at \(\rho=0.8\) the fitted variances 
 
 **When it helps.** Mean field offers inexpensive inference when dependencies are weak or speed matters. Strong correlations can make uncertainty too narrow, and separated modes can lead to a fit around just one mode. Larger blocks, [flows](#paper-34), or [hierarchical approximations](#paper-37) can retain more structure.
 
-The independence assumption belongs to the approximation \(q_\phi\), not to the target \(\pi\). The featured Peterson–Anderson paper uses mean-field equations and factorized correlations to replace expensive sampling during Boltzmann-machine learning. The broader MFVI idea below is a choice of approximation family; the model and reverse-KL objective stay fixed.
-
-**What carries forward.** The transferable choice is the *partition*: independent scalar factors are only one extreme. Block-mean-field models preserve dependence inside blocks. CAVI, stochastic optimization, and later richer-family methods can all be used after this choice.
+**What carries forward.** The paper applies mean field to Boltzmann-machine learning. The Gaussian illustration above isolates the same independence tradeoff in a different model. More generally, choosing larger independent blocks preserves dependence inside them. The model's variables need not be independent just because the approximation is.
 
 [Read the source paper](https://wpmedia.wolfram.com/sites/13/2018/02/01-5-6.pdf).
