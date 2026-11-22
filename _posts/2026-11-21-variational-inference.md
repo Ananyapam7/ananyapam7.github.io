@@ -32,16 +32,16 @@ A **statistical model** specifies a collection of possible probability distribut
 
 A probability distribution lets us assign different amounts of plausibility to different possibilities and calculate the probability that an unknown lies in a given range. Treating an unknown parameter probabilistically does not mean its physical value must fluctuate; the distribution represents uncertainty about it. For a continuous quantity, probabilities are areas under a density, rather than the height of the density at a single point.
 
-We will use one notation convention throughout:
+For now, we take the model as given. We use <span markdown="0">\(z\)</span> for the quantities whose posterior we want to approximate.
 
 | Symbol | Meaning in this article |
 | --- | --- |
 | <span markdown="0">\(x\)</span> | The observed data, held fixed once observed |
 | <span markdown="0">\(z\)</span> | All quantities we want to infer probabilistically |
-| <span markdown="0">\(\theta\)</span> | Model parameters or settings treated as fixed during this inference problem |
+| <span markdown="0">\(\theta\)</span> | Settings of the given model, held fixed for now |
 | <span markdown="0">\(\phi\)</span> | Parameters of a variational approximation, introduced later |
 
-Here, an unknown regression coefficient belongs in <span markdown="0">\(z\)</span> if we want a posterior over it. A known noise level can belong in <span markdown="0">\(\theta\)</span>; if we instead want to infer that noise level, we include it in <span markdown="0">\(z\)</span>. The distinction is what we treat as unknown, rather than whether a quantity is called a parameter or a latent variable.
+For example, <span markdown="0">\(z\)</span> might contain regression coefficients we want to infer, while <span markdown="0">\(\theta\)</span> specifies a known measurement-noise level.
 
 ## How a Bayesian model turns observations into an update
 
@@ -496,7 +496,19 @@ In the Bayesian case, <span markdown="0">\(\gamma(z)=p_\theta(x,z)\)</span> and 
 
 The ELBO is thus a lower bound on the **log evidence**. Equality holds when <span markdown="0">\(q_\phi\)</span> matches the posterior. If the variational family cannot represent the posterior, even its best member leaves a gap. An imperfect optimization procedure can leave an additional gap.
 
-The identity removes the need to compute the normalizing constant, but we still need to evaluate or estimate the ELBO and optimize it. This is where the research begins: **what is the smallest change that makes the next problem tractable?**
+We have now transformed the original inference problem into an optimization problem:
+
+<div markdown="0">
+\[
+\phi^\star\in\arg\max_\phi\mathcal L(\phi).
+\]
+</div>
+
+But this does not mean that the problem is solved. Depending on the target distribution and the variational family, evaluating the ELBO, calculating its derivatives, and finding its optimum may still be computationally difficult.
+
+This is where variational inference algorithms begin to diverge. Some exploit conditional independence or conjugacy in the probabilistic model. Others exploit the structure of the variational family, identities for differentiating expectations, or techniques for reducing the variance of stochastic gradients.
+
+The question guiding the rest of this article is therefore: **What mathematical structure does each method exploit, what does it change, and which difficulty does that change resolve?**
 
 ## A connected reading of variational inference
 

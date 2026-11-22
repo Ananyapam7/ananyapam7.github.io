@@ -297,7 +297,26 @@ So samples from the approximation give the estimate</p>
 <a href="#paper-3">BBVI</a> · <a href="#paper-5">Stochastic backpropagation</a> · <a href="#paper-22">Sticking the Landing</a> · <a href="#paper-39">Amortization gap</a>
 </p>
 <details class="vi-paper-theory"><summary>The idea and the mathematics</summary><div class="vi-paper-prose"><p>A score-function gradient can be computed for many distributions, but its noise can make learning slow. For continuous unknowns, there is another source of information: how a sampled value moves when the variational parameters change.</p>
-<p>AEVB addresses differentiable generative models with continuous latent variables and a reparameterizable approximation. It combines two changes: a pathwise ELBO-gradient estimator, and an inference network that shares variational parameters across observations. Jointly learning the generative parameters <span class="vi-math">\(\theta\)</span> and inference parameters <span class="vi-math">\(\phi\)</span> gives the VAE construction. The objective remains the ELBO; neither conditional conjugacy nor closed-form CAVI updates are required.</p>
+<p>AEVB addresses differentiable generative models with continuous latent variables and a reparameterizable approximation. It combines two changes: a pathwise ELBO-gradient estimator, and an inference network that shares variational parameters across observations. Neither conditional conjugacy nor closed-form CAVI updates are required.</p>
+<p>So far, we have fitted an approximate posterior for a given model. AEVB also learns the model itself: <span class="vi-math">\(\theta\)</span> controls the generative model, while <span class="vi-math">\(\phi\)</span> controls the inference network. For one observation, the same ELBO now has two sets of parameters:</p>
+<div class="vi-math">\[
+\mathcal L(\theta,\phi;x)
+=\mathbb E_{q_\phi(z\mid x)}
+\left[\log p_\theta(x,z)-\log q_\phi(z\mid x)\right].
+\]</div>
+<p>Training maximizes the sum of these objectives over the observations, adjusting both <span class="vi-math">\(\theta\)</span> and <span class="vi-math">\(\phi\)</span>. Changing <span class="vi-math">\(\phi\)</span> improves the approximation to the current model's posterior; changing <span class="vi-math">\(\theta\)</span> changes the generative model and therefore the posterior being approximated. In a VAE, these are the encoder and decoder parameters, respectively.</p>
+<p>The identity from the foundation still holds:</p>
+<div class="vi-math">\[
+\log p_\theta(x)=\mathcal L(\theta,\phi;x)
++\mathrm{KL}\!\left(q_\phi(z\mid x)\,\|\,p_\theta(z\mid x)\right).
+\]</div>
+<p>For a fixed <span class="vi-math">\(\theta\)</span>, increasing the ELBO decreases this KL by the same amount. During model learning, the evidence <span class="vi-math">\(\log p_\theta(x)\)</span> also changes, so the target is no longer a fixed level.</p>
+<details>
+<summary>Could we infer the model parameters too?</summary>
+<p>Yes. We can place a prior on the model parameters and approximate their posterior jointly with the latent variables. For a dataset <span class="vi-math">\(x_{1:N}\)</span>, this means fitting an approximation to <span class="vi-math">\(p(\theta,z_{1:N}\mid x_{1:N})\)</span>. Collecting all these unknowns into <span class="vi-math">\(u=(\theta,z_{1:N})\)</span> brings us directly back to the generic inference problem in the foundation.</p>
+<p>This fully Bayesian alternative represents uncertainty about the model weights. A standard VAE instead learns a single set of weights <span class="vi-math">\(\theta\)</span>, while its inference network approximates uncertainty about the latent variables.</p>
+</details>
+
 <p>In <a href="#paper-3">BBVI</a>, we differentiate the distribution that produces a draw. Here we express the draw itself as a differentiable function:</p>
 <div class="vi-math">\[
 \epsilon\sim\nu,\qquad z=T_\phi(x,\epsilon).
@@ -310,17 +329,21 @@ z=m_\phi(x)+s_\phi(x)\odot\epsilon,
 \]</div>
 <p>Hold the same noise draw while changing <span class="vi-math">\(\phi\)</span>. The resulting sample moves smoothly, so ordinary differentiation can follow its movement:</p>
 <div class="vi-math">\[
-\mathcal L(\phi)=
-\mathbb E_{\epsilon\sim\nu}[\log w_\phi(T_\phi(x,\epsilon))],
+\mathcal L(\theta,\phi;x)=
+\mathbb E_{\epsilon\sim\nu}\!\left[
+\log p_\theta(x,T_\phi(x,\epsilon))
+-\log q_\phi(T_\phi(x,\epsilon)\mid x)\right],
 \]</div>
 <div class="vi-math">\[
-\nabla_\phi\mathcal L=
+\nabla_\phi\mathcal L(\theta,\phi;x)=
 \mathbb E_{\epsilon\sim\nu}\!\left[
-\frac{d}{d\phi}\log w_\phi(T_\phi(x,\epsilon))
+\frac{d}{d\phi}\left\{
+\log p_\theta(x,T_\phi(x,\epsilon))
+-\log q_\phi(T_\phi(x,\epsilon)\mid x)\right\}
 \right].
 \]</div>
 <p>This is a <strong>pathwise gradient</strong>. It uses the slope of the target along the moving sample, rather than only a density comparison at a fixed point.</p>
-<p>The paper also introduces shared inference: a network predicts <span class="vi-math">\(m_\phi(x)\)</span> and <span class="vi-math">\(s_\phi(x)\)</span> for each observation. This is <strong>amortization</strong>—learning how to infer across many observations. The model parameters <span class="vi-math">\(\theta\)</span> can also be trained; they remain distinct from the inference parameters <span class="vi-math">\(\phi\)</span>, and are held fixed when taking the inference gradient above.</p>
+<p>The inference network predicts <span class="vi-math">\(m_\phi(x)\)</span> and <span class="vi-math">\(s_\phi(x)\)</span> for each observation. This is <strong>amortization</strong>—learning how to infer across many observations. The derivative above holds <span class="vi-math">\(\theta\)</span> fixed while differentiating with respect to <span class="vi-math">\(\phi\)</span>; training also computes a derivative with respect to <span class="vi-math">\(\theta\)</span> to update the generative model.</p>
 <p><a href="#paper-5">Stochastic backpropagation</a> develops a closely related route. <a href="#paper-22">Sticking the Landing</a> removes a noisy term from this derivative. <a href="#paper-39">Inference suboptimality</a> asks what is lost when an encoder chooses the local approximation.</p>
 <p><strong>Follow one draw.</strong> For a scalar <span class="vi-math">\(z=m+s\epsilon\)</span> and a fixed smooth function <span class="vi-math">\(f\)</span>,</p>
 <div class="vi-math">\[
