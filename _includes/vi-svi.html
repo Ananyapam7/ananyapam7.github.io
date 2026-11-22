@@ -1,13 +1,13 @@
-<figure class="vi-svi" id="svi-explorer" data-svi>
+<figure class="vi-svi" data-svi="" id="svi-explorer">
 <h5>A few local fits move one global belief</h5>
 <p>Follow four stages: select three observations, fit their local factors, send scaled statistics, then blend the global natural parameters. Teal is the current global approximation; dashed blue is the best global factor in this mean-field family.</p>
-<div data-svi-live hidden>
-<div class="vi-svi-controls"><button type="button" data-svi-step>Next stage</button><button type="button" data-svi-play>Play</button><button type="button" data-svi-reset>Reset</button></div>
+<div data-svi-live="" hidden="">
+<div class="vi-svi-controls"><button data-svi-step="" type="button">Next stage</button><button data-svi-play="" type="button">Play</button><button data-svi-reset="" type="button">Reset</button></div>
 <ol class="vi-svi-stages"><li>Select batch</li><li>Fit locals</li><li>Scale messages</li><li>Update global</li></ol>
-<p data-svi-status role="status" aria-live="polite"></p>
-<svg data-svi-network viewBox="0 0 680 350" role="img" aria-label="A shared global factor connects to twelve local factors; three selected local factors send statistics back"></svg>
-<div class="vi-svi-plots"><svg data-svi-density viewBox="0 0 340 200" role="img" aria-label="Current and optimal mean-field global Gaussian densities"></svg><svg data-svi-elbo viewBox="0 0 340 200" role="img" aria-label="Profiled ELBO gap after each global update; noisy steps need not improve it"></svg></div>
-<p data-svi-values></p>
+<p aria-live="polite" data-svi-status="" role="status"></p>
+<svg aria-label="A shared global factor connects to twelve local factors; three selected local factors send statistics back" data-svi-network="" role="img" viewbox="0 0 680 350"></svg>
+<div class="vi-svi-plots"><svg aria-label="Current and optimal mean-field global Gaussian densities" data-svi-density="" role="img" viewbox="0 0 340 200"></svg><svg aria-label="Profiled ELBO gap after each global update; noisy steps need not improve it" data-svi-elbo="" role="img" viewbox="0 0 340 200"></svg></div>
+<p data-svi-values=""></p>
 </div>
 <noscript><p>Enable JavaScript to play or step through the minibatches.</p></noscript>
 <details><summary>The small model behind this animation</summary>

@@ -4,7 +4,7 @@
       "id": "vi-core",
       "label": "Start from the ELBO",
       "question": "How do we actually optimize the ELBO?",
-      "intro": "Start with a choice of approximation family and an optimizer. Then distinguish the model structure a paper assumes from the inference machinery it introduces.",
+      "intro": "First solve the ELBO, then scale or generalize the solution. Mean field chooses a restricted family; CAVI finds the best factor given the others; SVI exploits a global–local model to avoid full-data passes; BBVI removes the need for analytic updates; AEVB moves continuous samples so differentiation becomes easier. Those are changes to different parts of one optimization problem.",
       "papers": [
         "method-mfvi",
         "paper-1",
@@ -21,7 +21,7 @@
       "id": "vi-paths",
       "label": "Move the samples",
       "question": "How can we differentiate through a draw?",
-      "intro": "The pathwise idea extends beyond a Gaussian transform. The key question is how a sample moves when the approximation changes.",
+      "intro": "One derivative, several ways to move probability. Once a sample can be written as a transformation of base randomness, its gradient can follow the sample. The difficulty is choosing that transformation: shared weights or local activations, fixed or parameter-dependent noise, sampler-specific rejection corrections, implicit CDF equations, or transport velocities.",
       "papers": [
         "paper-8",
         "paper-9",
@@ -34,7 +34,7 @@
       "id": "vi-discrete",
       "label": "Handle discrete unknowns",
       "question": "What if a draw cannot move smoothly?",
-      "intro": "Discrete choices interrupt ordinary backpropagation. These papers introduce relaxations, corrected surrogates, and paired draws.",
+      "intro": "When samples cannot move continuously, choose what you are willing to change. A relaxation replaces the discrete training problem with a smooth proxy. Score estimators preserve the original discrete objective but may be noisy. REBAR and RELAX use a proxy only as a control, correcting back to an unbiased discrete gradient; ARM and DisARM use coupled binary draws instead.",
       "papers": [
         "paper-13",
         "paper-15",
@@ -49,7 +49,7 @@
       "id": "vi-variance",
       "label": "Reduce gradient noise",
       "question": "Can we keep the gradient and remove its noise?",
-      "intro": "A control variate subtracts a correlated random quantity and adds back its known mean. The objective stays the same; the update becomes easier to estimate.",
+      "intro": "A correct gradient can still be unusably noisy. Rather than change the target or variational family, these methods construct random quantities with known means and subtract their unpredictable components. Some controls use the score identity, others use Taylor or learned quadratics, others integration by parts, and still others exploit stored information across data points.",
       "papers": [
         "paper-22",
         "paper-23",
@@ -63,7 +63,7 @@
       "id": "vi-objectives",
       "label": "Change the criterion",
       "question": "Would a different objective give a better fit?",
-      "intro": "Importance weights connect the ELBO to alternative bounds. Their gradients need their own care: a tighter bound need not be easier to optimize.",
+      "intro": "What if a more efficient optimizer is solving the wrong approximation problem? The ELBO chooses reverse KL, but we can instead change how importance weights are combined or weighted. That can encourage coverage or tighten a bound. Yet every new objective creates a new gradient-estimation question, and a tighter bound can produce a weaker inference-learning signal.",
       "papers": [
         "paper-27",
         "paper-28",
@@ -80,7 +80,7 @@
       "id": "vi-families",
       "label": "Make the family richer",
       "question": "Which shapes can the approximation represent?",
-      "intro": "Better optimization cannot repair a family that is too restrictive. Transformations, auxiliary variables, and particles expand the available shapes.",
+      "intro": "Optimization cannot fit a shape the family does not contain. A diagonal Gaussian can be optimized perfectly and still miss posterior dependence. Flows make invertible deformations; stochastic chains and hierarchical mixtures introduce auxiliary variables; particles replace a density parameterization with transport. Each approach buys flexibility by paying a different density-evaluation or optimization cost.",
       "papers": [
         "paper-34",
         "paper-35",
@@ -93,7 +93,7 @@
       "id": "vi-amortization",
       "label": "Share inference",
       "question": "Can one inference network solve many problems?",
-      "intro": "An encoder shares work across observations. These papers examine what sharing misses and how local refinement can recover it.",
+      "intro": "Even a flexible family can be fitted badly by a shared inference network. Amortization predicts local variational parameters instead of optimizing them separately. The natural questions are how much error comes from the family, how much from the predictor, whether local refinement helps, and whether the predictor sees enough information to ever recover the desired local fit.",
       "papers": [
         "paper-39",
         "paper-40",
@@ -104,7 +104,7 @@
       "id": "vi-guarantees",
       "label": "Understand the guarantees",
       "question": "What can we prove about the fit?",
-      "intro": "Separate statistical accuracy, uncertainty estimates, gradient variance, and optimization convergence. They answer different questions about the same approximation.",
+      "intro": "Successful computation is not the same as accurate inference. A method may converge quickly to the best restricted approximation, yet produce poorly calibrated uncertainty. Conversely, an expressive family may be hard to optimize. These papers separate statistical consistency, covariance correction, the magnitude of gradient noise, convergence of an algorithm, and dependence on dimension.",
       "papers": [
         "paper-42",
         "paper-43",

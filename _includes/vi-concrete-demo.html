@@ -1,21 +1,21 @@
-<figure class="vi-paper-demo" data-vi-demo="concrete" aria-labelledby="vi-concrete-title">
+<figure aria-labelledby="vi-concrete-title" class="vi-paper-demo" data-vi-demo="concrete">
 <h5 id="vi-concrete-title">Watch a soft choice become a category</h5>
 <p>Each dot uses the same three Gumbel draws throughout. Only the temperature changes. Its color marks the category that wins the hard choice.</p>
 <div class="vi-demo-controls">
-<label for="vi-concrete-temperature">Temperature <output for="vi-concrete-temperature" data-value>1.20</output>
-<input id="vi-concrete-temperature" type="range" min="0.08" max="3" step="0.02" value="1.2"></label>
-<button type="button" data-play>Cool the samples</button>
+<label for="vi-concrete-temperature">Temperature <output data-value="" for="vi-concrete-temperature">1.20</output>
+<input id="vi-concrete-temperature" max="3" min="0.08" step="0.02" type="range" value="1.2"/></label>
+<button data-play="" type="button">Cool the samples</button>
 </div>
-<svg viewBox="0 0 460 390" role="img" aria-labelledby="vi-concrete-plot-title vi-concrete-plot-desc">
+<svg aria-labelledby="vi-concrete-plot-title vi-concrete-plot-desc" role="img" viewbox="0 0 460 390">
 <title id="vi-concrete-plot-title">Three-category Concrete samples</title>
 <desc id="vi-concrete-plot-desc">Dots move from the interior of a probability simplex toward its vertices as temperature decreases. The underlying Gumbel noise and category probabilities stay fixed.</desc>
-<path d="M230 32L45 330H415Z" fill="none" stroke="currentColor" opacity=".25"/>
-<path d="M137.5 181L322.5 181M137.5 181L230 330M322.5 181L230 330" fill="none" stroke="currentColor" opacity=".09"/>
-<g data-points></g>
-<text x="230" y="20" text-anchor="middle" fill="var(--vi-demo-red)">Category 1</text>
-<text x="45" y="355" text-anchor="middle" fill="var(--vi-demo-teal)">Category 2</text>
-<text x="415" y="355" text-anchor="middle" fill="var(--vi-demo-blue)">Category 3</text>
-<text x="230" y="382" text-anchor="middle" fill="currentColor">Interior = soft mixture · vertex = one category</text>
+<path d="M230 32L45 330H415Z" fill="none" opacity=".25" stroke="currentColor"></path>
+<path d="M137.5 181L322.5 181M137.5 181L230 330M322.5 181L230 330" fill="none" opacity=".09" stroke="currentColor"></path>
+<g data-points=""></g>
+<text fill="var(--vi-demo-red)" text-anchor="middle" x="230" y="20">Category 1</text>
+<text fill="var(--vi-demo-teal)" text-anchor="middle" x="45" y="355">Category 2</text>
+<text fill="var(--vi-demo-blue)" text-anchor="middle" x="415" y="355">Category 3</text>
+<text fill="currentColor" text-anchor="middle" x="230" y="382">Interior = soft mixture · vertex = one category</text>
 </svg>
 <figcaption>The fixed logits are \(\ell=\log(0.55,0.30,0.15)\). Cooling changes the softness of each draw, not its winning category. These are samples from the relaxation, not a plot of its density. Near a tie, a small logit change can move a cold sample sharply.</figcaption>
 <noscript><p>Enable JavaScript to adjust the temperature. At high temperature, samples lie toward the triangle's center; near zero, they approach the three category vertices.</p></noscript>

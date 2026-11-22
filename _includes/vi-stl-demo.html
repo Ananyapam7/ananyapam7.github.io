@@ -1,19 +1,19 @@
-<figure class="vi-paper-demo" data-vi-demo="stl" aria-labelledby="vi-stl-title">
+<figure aria-labelledby="vi-stl-title" class="vi-paper-demo" data-vi-demo="stl">
 <h5 id="vi-stl-title">Same expected gradient, different noise</h5>
 <p>The target is \(\mathcal N(0,1)\), and \(q_\phi=\mathcal N(m,s^2)\). Each dot is a mean-gradient estimate using a fixed noise draw. Move the scale to 1 to see STL's dots collapse onto their exact mean.</p>
 <div class="vi-demo-controls">
-<label for="vi-stl-mean"><span>Mean \(m\)</span> <output for="vi-stl-mean" data-mean-value>0.80</output>
-<input id="vi-stl-mean" type="range" min="-2" max="2" step="0.05" value="0.8"></label>
-<label for="vi-stl-scale"><span>Scale \(s\)</span> <output for="vi-stl-scale" data-scale-value>1.00</output>
-<input id="vi-stl-scale" type="range" min="0.3" max="2" step="0.05" value="1"></label>
-<button type="button" data-fit>Set exact fit</button>
+<label for="vi-stl-mean"><span>Mean \(m\)</span> <output data-mean-value="" for="vi-stl-mean">0.80</output>
+<input id="vi-stl-mean" max="2" min="-2" step="0.05" type="range" value="0.8"/></label>
+<label for="vi-stl-scale"><span>Scale \(s\)</span> <output data-scale-value="" for="vi-stl-scale">1.00</output>
+<input id="vi-stl-scale" max="2" min="0.3" step="0.05" type="range" value="1"/></label>
+<button data-fit="" type="button">Set exact fit</button>
 </div>
-<svg viewBox="0 0 520 295" role="img" aria-labelledby="vi-stl-plot-title vi-stl-plot-desc">
+<svg aria-labelledby="vi-stl-plot-title vi-stl-plot-desc" role="img" viewbox="0 0 520 295">
 <title id="vi-stl-plot-title">Total-derivative and STL mean-gradient estimates</title>
 <desc id="vi-stl-plot-desc">Two rows of dots show estimates under the same noise draws. A vertical dashed line marks their shared exact expectation. STL loses all noise at the exact Gaussian fit.</desc>
-<g data-gradient-plot></g>
+<g data-gradient-plot=""></g>
 </svg>
-<p class="vi-demo-reading" data-reading aria-live="polite"></p>
+<p aria-live="polite" class="vi-demo-reading" data-reading=""></p>
 <figcaption>The horizontal position is the gradient value; the small vertical offsets only separate overlapping dots. The exact variances are \(s^2\) for the total derivative and \((s^{-1}-s)^2\) for STL. Try \(s=0.3\): STL can be noisier when the scale is badly mismatched.</figcaption>
 <noscript><p>At \(m=0,s=1\), all STL estimates equal zero, while total-derivative estimates equal \(-\epsilon\).</p></noscript>
 </figure>
