@@ -104,3 +104,7 @@ ELBO against an independent Gaussian calculation.
 Write for a reader who has not seen the conversation or the source paper. Avoid
 headings that answer unintroduced questions. Define specialized terms before
 using them in equations, and explain why each new equation is needed.
+
+The interactive network is generated from the same metadata: groups position the
+nodes, short supplies their labels, and connections supplies the edges. New entries
+appear in the network when you rebuild the include.

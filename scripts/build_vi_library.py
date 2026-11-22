@@ -8,10 +8,38 @@ from pathlib import Path
 import html
 import json
 import re
+import textwrap
 import markdown
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "resources/vi-papers"
+
+def render_network(data, papers):
+    esc = html.escape
+    positions = {}
+    colors = ["#299caa", "#6b91dc", "#cc8251", "#a184d1", "#c77a97", "#63a382", "#b39a48", "#7996ab"]
+    for gi, group in enumerate(data["groups"]):
+        for i, pid in enumerate(group["papers"]):
+            positions[pid] = (60 + (gi % 4)*310 + (i % 2)*145, 115 + (gi // 4)*395 + (i // 2)*60, gi)
+    parts = ['<section class="vi-network" aria-labelledby="vi-network-title"><div class="vi-network-heading"><p class="vi-network-eyebrow">An atlas of variational inference</p><h3 id="vi-network-title">Follow an idea through the papers</h3><p>Hover or focus a node to preview its contribution and highlight related methods. Select it to open the full paper entry below. Lines show reading connections, not historical priority.</p></div>',
+             '<div class="vi-network-layout"><div class="vi-network-scroll" tabindex="0" role="region" aria-label="Paper network; scroll horizontally on small screens"><svg viewBox="0 0 1240 810" role="group" aria-label="51 papers and methods grouped into eight connected ideas">']
+    edges = set()
+    for pid, p in papers.items():
+        for other in p.get("connections", []):
+            edges.add(tuple(sorted((pid, other))))
+    for a,b in sorted(edges):
+        x,y,_ = positions[a]; xx,yy,_ = positions[b]
+        parts.append(f'<path class="vi-network-edge" data-from="{a}" data-to="{b}" d="M{x},{y} C{(x+xx)/2},{y} {(x+xx)/2},{yy} {xx},{yy}" />')
+    for gi,group in enumerate(data["groups"]):
+        x=(gi%4)*310; y=(gi//4)*395
+        parts.append(f'<rect class="vi-network-cluster" x="{x+8}" y="{y+10}" width="298" height="380" rx="18" />')
+        parts.append(f'<text class="vi-network-group" x="{x+24}" y="{y+44}" fill="{colors[gi]}">{esc(group["label"])}</text>')
+    for pid,p in papers.items():
+        x,y,gi=positions[pid]
+        label = "".join(f'<tspan x="{x-30}" dy="{0 if i == 0 else 14}">{esc(line)}</tspan>' for i,line in enumerate(textwrap.wrap(p["short"], width=21)))
+        parts.append(f'<a class="vi-network-node" href="#{pid}" data-paper="{pid}" aria-label="{esc(p["title"])}: open full entry"><title>{esc(p["title"])} — {esc(p["year"])}</title><circle cx="{x}" cy="{y}" r="7" fill="{colors[gi]}"/><text x="{x-30}" y="{y+25}">{label}</text></a>')
+    parts.append('</svg></div><aside class="vi-network-preview" aria-label="Paper preview"><p class="vi-network-eyebrow" data-network-category>Start anywhere</p><h4 data-network-title>One foundation. Many directions.</h4><img data-network-image hidden alt=""><p data-network-authors></p><p data-network-description>Choose a node to see what the paper changes, then follow its connections to nearby ideas.</p><a data-network-open hidden>Read the full explanation →</a></aside></div><p class="vi-network-footnote">On touch screens, tap a node to preview it, then use “Read the full explanation”. The question-by-question index below offers another way to navigate.</p></section>')
+    return "\n".join(parts)
 
 
 def render_math_markdown(source):
@@ -39,6 +67,7 @@ def build():
     assert len(papers) == len(data["papers"]), "Duplicate paper IDs"
     esc = html.escape
     parts = ['<div class="vi-library" id="paper-library" markdown="0">']
+    parts.append(render_network(data, papers))
     parts.append('<nav class="vi-idea-map" aria-label="Explore papers by question">')
     for group in data["groups"]:
         parts.append(f'<a href="#{esc(group["id"])}"><strong>{esc(group["label"])}</strong><span>{esc(group["question"])}</span></a>')
