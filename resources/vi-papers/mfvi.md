@@ -1,6 +1,4 @@
-A flexible joint approximation can be expensive to store, sample, and optimize. Mean field starts with a simpler choice: represent uncertainty in separate blocks.
-
-**The idea is to simplify dependence.** Instead of fitting one unrestricted joint distribution, choose independent blocks:
+Before asking how to maximize the ELBO, we have to decide what sort of distribution we are willing to fit. An unrestricted joint density is usually no easier to manipulate than the target itself. Mean field makes the first compromise: preserve uncertainty within chosen blocks, but omit dependence between blocks. This is a restriction on *our approximation*, not a declaration that the model's unknowns are independent.
 
 \[
 q_\phi(z)=\prod_{j=1}^Jq_{\phi_j}(z_j).
@@ -13,7 +11,7 @@ This makes sampling and density evaluation simple: draw each block separately an
 **The cost is lost geometry.** A correlated Gaussian has tilted contours, whereas a product of scalar Gaussians has axis-aligned contours.
 
 <figure class="vi-mfvi-figure">
-<img src="/assets/vi/mfvi-geometry.svg" alt="A tilted blue target ellipse compared with a narrower axis-aligned orange mean-field approximation. Both have the same center.">
+<img alt="A tilted blue target ellipse compared with a narrower axis-aligned orange mean-field approximation. Both have the same center." src="/assets/vi/mfvi-geometry.svg"/>
 <figcaption>Blue: correlated target. Orange: best reverse-KL mean-field fit. The center is correct, but the dependence is missing.</figcaption>
 </figure>
 
@@ -30,5 +28,7 @@ The true marginal variances are \(1\), but at \(\rho=0.8\) the fitted variances 
 **When it helps.** Mean field offers inexpensive inference when dependencies are weak or speed matters. Strong correlations can make uncertainty too narrow, and separated modes can lead to a fit around just one mode. Larger blocks, [flows](#paper-34), or [hierarchical approximations](#paper-37) can retain more structure.
 
 The independence assumption belongs to the approximation \(q_\phi\), not to the target \(\pi\). The featured Peterson–Anderson paper uses mean-field equations and factorized correlations to replace expensive sampling during Boltzmann-machine learning. The broader MFVI idea below is a choice of approximation family; the model and reverse-KL objective stay fixed.
+
+**What carries forward.** The transferable choice is the *partition*: independent scalar factors are only one extreme. Block-mean-field models preserve dependence inside blocks. CAVI, stochastic optimization, and later richer-family methods can all be used after this choice.
 
 [Read the source paper](https://wpmedia.wolfram.com/sites/13/2018/02/01-5-6.pdf).
